@@ -54,6 +54,24 @@ def display_teacher_name(name: str) -> str:
     return " ".join(part[:1].upper() + part[1:].lower() for part in name.split())
 
 
+def display_subject_name(name: str) -> str:
+    """Normalize Mindbox subject labels for consistent display across imports."""
+
+    clean = " ".join(name.split())
+    roman_numerals = {"I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"}
+    lowercase_words = {"a", "al", "con", "de", "del", "e", "el", "en", "la", "las", "los", "para", "por", "y"}
+    words = []
+    for index, word in enumerate(clean.split(" ")):
+        normalized = word.upper()
+        if normalized in roman_numerals:
+            words.append(normalized)
+        elif index > 0 and word.casefold() in lowercase_words:
+            words.append(word.lower())
+        else:
+            words.append(word[:1].upper() + word[1:].lower())
+    return " ".join(words)
+
+
 def load_json(path: Path) -> dict[str, Any]:
     try:
         data = json.loads(path.read_text(encoding="utf-8"))
@@ -158,7 +176,7 @@ def mindbox_sql(
     for index, offering in enumerate(offerings):
         if not isinstance(offering, dict):
             raise ValueError(f"Offering {index} is not an object")
-        subject = str(offering.get("subject") or "").strip()
+        subject = display_subject_name(str(offering.get("subject") or "").strip())
         teacher = str(offering.get("teacher") or "").strip()
         semester = offering.get("semester")
         group = offering.get("group")

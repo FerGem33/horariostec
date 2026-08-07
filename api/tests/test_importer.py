@@ -2,7 +2,7 @@ import sqlite3
 import unittest
 from pathlib import Path
 
-from importer import legacy_sql, mindbox_sql, sql_statements
+from importer import display_subject_name, legacy_sql, mindbox_sql, sql_statements
 
 
 SCHEMA = (Path(__file__).resolve().parents[1] / "migrations/0001_initial.sql").read_text(
@@ -17,6 +17,12 @@ def database() -> sqlite3.Connection:
 
 
 class ImporterTests(unittest.TestCase):
+    def test_subject_names_are_normalized_for_display(self):
+        self.assertEqual(
+            display_subject_name("  FUNDAMENTOS   DE TELECOMUNICACIONES II "),
+            "Fundamentos de Telecomunicaciones II",
+        )
+
     def test_legacy_import_replaces_previous_snapshot(self):
         connection = database()
         first = {

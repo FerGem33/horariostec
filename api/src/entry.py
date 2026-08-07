@@ -120,7 +120,7 @@ class Default(WorkerEntrypoint):
                       ls.general_score AS legacy_general_score,
                       COUNT(DISTINCT te.id) AS evaluation_count,
                       ROUND(AVG(te.global_rating), 2) AS average_global_rating,
-                      s.id AS subject_id, s.name AS subject,
+                      s.id AS subject_id, s.code AS course_code, s.name AS subject,
                       s.semester AS subject_semester
                FROM teachers t
                LEFT JOIN legacy_teacher_summaries ls ON ls.teacher_id = t.id
@@ -133,7 +133,7 @@ class Default(WorkerEntrypoint):
                  AND (? IS NULL OR s.id = ?)
                  AND (? IS NULL OR LOWER(t.display_name) LIKE ? OR LOWER(s.name) LIKE ?)
                GROUP BY t.id, t.display_name, ls.review_count, ls.general_score,
-                        s.id, s.name, s.semester
+                        s.id, s.code, s.name, s.semester
                ORDER BY t.display_name, s.semester, s.name"""
         ).bind(career, career, subject_id, subject_id, pattern, pattern, pattern).all()
         teachers: dict[int, dict] = {}
@@ -152,7 +152,7 @@ class Default(WorkerEntrypoint):
             )
             if row["subject_id"] is not None:
                 teacher["subjects"].append(
-                    {"id": row["subject_id"], "name": row["subject"], "semester": row["subject_semester"]}
+                    {"id": row["subject_id"], "name": row["subject"], "course_code": row["course_code"], "semester": row["subject_semester"]}
                 )
         return json_response({"teachers": list(teachers.values())}, origin=origin)
 
@@ -242,7 +242,7 @@ class Default(WorkerEntrypoint):
         if not result:
             return json_response({"error": "teacher not found"}, status=404, origin=origin)
         subjects = await self.env.DB.prepare(
-            """SELECT DISTINCT s.id, s.name, s.semester, c.slug AS career
+            """SELECT DISTINCT s.id, s.name, s.code AS course_code, s.semester, c.slug AS career
                FROM sections sec
                JOIN subjects s ON s.id = sec.subject_id
                JOIN careers c ON c.id = sec.career_id

@@ -7,7 +7,7 @@ export type Teacher = {
   legacy_general_score?: number | null;
   evaluation_count?: number;
   average_global_rating?: number | null;
-  subjects?: Array<{ id: number; name: string; semester: number; career?: string }>;
+  subjects?: Array<{ id: number; name: string; semester: number; career?: string; course_code?: string | null }>;
 };
 
 export type Career = { id: number; slug: string; name: string; subject_count: number; teacher_count: number };
