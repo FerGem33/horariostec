@@ -5,6 +5,8 @@ from src.validation import (
     validate_comment,
     validate_global_rating,
     validate_slug,
+    validate_vote,
+    validate_voter_key,
 )
 
 
@@ -29,6 +31,16 @@ class ValidationTests(unittest.TestCase):
         self.assertEqual(validate_slug("sistemas"), "sistemas")
         with self.assertRaises(ValueError):
             validate_slug("sistemas/teachers")
+
+    def test_comment_votes(self):
+        self.assertEqual(validate_vote("like"), "like")
+        self.assertEqual(validate_vote("dislike"), "dislike")
+        self.assertEqual(validate_vote("remove"), "remove")
+        self.assertEqual(validate_voter_key("12345678-1234-1234-1234-123456789012"), "12345678-1234-1234-1234-123456789012")
+        with self.assertRaises(ValueError):
+            validate_vote("upvote")
+        with self.assertRaises(ValueError):
+            validate_voter_key("short")
 
 
 if __name__ == "__main__":

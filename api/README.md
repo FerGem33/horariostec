@@ -14,6 +14,7 @@ The Worker currently exposes:
 - `GET /api/v1/teachers/{id}/evaluations`
 - `POST /api/v1/teachers/{id}/evaluations`
 - `GET /api/v1/teachers/{id}/legacy`
+- `POST /api/v1/comments/{evaluation|legacy}/{comment_id}/vote`
 
 The catalog and subject endpoints use the active term when `term` is omitted.
 Providing `term` selects that term explicitly. Catalog results contain one

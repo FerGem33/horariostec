@@ -9,6 +9,8 @@ from validation import (
     validate_comment,
     validate_global_rating,
     validate_slug,
+    validate_vote,
+    validate_voter_key,
 )
 
 
@@ -72,6 +74,9 @@ class Default(WorkerEntrypoint):
         if len(parts) == 5 and parts[:3] == ["api", "v1", "teachers"] and parts[4] == "legacy":
             if request.method == "GET":
                 return await self.legacy(int(parts[3]), origin)
+        if len(parts) == 6 and parts[:3] == ["api", "v1", "comments"] and parts[5] == "vote":
+            if request.method == "POST":
+                return await self.vote_comment(request, parts[3], int(parts[4]), origin)
         if len(parts) == 4 and parts[:3] == ["api", "v1", "teachers"] and request.method == "GET":
             return await self.teacher(int(parts[3]), origin)
         return json_response({"error": "not found"}, status=404, origin=origin)
@@ -289,7 +294,11 @@ class Default(WorkerEntrypoint):
         result = await self.env.DB.prepare(
             f"""SELECT te.id, te.subject_id, s.name AS subject,
                           te.term_id, tm.name AS term, te.global_rating,
-                          te.comment, te.created_at
+                          te.comment, te.created_at,
+                          (SELECT COUNT(*) FROM comment_votes cv
+                           WHERE cv.source = 'evaluation' AND cv.comment_id = te.id AND cv.vote = 'like') AS like_count,
+                          (SELECT COUNT(*) FROM comment_votes cv
+                           WHERE cv.source = 'evaluation' AND cv.comment_id = te.id AND cv.vote = 'dislike') AS dislike_count
                    FROM teacher_evaluations te
                    LEFT JOIN subjects s ON s.id = te.subject_id
                    LEFT JOIN terms tm ON tm.id = te.term_id
@@ -366,12 +375,61 @@ class Default(WorkerEntrypoint):
         comments = await self.env.DB.prepare(
             """SELECT id, source_id, body, legacy_rating, published_at,
                       source_label, source_url
+                      ,(SELECT COUNT(*) FROM comment_votes cv
+                        WHERE cv.source = 'legacy' AND cv.comment_id = legacy_comments.id AND cv.vote = 'like') AS like_count
+                      ,(SELECT COUNT(*) FROM comment_votes cv
+                        WHERE cv.source = 'legacy' AND cv.comment_id = legacy_comments.id AND cv.vote = 'dislike') AS dislike_count
                FROM legacy_comments
                WHERE teacher_id = ? ORDER BY published_at DESC, id DESC
                LIMIT 100"""
         ).bind(teacher_id).all()
         return json_response(
             {"source": "HazTuHorario", "summary": summary, "comments": comments.results},
+            origin=origin,
+        )
+
+    async def vote_comment(self, request, source: str, comment_id: int, origin: str) -> Response:
+        if source not in ("evaluation", "legacy"):
+            return json_response({"error": "invalid comment source"}, status=400, origin=origin)
+        body = await request.json()
+        if not isinstance(body, dict):
+            raise ValueError("request body must be an object")
+        voter_key = validate_voter_key(body.get("voter_id"))
+        vote = validate_vote(body.get("vote"))
+        comment_table = "teacher_evaluations" if source == "evaluation" else "legacy_comments"
+        visible_clause = " AND status = 'visible'" if source == "evaluation" else ""
+        comment = await self.env.DB.prepare(
+            f"SELECT id FROM {comment_table} WHERE id = ?{visible_clause}"
+        ).bind(comment_id).first()
+        if not comment:
+            return json_response({"error": "comment not found"}, status=404, origin=origin)
+
+        if vote == "remove":
+            await self.env.DB.prepare(
+                "DELETE FROM comment_votes WHERE source = ? AND comment_id = ? AND voter_key = ?"
+            ).bind(source, comment_id, voter_key).run()
+        else:
+            await self.env.DB.prepare(
+                "DELETE FROM comment_votes WHERE source = ? AND comment_id = ? AND voter_key = ?"
+            ).bind(source, comment_id, voter_key).run()
+            await self.env.DB.prepare(
+                "INSERT INTO comment_votes (source, comment_id, voter_key, vote) VALUES (?, ?, ?, ?)"
+            ).bind(source, comment_id, voter_key, vote).run()
+
+        counts = await self.env.DB.prepare(
+            """SELECT
+                 SUM(CASE WHEN vote = 'like' THEN 1 ELSE 0 END) AS like_count,
+                 SUM(CASE WHEN vote = 'dislike' THEN 1 ELSE 0 END) AS dislike_count
+               FROM comment_votes WHERE source = ? AND comment_id = ?"""
+        ).bind(source, comment_id).first()
+        return json_response(
+            {
+                "source": source,
+                "comment_id": comment_id,
+                "like_count": counts["like_count"] or 0,
+                "dislike_count": counts["dislike_count"] or 0,
+                "vote": None if vote == "remove" else vote,
+            },
             origin=origin,
         )
 

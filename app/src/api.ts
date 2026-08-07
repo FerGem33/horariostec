@@ -22,6 +22,8 @@ export type Evaluation = {
   comment: string | null;
   created_at: string;
   answers?: Record<string, number>;
+  like_count?: number;
+  dislike_count?: number;
 };
 
 export type Legacy = {
@@ -41,7 +43,17 @@ export type Legacy = {
     body: string;
     published_at: string | null;
     source_url: string | null;
+    like_count?: number;
+    dislike_count?: number;
   }>;
+};
+
+export type CommentVote = {
+  source: "evaluation" | "legacy";
+  comment_id: number;
+  like_count: number;
+  dislike_count: number;
+  vote: "like" | "dislike" | null;
 };
 
 export type Subject = { id: number; name: string; semester: number; course_code: string | null; credits: number | null };
@@ -77,5 +89,17 @@ export const api = {
       throw new Error(body.error ?? "No pudimos guardar tu evaluación.");
     }
     return response.json() as Promise<{ created: boolean; evaluation_id: number }>;
+  },
+  voteComment: async (source: CommentVote["source"], commentId: number, voterId: string, vote: "like" | "dislike" | "remove") => {
+    const response = await fetch(`${API_BASE_URL}/api/v1/comments/${source}/${commentId}/vote`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ voter_id: voterId, vote }),
+    });
+    if (!response.ok) {
+      const body = await response.json().catch(() => ({}));
+      throw new Error(body.error ?? "No pudimos registrar tu voto.");
+    }
+    return response.json() as Promise<CommentVote>;
   },
 };

@@ -5,6 +5,7 @@ import re
 
 MAX_COMMENT_LENGTH = 1_000
 NAME_PATTERN = re.compile(r"^[a-zA-Z0-9_-]{1,80}$")
+VOTER_PATTERN = re.compile(r"^[a-zA-Z0-9:_-]{16,128}$")
 ANSWER_KEYS = (
     "attendance_weight",
     "assignments_weight",
@@ -66,4 +67,16 @@ def validate_comment(value: object) -> str | None:
 def validate_slug(value: str) -> str:
     if not NAME_PATTERN.fullmatch(value):
         raise ValueError("invalid identifier")
+    return value
+
+
+def validate_voter_key(value: object) -> str:
+    if not isinstance(value, str) or not VOTER_PATTERN.fullmatch(value):
+        raise ValueError("voter_id must be a valid anonymous identifier")
+    return value
+
+
+def validate_vote(value: object) -> str:
+    if value not in ("like", "dislike", "remove"):
+        raise ValueError("vote must be like, dislike, or remove")
     return value
