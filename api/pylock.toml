@@ -1,0 +1,8 @@
+lock-version = "1.0"
+created-by = "uv"
+requires-python = ">=3.13.2"
+
+[[packages]]
+name = "workers-runtime-sdk"
+version = "1.6.8"
+wheels = [{ url = "https://files.pythonhosted.org/packages/53/95/624301551cf2aeaf79c6764306b363261e7dff35c5678e621bd15cd6b3d1/workers_runtime_sdk-1.6.8-py3-none-any.whl", upload-time = 2026-08-05T03:45:38Z, size = 32787, hashes = { sha256 = "42312d9cdd8e97626ba15d4e513edd43fe781f45cf4e68bd2d5d628eb88de8c5" } }]

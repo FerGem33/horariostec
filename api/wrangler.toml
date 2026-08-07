@@ -1,0 +1,13 @@
+name = "horariostec-api"
+main = "src/entry.py"
+compatibility_date = "2026-08-06"
+compatibility_flags = ["python_workers"]
+
+[[d1_databases]]
+binding = "DB"
+database_name = "horariostec"
+database_id = "fa38b7f7-fe69-4dae-a1e2-995abf512948"
+migrations_dir = "migrations"
+
+[vars]
+ALLOWED_ORIGIN = "*"

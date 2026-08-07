@@ -1,0 +1,13 @@
+[project]
+name = "horariostec-api"
+version = "0.1.0"
+description = "Cloudflare Python Worker API for HorariosTec"
+requires-python = ">=3.11"
+dependencies = [
+  "workers-runtime-sdk",
+]
+
+[dependency-groups]
+dev = [
+  "workers-py",
+]
