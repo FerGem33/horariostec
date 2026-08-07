@@ -16,3 +16,9 @@
 .mypy_cache/
 .ruff_cache/
 .DS_Store
+
+# Frontend dependencies, builds, and local environment
+**/node_modules/
+**/dist/
+app/.env.local
+app/.env.*.local
