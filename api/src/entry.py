@@ -14,6 +14,13 @@ from validation import (
 )
 
 
+def absolute_global_rating(current: object, legacy: object) -> float | None:
+    values = [float(value) for value in (current, legacy) if value is not None and float(value) >= 0]
+    if not values:
+        return None
+    return round(sum(values) / len(values), 2)
+
+
 API_PREFIX = "/api/v1"
 
 
@@ -118,14 +125,26 @@ class Default(WorkerEntrypoint):
             """SELECT t.id, t.display_name,
                       COALESCE(ls.review_count, 0) AS legacy_review_count,
                       ls.general_score AS legacy_general_score,
-                      COUNT(DISTINCT te.id) AS evaluation_count,
-                      ROUND(AVG(te.global_rating), 2) AS average_global_rating,
+                      COALESCE(current.evaluation_count, 0) AS evaluation_count,
+                      current.average_global_rating,
+                      CASE
+                        WHEN current.average_global_rating >= 0 AND ls.general_score >= 0
+                          THEN ROUND((current.average_global_rating + ls.general_score) / 2, 2)
+                        WHEN current.average_global_rating >= 0 THEN current.average_global_rating
+                        WHEN ls.general_score >= 0 THEN ls.general_score
+                        ELSE NULL
+                      END AS absolute_global_rating,
                       s.id AS subject_id, s.code AS course_code, s.name AS subject,
                       s.semester AS subject_semester
                FROM teachers t
                LEFT JOIN legacy_teacher_summaries ls ON ls.teacher_id = t.id
-               LEFT JOIN teacher_evaluations te
-                 ON te.teacher_id = t.id AND te.status = 'visible'
+               LEFT JOIN (
+                 SELECT teacher_id, COUNT(*) AS evaluation_count,
+                        ROUND(AVG(global_rating), 2) AS average_global_rating
+                 FROM teacher_evaluations
+                 WHERE status = 'visible'
+                 GROUP BY teacher_id
+               ) current ON current.teacher_id = t.id
                LEFT JOIN sections sec ON sec.teacher_id = t.id
                LEFT JOIN subjects s ON s.id = sec.subject_id
                LEFT JOIN careers c ON c.id = sec.career_id
@@ -133,6 +152,7 @@ class Default(WorkerEntrypoint):
                  AND (? IS NULL OR s.id = ?)
                  AND (? IS NULL OR LOWER(t.display_name) LIKE ? OR LOWER(s.name) LIKE ?)
                GROUP BY t.id, t.display_name, ls.review_count, ls.general_score,
+                        current.evaluation_count, current.average_global_rating,
                         s.id, s.code, s.name, s.semester
                ORDER BY t.display_name, s.semester, s.name"""
         ).bind(career, career, subject_id, subject_id, pattern, pattern, pattern).all()
@@ -147,6 +167,7 @@ class Default(WorkerEntrypoint):
                     "legacy_general_score": row["legacy_general_score"],
                     "evaluation_count": row["evaluation_count"],
                     "average_global_rating": row["average_global_rating"],
+                    "absolute_global_rating": row["absolute_global_rating"],
                     "subjects": [],
                 },
             )
@@ -191,12 +212,27 @@ class Default(WorkerEntrypoint):
           SELECT s.id AS subject_id, s.semester, s.code AS course_code,
                  s.name AS subject, s.credits, sec.id AS section_id,
                  sec.group_name AS group_name, t.id AS teacher_id,
-                 t.display_name AS teacher, cm.day_of_week,
+                 t.display_name AS teacher, ls.general_score AS teacher_legacy_general_score,
+                 CASE
+                   WHEN current.average_global_rating >= 0 AND ls.general_score >= 0
+                     THEN ROUND((current.average_global_rating + ls.general_score) / 2, 2)
+                   WHEN current.average_global_rating >= 0 THEN current.average_global_rating
+                   WHEN ls.general_score >= 0 THEN ls.general_score
+                   ELSE NULL
+                 END AS teacher_absolute_global_rating,
+                 cm.day_of_week,
                  cm.start_time, cm.end_time, cm.room
           FROM sections sec
           JOIN subjects s ON s.id = sec.subject_id
           JOIN careers c ON c.id = sec.career_id
           JOIN teachers t ON t.id = sec.teacher_id
+          LEFT JOIN legacy_teacher_summaries ls ON ls.teacher_id = t.id
+          LEFT JOIN (
+            SELECT teacher_id, ROUND(AVG(global_rating), 2) AS average_global_rating
+            FROM teacher_evaluations
+            WHERE status = 'visible'
+            GROUP BY teacher_id
+          ) current ON current.teacher_id = t.id
           JOIN terms tm ON tm.id = sec.term_id
           LEFT JOIN class_meetings cm ON cm.section_id = sec.id
           WHERE {term_clause}
@@ -221,6 +257,8 @@ class Default(WorkerEntrypoint):
                     "group_name": row["group_name"],
                     "teacher_id": row["teacher_id"],
                     "teacher": row["teacher"],
+                    "teacher_legacy_general_score": row["teacher_legacy_general_score"],
+                    "teacher_absolute_global_rating": row["teacher_absolute_global_rating"],
                     "meetings": [],
                 },
             )
@@ -255,6 +293,9 @@ class Default(WorkerEntrypoint):
                FROM teacher_evaluations
                WHERE teacher_id = ? AND status = 'visible'"""
         ).bind(teacher_id).first()
+        legacy_summary = await self.env.DB.prepare(
+            "SELECT general_score FROM legacy_teacher_summaries WHERE teacher_id = ?"
+        ).bind(teacher_id).first()
         quality = await self.env.DB.prepare(
             """SELECT ROUND(AVG(numeric_value), 2) AS quality_average
                FROM evaluation_answers ea
@@ -272,7 +313,15 @@ class Default(WorkerEntrypoint):
         return json_response(
             {
                 "teacher": {**result, "subjects": subjects.results},
-                "summary": {**(summary or {}), **(quality or {}), **(difficulty or {})},
+                "summary": {
+                    **(summary or {}),
+                    **(quality or {}),
+                    **(difficulty or {}),
+                    "absolute_global_rating": absolute_global_rating(
+                        (summary or {}).get("average_global_rating"),
+                        (legacy_summary or {}).get("general_score"),
+                    ),
+                },
             },
             origin=origin,
         )

@@ -112,6 +112,29 @@ uv run python importer.py legacy \
   --input ../scraper/haztuhorario/output/reviews.json
 ```
 
+Audit teacher names across the HazTuHorario and Mindbox artifacts before an
+import. The report is read-only and includes exact normalized matches plus
+fuzzy matches that need manual confirmation:
+
+```bash
+python audit_teacher_names.py --json /tmp/teacher-name-audit.json
+```
+
+The importer ignores accents, punctuation, name order, and common academic
+titles such as `Dr.` or `Ing.` when assigning a teacher key. It keeps the
+original display name and does not automatically merge ambiguous fuzzy matches.
+
+To start over and import every current artifact in one transaction, use the
+interactive reset command. Exact normalized matches are combined automatically;
+fuzzy matches are presented one by one at the end:
+
+```bash
+uv run python import_all.py
+```
+
+This deletes the local D1 contents first, including reviews, catalog, teachers,
+terms, and careers. Run it only when a full rebuild is intended.
+
 Import a Mindbox artifact. The selected career and term are replaced inside
 one transaction, so rerunning this command safely refreshes that catalog.
 Other terms and careers are left untouched. Use `--activate` when this should

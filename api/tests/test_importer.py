@@ -2,7 +2,7 @@ import sqlite3
 import unittest
 from pathlib import Path
 
-from importer import display_subject_name, legacy_sql, mindbox_sql, sql_statements
+from importer import display_subject_name, legacy_sql, mindbox_sql, normalized_teacher_name, sql_statements
 
 
 SCHEMA = (Path(__file__).resolve().parents[1] / "migrations/0001_initial.sql").read_text(
@@ -22,6 +22,20 @@ class ImporterTests(unittest.TestCase):
             display_subject_name("  FUNDAMENTOS   DE TELECOMUNICACIONES II "),
             "Fundamentos de Telecomunicaciones II",
         )
+
+    def test_teacher_titles_do_not_create_duplicate_keys(self):
+        self.assertEqual(
+            normalized_teacher_name("Alan Tijerina De La Rosa"),
+            normalized_teacher_name("TIJERINA DE LA ROSA DR. ALAN"),
+        )
+
+    def test_accented_display_name_wins_when_teacher_is_imported_twice(self):
+        connection = database()
+        connection.executescript(sql_statements([
+            "INSERT INTO teachers (normalized_name, display_name) VALUES ('garcia muniz maria elena', 'Garcia Muniz Maria Elena')",
+            "INSERT INTO teachers (normalized_name, display_name) VALUES ('garcia muniz maria elena', 'García Muñiz María Elena') ON CONFLICT(normalized_name) DO UPDATE SET display_name = CASE WHEN (instr(excluded.display_name, 'í') > 0) + (instr(excluded.display_name, 'ñ') > 0) > (instr(teachers.display_name, 'í') > 0) + (instr(teachers.display_name, 'ñ') > 0) THEN excluded.display_name ELSE teachers.display_name END",
+        ]))
+        self.assertEqual(connection.execute("SELECT display_name FROM teachers").fetchone()[0], "García Muñiz María Elena")
 
     def test_legacy_import_replaces_previous_snapshot(self):
         connection = database()

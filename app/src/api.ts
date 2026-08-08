@@ -1,4 +1,5 @@
-const API_BASE_URL = (import.meta.env.VITE_API_BASE_URL ?? "http://localhost:8787").replace(/\/$/, "");
+const localApiUrl = typeof window !== "undefined" ? `${window.location.protocol}//${window.location.hostname}:8787` : "http://localhost:8787";
+const API_BASE_URL = (import.meta.env.VITE_API_BASE_URL ?? (import.meta.env.DEV ? localApiUrl : "")).replace(/\/$/, "");
 
 export type Teacher = {
   id: number;
@@ -7,6 +8,7 @@ export type Teacher = {
   legacy_general_score?: number | null;
   evaluation_count?: number;
   average_global_rating?: number | null;
+  absolute_global_rating?: number | null;
   subjects?: Array<{ id: number; name: string; semester: number; career?: string; course_code?: string | null }>;
 };
 
@@ -57,6 +59,21 @@ export type CommentVote = {
 };
 
 export type Subject = { id: number; name: string; semester: number; course_code: string | null; credits: number | null };
+export type CatalogMeeting = { day_of_week: number; start_time: string; end_time: string; room: string | null };
+export type CatalogOffering = {
+  subject_id: number;
+  semester: number;
+  course_code: string | null;
+  subject: string;
+  credits: number | null;
+  section_id: number;
+  group_name: string | null;
+  teacher_id: number;
+  teacher: string;
+  teacher_legacy_general_score: number | null;
+  teacher_absolute_global_rating: number | null;
+  meetings: CatalogMeeting[];
+};
 
 async function get<T>(path: string): Promise<T> {
   const response = await fetch(`${API_BASE_URL}${path}`);
@@ -78,6 +95,7 @@ export const api = {
   evaluations: (id: string) => get<{ evaluations: Evaluation[] }>(`/api/v1/teachers/${id}/evaluations`),
   legacy: (id: string) => get<Legacy>(`/api/v1/teachers/${id}/legacy`),
   subjects: (career: string) => get<{ subjects: Subject[] }>(`/api/v1/subjects?career=${encodeURIComponent(career)}`),
+  catalog: (career: string) => get<{ career: string; term: string | null; offerings: CatalogOffering[] }>(`/api/v1/catalog?career=${encodeURIComponent(career)}`),
   submitEvaluation: async (id: string, payload: object) => {
     const response = await fetch(`${API_BASE_URL}/api/v1/teachers/${id}/evaluations`, {
       method: "POST",

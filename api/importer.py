@@ -23,6 +23,11 @@ CAREER_NAMES = {
 }
 DAYS = ("monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday")
 TIME_PATTERN = re.compile(r"^(\d{1,2}:\d{2})\s*-\s*(\d{1,2}:\d{2})(?:\s+(.*))?$")
+TEACHER_TITLES = {
+    "dr", "dra", "doctor", "doctora", "ing", "ingeniero", "ingeniera",
+    "lic", "licenciado", "licenciada", "mtro", "mtra", "maestro", "maestra",
+    "prof", "profr", "profesor", "profesora",
+}
 
 
 def sql_value(value: object) -> str:
@@ -46,7 +51,7 @@ def normalized_teacher_name(name: str) -> str:
 
     folded = unicodedata.normalize("NFKD", name.casefold())
     folded = "".join(char for char in folded if not unicodedata.combining(char))
-    tokens = re.findall(r"[a-z0-9]+", folded)
+    tokens = [token for token in re.findall(r"[a-z0-9]+", folded) if token not in TEACHER_TITLES]
     return " ".join(sorted(tokens))
 
 
@@ -84,12 +89,22 @@ def load_json(path: Path) -> dict[str, Any]:
     return data
 
 
-def teacher_upsert(name: str) -> str:
-    normalized = normalized_teacher_name(name)
+def teacher_upsert(name: str, *, normalized: str | None = None) -> str:
+    normalized = normalized or normalized_teacher_name(name)
+    accented = " + ".join(
+        f"(instr(excluded.display_name, {sql_value(character)}) > 0)"
+        for character in "áéíóúüñÁÉÍÓÚÜÑ"
+    )
+    existing_accented = " + ".join(
+        f"(instr(teachers.display_name, {sql_value(character)}) > 0)"
+        for character in "áéíóúüñÁÉÍÓÚÜÑ"
+    )
     return (
         "INSERT INTO teachers (normalized_name, display_name) VALUES "
         f"({sql_value(normalized)}, {sql_value(display_teacher_name(name))}) "
-        "ON CONFLICT(normalized_name) DO NOTHING"
+        "ON CONFLICT(normalized_name) DO UPDATE SET display_name = "
+        f"CASE WHEN ({accented}) > ({existing_accented}) "
+        "THEN excluded.display_name ELSE teachers.display_name END"
     )
 
 
@@ -146,6 +161,7 @@ def mindbox_sql(
     term_code: str,
     term_name: str,
     activate: bool,
+    aliases: dict[str, str] | None = None,
 ) -> list[str]:
     if artifact.get("career") != career:
         raise ValueError(f"Artifact career is {artifact.get('career')!r}, expected {career!r}")
@@ -205,12 +221,13 @@ def mindbox_sql(
         statements.append(
             f"UPDATE subjects SET credits = {sql_value(credits)} WHERE id = {subject_id}"
         )
-        statements.append(teacher_upsert(teacher))
+        teacher_key = (aliases or {}).get(normalized_teacher_name(teacher), normalized_teacher_name(teacher))
+        statements.append(teacher_upsert(teacher, normalized=teacher_key))
         teacher_id = (
             f"(SELECT id FROM teachers WHERE normalized_name = "
-            f"{sql_value(normalized_teacher_name(teacher))})"
+            f"{sql_value(teacher_key)})"
         )
-        source_key = f"{term_code}:{career}:{semester}:{course_code or subject}:{group or ''}:{normalized_teacher_name(teacher)}"
+        source_key = f"{term_code}:{career}:{semester}:{course_code or subject}:{group or ''}:{teacher_key}"
         statements.append(
             "INSERT INTO sections "
             "(term_id, career_id, subject_id, teacher_id, group_name, source_key) VALUES "
