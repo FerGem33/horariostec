@@ -59,6 +59,7 @@ def main() -> int:
     parser.add_argument("--term-code", default="2026-2")
     parser.add_argument("--term-name", default="Agosto - Diciembre 2026")
     parser.add_argument("--database", default="horariostec")
+    parser.add_argument("--remote", action="store_true", help="Write to the deployed remote D1 database")
     parser.add_argument("--sql-file", type=Path, help="Write the SQL instead of using a temporary file")
     args = parser.parse_args()
 
@@ -80,7 +81,12 @@ def main() -> int:
             activate=True,
             aliases=aliases,
         ))
-    execute_sql(sql_statements(statements), database=args.database, sql_file=args.sql_file)
+    execute_sql(
+        sql_statements(statements, transaction=not args.remote),
+        database=args.database,
+        sql_file=args.sql_file,
+        remote=args.remote,
+    )
     print(f"Base reiniciada e importada: {len(mindbox_paths)} catálogo(s), {len(aliases)} coincidencia(s) difusa(s) combinada(s).")
     return 0
 

@@ -40,10 +40,11 @@ def sql_value(value: object) -> str:
     return "'" + str(value).replace("'", "''") + "'"
 
 
-def sql_statements(statements: Iterable[str]) -> str:
-    return "PRAGMA foreign_keys = ON;\nBEGIN TRANSACTION;\n" + "\n".join(
-        statement.rstrip(";") + ";" for statement in statements
-    ) + "\nCOMMIT;\n"
+def sql_statements(statements: Iterable[str], *, transaction: bool = True) -> str:
+    body = "\n".join(statement.rstrip(";") + ";" for statement in statements)
+    if transaction:
+        return "PRAGMA foreign_keys = ON;\nBEGIN TRANSACTION;\n" + body + "\nCOMMIT;\n"
+    return "PRAGMA foreign_keys = ON;\n" + body + "\n"
 
 
 def normalized_teacher_name(name: str) -> str:
@@ -248,7 +249,7 @@ def mindbox_sql(
     return statements
 
 
-def execute_sql(sql: str, *, database: str, sql_file: Path | None) -> None:
+def execute_sql(sql: str, *, database: str, sql_file: Path | None, remote: bool = False) -> None:
     temporary: Path | None = None
     if sql_file is None:
         handle = tempfile.NamedTemporaryFile("w", suffix=".sql", delete=False, encoding="utf-8")
@@ -262,7 +263,7 @@ def execute_sql(sql: str, *, database: str, sql_file: Path | None) -> None:
         sql_path = sql_file
     try:
         subprocess.run(
-            ["npx", "wrangler", "d1", "execute", database, "--local", f"--file={sql_path}"],
+            ["npx", "wrangler", "d1", "execute", database, "--remote" if remote else "--local", f"--file={sql_path}"],
             cwd=API_DIR,
             check=True,
         )
