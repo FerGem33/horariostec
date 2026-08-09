@@ -4,6 +4,7 @@ from urllib.parse import parse_qs, urlparse
 
 from workers import Response, WorkerEntrypoint
 
+from cors import configured_origins
 from validation import (
     validate_answers,
     validate_comment,
@@ -48,9 +49,20 @@ def route(path: str) -> list[str]:
 class Default(WorkerEntrypoint):
     async def fetch(self, request):
         parsed = urlparse(request.url)
-        origin = getattr(self.env, "ALLOWED_ORIGIN", "*")
-        if origin != "*" and request.headers.get("Origin") not in (origin, None):
-            return json_response({"error": "origin not allowed"}, status=403, origin=origin)
+        configured = getattr(
+            self.env,
+            "ALLOWED_ORIGINS",
+            getattr(self.env, "ALLOWED_ORIGIN", "*"),
+        )
+        origins = configured_origins(configured)
+        request_origin = request.headers.get("Origin")
+        normalized_request_origin = request_origin.rstrip("/") if request_origin else None
+        fallback_origin = next(iter(origins - {"*"}), "*")
+        if "*" not in origins and normalized_request_origin not in origins:
+            return json_response(
+                {"error": "origin not allowed"}, status=403, origin=fallback_origin
+            )
+        origin = request_origin if request_origin else fallback_origin
         if request.method == "OPTIONS":
             return Response("", status=204, headers=cors_headers(origin))
 

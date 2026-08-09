@@ -12,7 +12,8 @@ database_id = "fa38b7f7-fe69-4dae-a1e2-995abf512948"
 migrations_dir = "migrations"
 
 [vars]
-ALLOWED_ORIGIN = "https://horariostec.pages.dev"
+# Add origins as a comma-separated list, without trailing slashes.
+ALLOWED_ORIGINS = "https://horariostec.pages.dev,https://horariostec.com"
 
 [dev]
 ip = "0.0.0.0"

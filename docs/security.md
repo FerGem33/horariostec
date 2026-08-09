@@ -23,6 +23,10 @@ The frontend is public and has no database binding. The API is the only public
 database boundary. Scraper credentials and D1 publication access belong only
 to trusted operators.
 
+CORS is allowlisted through `ALLOWED_ORIGINS` in `api/wrangler.toml`. Keep it
+limited to the actual frontend origins; do not use `*` for the production API,
+especially while it accepts `POST` requests.
+
 Current student evaluations and comment votes are anonymous. Treat them as
 untrusted input: validation, visibility status, rate limiting, Turnstile, and
 moderation are important before a larger public launch. Do not add a client

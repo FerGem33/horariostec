@@ -42,6 +42,20 @@ The frontend uses `http://localhost:8787` by default in development. Set
 `VITE_API_BASE_URL` in `.env.local` when the API runs elsewhere. Never commit
 `.env.local`.
 
+The Worker CORS configuration is in `api/wrangler.toml` under
+`ALLOWED_ORIGINS`. It accepts comma-separated origins, for example:
+
+```toml
+ALLOWED_ORIGINS = "https://horariostec.pages.dev,https://horariostec.com"
+```
+
+Use complete origins with `https://` and no trailing slash. Redeploy the
+Worker after changing this value:
+
+```bash
+npx wrangler deploy
+```
+
 Build checks the TypeScript project and creates `app/dist/`:
 
 ```bash
