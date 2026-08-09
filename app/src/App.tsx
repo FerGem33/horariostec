@@ -46,7 +46,7 @@ import {
   type Teacher,
 } from "./api";
 import ScheduleBuilder from "./ScheduleBuilder";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 const Github = Code2;
 
@@ -458,6 +458,7 @@ function CareerDirectory() {
   const teachers = teachersQuery.data?.teachers ?? [];
   const subjects = subjectsQuery.data?.subjects ?? [];
   const error = teachersQuery.error ?? subjectsQuery.error;
+  const isPending = teachersQuery.isPending || subjectsQuery.isPending;
   const groups = useMemo(() => {
     const subjectTerm = searchKey(subjectSearch);
     const teacherTerm = searchKey(teacherSearch);
@@ -515,6 +516,8 @@ function CareerDirectory() {
       </div>
       {error ? (
         <ErrorMessage message={error.message} />
+      ) : isPending ? (
+        <Loading />
       ) : !teachers.length ? (
         <div className="empty-panel">
           Todavía no hay datos Mindbox importados para esta carrera.
@@ -741,6 +744,16 @@ function TeacherPage() {
           Evaluar docente
         </Link>
       </section>
+      {evaluationsQuery.error && (
+        <ErrorMessage
+          message={`No pudimos cargar las evaluaciones: ${evaluationsQuery.error.message}`}
+        />
+      )}
+      {legacyQuery.error && (
+        <ErrorMessage
+          message={`No pudimos cargar las reseñas históricas: ${legacyQuery.error.message}`}
+        />
+      )}
       <div className="profile-panels">
         <CurrentPanel summary={summary} evaluationCount={evaluations.length} />
         <LegacyPanel legacy={legacy} />
@@ -1585,8 +1598,12 @@ function SubjectPicker({
 function EvaluationForm() {
   const { id = "" } = useParams();
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
 
-  const { data, isPending } = useQuery({ queryKey: ["teacher", id], queryFn: () => api.teacher(id) });
+  const { data, isPending, error } = useQuery({
+    queryKey: ["teacher", id],
+    queryFn: () => api.teacher(id),
+  });
   const teacher = data?.teacher ?? null;
 
   const [form, setForm] = useState<Record<string, string>>({
@@ -1627,13 +1644,31 @@ function EvaluationForm() {
         comment: form.comment || null,
       });
     },
-    onSuccess: () => navigate(`/docentes/${id}`),
+    onSuccess: async () => {
+      await Promise.all([
+        queryClient.invalidateQueries({
+          queryKey: ["teacher", id],
+          exact: true,
+        }),
+        queryClient.invalidateQueries({
+          queryKey: ["evaluations", id],
+          exact: true,
+        }),
+      ]);
+      navigate(`/docentes/${id}`);
+    },
   });
   const submit = (event: FormEvent) => {
     event.preventDefault();
     if (submitEvaluation.isPending) return;
     submitEvaluation.mutate();
   };
+  if (error)
+    return (
+      <div className="container page">
+        <ErrorMessage message={error.message} />
+      </div>
+    );
   if (isPending || !teacher)
     return (
       <div className="container page">

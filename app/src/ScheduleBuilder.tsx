@@ -844,19 +844,21 @@ function Priorities({
         <div>
           <div className="eyebrow">PASO 04 / PRIORIDADES</div>
           <h1>Ordena tus preferencias</h1>
-          <p>
-            Usaremos este orden para crear el mejor horario para tí. Ordena de
-            mayor a menor importancia tus materias y maestros. También puedes
-            excluir grupos que ya se hayan cerrado o con docentes que prefieras
-            no llevar clase.
-          </p>
+          <p>Usaremos este orden para crear el mejor horario para ti:</p>
+          <ul>
+            <li>Ordena de mayor a menor importancia tus materias y maestros.</li>
+            <li>
+              Excluye grupos que ya se hayan cerrado o con docentes que
+              prefieras no llevar clase.
+            </li>
+          </ul>
         </div>
       </div>
       <section className="priority-section">
         <div className="priority-section-heading">
           <div>
             <span className="section-kicker">01 / MATERIAS</span>
-            <h2>¿Qué materias son más importantes?</h2>
+            <h2>Ordena las materias según tus prioridades</h2>
           </div>
           <small>Arrastra o usa las flechas</small>
         </div>
@@ -873,7 +875,7 @@ function Priorities({
         <div className="priority-section-heading">
           <div>
             <span className="section-kicker">02 / DOCENTES</span>
-            <h2>¿Qué docentes prefieres?</h2>
+            <h2>Ordena los docentes según tus preferencias</h2>
           </div>
           <small>Por materia</small>
         </div>
