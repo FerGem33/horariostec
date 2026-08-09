@@ -20,6 +20,7 @@ import {
 import html2canvas from "html2canvas";
 import { jsPDF } from "jspdf";
 import { api, type Career, type CatalogOffering, type Subject } from "./api";
+import { useQuery } from "@tanstack/react-query";
 
 const DAY_NAMES = [
   "Lunes",
@@ -1558,10 +1559,7 @@ function Results({
 }
 
 export default function ScheduleBuilder() {
-  const [careers, setCareers] = useState<Career[]>([]);
   const [career, setCareer] = useState<Career | null>(null);
-  const [subjects, setSubjects] = useState<Subject[]>([]);
-  const [offerings, setOfferings] = useState<CatalogOffering[]>([]);
   const [step, setStep] = useState<Step>(1);
   const [selected, setSelected] = useState<number[]>([]);
   const [target, setTarget] = useState(7);
@@ -1578,41 +1576,34 @@ export default function ScheduleBuilder() {
     {},
   );
   const [candidates, setCandidates] = useState<Candidate[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
 
-  useEffect(() => {
-    api
-      .careers()
-      .then((data) => setCareers(data.careers))
-      .catch((err) => setError(err.message))
-      .finally(() => setLoading(false));
-  }, []);
+  const careersQuery = useQuery({
+    queryKey: ["careers"],
+    queryFn: api.careers,
+  });
+  const subjectsQuery = useQuery({
+    queryKey: ["subjects", career?.slug ?? ""],
+    enabled: !!career,
+    queryFn: () => api.subjects(career!.slug),
+  });
+  const catalogQuery = useQuery({
+    queryKey: ["catalog", career?.slug ?? ""],
+    enabled: !!career,
+    queryFn: () => api.catalog(career!.slug),
+  });
+  const careers = careersQuery.data?.careers ?? [];
+  const subjects = subjectsQuery.data?.subjects ?? [];
+  const offerings = catalogQuery.data?.offerings ?? [];
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [step]);
-  const chooseCareer = async (next: Career) => {
+  const chooseCareer = (next: Career) => {
     setCareer(next);
-    setLoading(true);
-    setError("");
-    try {
-      const [subjectData, catalogData] = await Promise.all([
-        api.subjects(next.slug),
-        api.catalog(next.slug),
-      ]);
-      setSubjects(subjectData.subjects);
-      setOfferings(catalogData.offerings);
-      setSelected([]);
-      setTarget(7);
-      setExcludedOfferings({});
-      setStep(2);
-    } catch (err) {
-      setError(
-        err instanceof Error ? err.message : "No pudimos cargar la carrera.",
-      );
-    } finally {
-      setLoading(false);
-    }
+    setSelected([]);
+    setTarget(7);
+    setExcludedOfferings({});
+    setStep(2);
   };
   const startPriorities = () => {
     const order = [...selected].sort((a, b) => {
@@ -1684,30 +1675,27 @@ export default function ScheduleBuilder() {
   const reset = () => {
     setCareer(null);
     setStep(1);
-    setSubjects([]);
-    setOfferings([]);
     setSelected([]);
     setExcludedOfferings({});
     setCandidates([]);
   };
-  if (loading && !career && !careers.length)
+  const directoryError = subjectsQuery.error ?? catalogQuery.error;
+  const directoryPending = subjectsQuery.isPending || catalogQuery.isPending;
+  if (careersQuery.isPending && !career)
     return (
       <div className="container page">
         <BuilderLoading />
       </div>
     );
-  if (error && !career)
+  if (careersQuery.error && !career)
     return (
       <div className="container page">
-        <BuilderError message={error} />
+        <BuilderError message={careersQuery.error.message} />
       </div>
     );
   if (!career)
     return (
-      <CareerSelection
-        careers={careers}
-        onSelect={(next) => void chooseCareer(next)}
-      />
+      <CareerSelection careers={careers} onSelect={chooseCareer} />
     );
   return (
     <>
@@ -1719,11 +1707,11 @@ export default function ScheduleBuilder() {
           onStep={(next) => (next === 1 ? reset() : setStep(next))}
         />
       </div>
-      {error ? (
+      {directoryError ? (
         <div className="container page">
-          <BuilderError message={error} />
+          <BuilderError message={directoryError.message} />
         </div>
-      ) : loading ? (
+      ) : directoryPending ? (
         <div className="container page">
           <BuilderLoading />
         </div>
