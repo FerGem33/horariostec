@@ -25,9 +25,6 @@ The project has four parts:
 - [Security and contribution notes](docs/security.md) — secrets, generated
   files, review data, and safe contribution practices.
 
-The historical architecture document remains available at
-[`docs/arquitecture.md`](docs/arquitecture.md) for compatibility with existing
-links; the correctly named document is now [`docs/architecture.md`](docs/architecture.md).
 
 ## Quick start
 

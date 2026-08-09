@@ -48,6 +48,8 @@ import {
 import ScheduleBuilder from "./ScheduleBuilder";
 import { useMutation, useQuery } from "@tanstack/react-query";
 
+const Github = Code2;
+
 function CareerIcon({ career }: { career: string }) {
   const icons: Record<string, LucideIcon> = {
     sistemas: Code2,
@@ -59,6 +61,7 @@ function CareerIcon({ career }: { career: string }) {
     gestion: BriefcaseBusiness,
     materiales: Boxes,
   };
+
   const Icon = icons[career] ?? Boxes;
   return <Icon className="career-icon" strokeWidth={1.6} aria-hidden="true" />;
 }
@@ -209,6 +212,7 @@ function Nosotros() {
             ayudarte a elegir con más claridad.
           </p>
         </div>
+
         <div className="about-calendar-art" aria-hidden="true">
           <div className="about-browser">
             <span>
@@ -244,6 +248,7 @@ function Nosotros() {
           <span className="about-orbit about-orbit-two" />
         </div>
       </section>
+
       <section className="about-origin container">
         <div className="about-origin-icon">
           <Database size={45} strokeWidth={1.4} />
@@ -257,6 +262,7 @@ function Nosotros() {
           </p>
           <span className="about-chip">Datos importados</span>
         </div>
+
         <div className="about-flow-art" aria-hidden="true">
           <div className="flow-list">
             <i />
@@ -277,6 +283,7 @@ function Nosotros() {
           </div>
         </div>
       </section>
+
       <section className="about-cards container">
         <article>
           <span className="about-card-icon about-card-petrol">
@@ -287,6 +294,7 @@ function Nosotros() {
             <p>Datos provenientes de HazTuHorario.</p>
           </div>
         </article>
+
         <article>
           <span className="about-card-icon about-card-coral">
             <MessageSquare size={34} strokeWidth={1.4} />
@@ -296,6 +304,7 @@ function Nosotros() {
             <p>Experiencias publicadas en HorariosTec.</p>
           </div>
         </article>
+
         <article>
           <span className="about-card-icon about-card-mustard">
             <Compass size={34} strokeWidth={1.4} />
@@ -305,6 +314,28 @@ function Nosotros() {
             <p>Ayudarte a comparar, planear y decidir.</p>
           </div>
         </article>
+      </section>
+
+      <section className="about-open-source container">
+        <div className="about-open-source-icon">
+          <Github size={38} strokeWidth={1.5} />
+        </div>
+        <div className="about-open-source-copy">
+          <div className="eyebrow">CÓDIGO ABIERTO</div>
+          <h2>Construido en comunidad</h2>
+          <p>
+            HorariosTec es un proyecto open source. Conoce el código, propón
+            mejoras y ayuda a construir una mejor herramienta para estudiantes.
+          </p>
+        </div>
+        <a
+          className="button button-dark about-open-source-link"
+          href="https://github.com/FerGem33/horariostec"
+          target="_blank"
+          rel="noreferrer"
+        >
+          Ver repositorio <ArrowRight size={17} />
+        </a>
       </section>
     </div>
   );
