@@ -46,6 +46,7 @@ import {
   type Teacher,
 } from "./api";
 import ScheduleBuilder from "./ScheduleBuilder";
+import { useMutation, useQuery } from "@tanstack/react-query";
 
 function CareerIcon({ career }: { career: string }) {
   const icons: Record<string, LucideIcon> = {
@@ -348,14 +349,11 @@ function CareerCard({ career }: { career: Career }) {
   );
 }
 function Teachers() {
-  const [careers, setCareers] = useState<Career[]>([]);
-  const [error, setError] = useState("");
-  useEffect(() => {
-    api
-      .careers()
-      .then((data) => setCareers(data.careers))
-      .catch((e) => setError(e.message));
-  }, []);
+  const { data, isPending, error } = useQuery({
+    queryKey: ["careers"],
+    queryFn: api.careers,
+  });
+  const careers = data?.careers ?? [];
   return (
     <div className="container page">
       <div className="page-heading">
@@ -367,8 +365,8 @@ function Teachers() {
         <span className="heading-rule" />
       </div>
       {error ? (
-        <ErrorMessage message={error} />
-      ) : !careers.length ? (
+        <ErrorMessage message={error.message} />
+      ) : isPending || !careers.length ? (
         <Loading />
       ) : (
         <div className="career-grid">
@@ -413,29 +411,22 @@ function TeacherCard({ teacher }: { teacher: Teacher }) {
 
 function CareerDirectory() {
   const { career = "" } = useParams();
-  const [teachers, setTeachers] = useState<Teacher[]>([]);
-  const [subjects, setSubjects] = useState<
-    Array<{
-      id: number;
-      name: string;
-      semester: number;
-      course_code: string | null;
-    }>
-  >([]);
+  const teachersQuery = useQuery({
+    queryKey: ["teachers", career],
+    queryFn: () => api.teachers({ career }),
+  });
+  const subjectsQuery = useQuery({
+    queryKey: ["subjects", career],
+    queryFn: () => api.subjects(career),
+  });
   const [subjectSearch, setSubjectSearch] = useState("");
   const [teacherSearch, setTeacherSearch] = useState("");
   const [semesterSelection, setSemesterSelection] = useState<SemesterSelection>(
     () => readSemesterSelection(career),
   );
-  const [error, setError] = useState("");
-  useEffect(() => {
-    Promise.all([api.teachers({ career }), api.subjects(career)])
-      .then(([teacherData, subjectData]) => {
-        setTeachers(teacherData.teachers);
-        setSubjects(subjectData.subjects);
-      })
-      .catch((e) => setError(e.message));
-  }, [career]);
+  const teachers = teachersQuery.data?.teachers ?? [];
+  const subjects = subjectsQuery.data?.subjects ?? [];
+  const error = teachersQuery.error ?? subjectsQuery.error;
   const groups = useMemo(() => {
     const subjectTerm = searchKey(subjectSearch);
     const teacherTerm = searchKey(teacherSearch);
@@ -492,7 +483,7 @@ function CareerDirectory() {
         />
       </div>
       {error ? (
-        <ErrorMessage message={error} />
+        <ErrorMessage message={error.message} />
       ) : !teachers.length ? (
         <div className="empty-panel">
           Todavía no hay datos Mindbox importados para esta carrera.
@@ -664,25 +655,26 @@ function careerName(slug: string) {
 
 function TeacherPage() {
   const { id = "" } = useParams();
-  const [teacher, setTeacher] = useState<Teacher | null>(null);
-  const [summary, setSummary] = useState<Record<string, number | null>>({});
-  const [evaluations, setEvaluations] = useState<Evaluation[]>([]);
-  const [legacy, setLegacy] = useState<Legacy | null>(null);
-  const [error, setError] = useState("");
-  useEffect(() => {
-    Promise.all([api.teacher(id), api.evaluations(id), api.legacy(id)])
-      .then(([detail, current, historical]) => {
-        setTeacher(detail.teacher);
-        setSummary(detail.summary);
-        setEvaluations(current.evaluations);
-        setLegacy(historical);
-      })
-      .catch((e) => setError(e.message));
-  }, [id]);
-  if (error)
+  const teacherQuery = useQuery({
+    queryKey: ["teacher", id],
+    queryFn: () => api.teacher(id),
+  });
+  const evaluationsQuery = useQuery({
+    queryKey: ["evaluations", id],
+    queryFn: () => api.evaluations(id),
+  });
+  const legacyQuery = useQuery({
+    queryKey: ["legacy", id],
+    queryFn: () => api.legacy(id),
+  });
+  const teacher = teacherQuery.data?.teacher ?? null;
+  const summary = teacherQuery.data?.summary ?? {};
+  const evaluations = evaluationsQuery.data?.evaluations ?? [];
+  const legacy = legacyQuery.data ?? null;
+  if (teacherQuery.error)
     return (
       <div className="container page">
-        <ErrorMessage message={error} />
+        <ErrorMessage message={teacherQuery.error.message} />
       </div>
     );
   if (!teacher)
@@ -1198,18 +1190,10 @@ function CommentVotes({
     like: likeCount,
     dislike: dislikeCount,
   });
-  const [saving, setSaving] = useState(false);
-  const vote = async (choice: VoteChoice) => {
-    if (saving) return;
-    const next = selected === choice ? "remove" : choice;
-    setSaving(true);
-    try {
-      const result = await api.voteComment(
-        source,
-        commentId,
-        anonymousVoterId(),
-        next,
-      );
+  const voteMutation = useMutation({
+    mutationFn: (vote: "like" | "dislike" | "remove") =>
+      api.voteComment(source, commentId, anonymousVoterId(), vote),
+    onSuccess: (result) => {
       setCounts({ like: result.like_count, dislike: result.dislike_count });
       const active =
         result.vote === "like" || result.vote === "dislike"
@@ -1218,11 +1202,11 @@ function CommentVotes({
       setSelected(active);
       if (active) window.localStorage.setItem(preferenceKey, active);
       else window.localStorage.removeItem(preferenceKey);
-    } catch {
-      /* The existing counts remain visible if the request fails. */
-    } finally {
-      setSaving(false);
-    }
+    },
+  });
+  const vote = (choice: VoteChoice) => {
+    if (voteMutation.isPending) return;
+    voteMutation.mutate(selected === choice ? "remove" : choice);
   };
   return (
     <div className="comment-votes" aria-label="Valorar comentario">
@@ -1230,7 +1214,7 @@ function CommentVotes({
         type="button"
         className={selected === "like" ? "vote-button selected" : "vote-button"}
         onClick={() => void vote("like")}
-        disabled={saving}
+        disabled={voteMutation.isPending}
         aria-pressed={selected === "like"}
         aria-label="Me gusta"
       >
@@ -1245,7 +1229,7 @@ function CommentVotes({
             : "vote-button dislike"
         }
         onClick={() => void vote("dislike")}
-        disabled={saving}
+        disabled={voteMutation.isPending}
         aria-pressed={selected === "dislike"}
         aria-label="No me gusta"
       >
@@ -1570,7 +1554,10 @@ function SubjectPicker({
 function EvaluationForm() {
   const { id = "" } = useParams();
   const navigate = useNavigate();
-  const [teacher, setTeacher] = useState<Teacher | null>(null);
+
+  const { data, isPending } = useQuery({ queryKey: ["teacher", id], queryFn: () => api.teacher(id) });
+  const teacher = data?.teacher ?? null;
+
   const [form, setForm] = useState<Record<string, string>>({
     subject_id: "",
     global_rating: "50",
@@ -1585,50 +1572,38 @@ function EvaluationForm() {
     difficulty: "",
     comment: "",
   });
-  const [message, setMessage] = useState("");
-  const [saving, setSaving] = useState(false);
-  useEffect(() => {
-    api
-      .teacher(id)
-      .then((data) => setTeacher(data.teacher))
-      .catch((e) => setMessage(e.message));
-  }, [id]);
   const update = (key: string, value: string) =>
     setForm((current) => ({ ...current, [key]: value }));
-  const submit = async (event: FormEvent) => {
-    event.preventDefault();
-    setSaving(true);
-    setMessage("");
-    const answers: Record<string, number> = {};
-    for (const key of [
-      "attendance_weight",
-      "assignments_weight",
-      "exams_weight",
-      "projects_weight",
-      "fairness",
-      "explains",
-      "attitude",
-      "accessibility",
-      "difficulty",
-    ])
-      if (form[key]) answers[key] = Number(form[key]);
-    try {
-      await api.submitEvaluation(id, {
+  const submitEvaluation = useMutation({
+    mutationFn: () => {
+      const answers: Record<string, number> = {};
+      for (const key of [
+        "attendance_weight",
+        "assignments_weight",
+        "exams_weight",
+        "projects_weight",
+        "fairness",
+        "explains",
+        "attitude",
+        "accessibility",
+        "difficulty",
+      ])
+        if (form[key]) answers[key] = Number(form[key]);
+      return api.submitEvaluation(id, {
         subject_id: form.subject_id ? Number(form.subject_id) : null,
         global_rating: Number(form.global_rating),
         answers,
         comment: form.comment || null,
       });
-      navigate(`/docentes/${id}`);
-    } catch (e) {
-      setMessage(
-        e instanceof Error ? e.message : "No pudimos guardar tu evaluación.",
-      );
-    } finally {
-      setSaving(false);
-    }
+    },
+    onSuccess: () => navigate(`/docentes/${id}`),
+  });
+  const submit = (event: FormEvent) => {
+    event.preventDefault();
+    if (submitEvaluation.isPending) return;
+    submitEvaluation.mutate();
   };
-  if (!teacher)
+  if (isPending || !teacher)
     return (
       <div className="container page">
         <Loading />
@@ -1763,17 +1738,17 @@ function EvaluationForm() {
             placeholder="¿Qué te gustaría contarle a otros estudiantes?"
           />
         </FormSection>
-        {message && (
-          <div
-            className={
-              message.includes("correctamente") ? "form-success" : "form-error"
-            }
-          >
-            {message}
+        {submitEvaluation.isError && (
+          <div className="form-error">
+            {submitEvaluation.error?.message ??
+              "No pudimos guardar tu evaluación."}
           </div>
         )}
-        <button className="button button-dark submit-button" disabled={saving}>
-          {saving ? "Guardando..." : "Publicar evaluación"}
+        <button
+          className="button button-dark submit-button"
+          disabled={submitEvaluation.isPending}
+        >
+          {submitEvaluation.isPending ? "Guardando..." : "Publicar evaluación"}
         </button>
       </form>
     </div>
