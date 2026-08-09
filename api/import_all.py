@@ -10,7 +10,7 @@ import argparse
 from pathlib import Path
 
 from audit_teacher_names import audit, load_records
-from importer import CAREER_NAMES, execute_sql, legacy_sql, load_json, mindbox_sql, sql_statements, normalized_teacher_name, sql_value
+from importer import CAREER_NAMES, current_term, execute_sql, legacy_sql, load_json, mindbox_sql, sql_statements, normalized_teacher_name, sql_value
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -56,12 +56,15 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--legacy", type=Path, default=DEFAULT_LEGACY)
     parser.add_argument("--mindbox", type=Path, action="append", help="Mindbox artifact; defaults to all output/*.json")
-    parser.add_argument("--term-code", default="2026-2")
-    parser.add_argument("--term-name", default="Agosto - Diciembre 2026")
+    parser.add_argument("--term-code", help="Term code; default: current academic term")
+    parser.add_argument("--term-name", help="Term name; default: derived from term code")
     parser.add_argument("--database", default="horariostec")
     parser.add_argument("--remote", action="store_true", help="Write to the deployed remote D1 database")
     parser.add_argument("--sql-file", type=Path, help="Write the SQL instead of using a temporary file")
     args = parser.parse_args()
+    current_code, current_name = current_term()
+    term_code = args.term_code or current_code
+    term_name = args.term_name or current_name
 
     mindbox_paths = args.mindbox or sorted(DEFAULT_MINDBOX.glob("*.json"))
     records = load_records([args.legacy], mindbox_paths)
@@ -76,8 +79,8 @@ def main() -> int:
         statements.extend(mindbox_sql(
             artifact,
             career=artifact["career"],
-            term_code=args.term_code,
-            term_name=args.term_name,
+            term_code=term_code,
+            term_name=term_name,
             activate=True,
             aliases=aliases,
         ))

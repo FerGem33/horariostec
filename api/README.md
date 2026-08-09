@@ -2,6 +2,12 @@
 
 Python Worker API backed by Cloudflare D1.
 
+For the repository-wide setup and deployment model, see
+[`../docs/development.md`](../docs/development.md) and
+[`../docs/architecture.md`](../docs/architecture.md). For the complete
+scrape-to-publication procedure, see
+[`../docs/data-update.md`](../docs/data-update.md).
+
 The Worker currently exposes:
 
 - `GET /api/health`
@@ -117,7 +123,7 @@ import. The report is read-only and includes exact normalized matches plus
 fuzzy matches that need manual confirmation:
 
 ```bash
-python audit_teacher_names.py --json /tmp/teacher-name-audit.json
+uv run python audit_teacher_names.py --json /tmp/teacher-name-audit.json
 ```
 
 The importer ignores accents, punctuation, name order, and common academic
@@ -125,8 +131,9 @@ titles such as `Dr.` or `Ing.` when assigning a teacher key. It keeps the
 original display name and does not automatically merge ambiguous fuzzy matches.
 
 To start over and import every current artifact in one transaction, use the
-interactive reset command. Exact normalized matches are combined automatically;
-fuzzy matches are presented one by one at the end:
+interactive reset command. It uses the current academic term by default;
+exact normalized matches are combined automatically and fuzzy matches are
+presented one by one at the end:
 
 ```bash
 uv run python import_all.py
@@ -135,19 +142,29 @@ uv run python import_all.py
 This deletes the local D1 contents first, including reviews, catalog, teachers,
 terms, and careers. Run it only when a full rebuild is intended.
 
-Import a Mindbox artifact. The selected career and term are replaced inside
-one transaction, so rerunning this command safely refreshes that catalog.
-Other terms and careers are left untouched. Use `--activate` when this should
-be the catalog served by the active-term API endpoints:
+Import Mindbox artifacts. With no extra options, the importer uses the current
+academic term and finds artifacts in `../scraper/mindbox/output/` using the
+`{career}-{term}.json` naming convention. Omit `--career` to import every
+career; failed careers are skipped and summarized after all attempts. Other
+terms and careers are left untouched. Use `--activate` when this should be
+the catalog served by the active-term API endpoints:
 
 ```bash
 uv run python importer.py mindbox \
-  --input ../scraper/mindbox/output/sistemas-2026-2.json \
   --career sistemas \
-  --term-code 2026-2 \
-  --term-name "Agosto - Diciembre 2026" \
   --activate
 ```
+
+To import all careers for the current term:
+
+```bash
+uv run python importer.py mindbox --activate
+```
+
+The current term is inferred as `1` from January through July and `2` from
+August through December. Its name is generated as `Enero - Junio YEAR` or
+`Agosto - Diciembre YEAR`. Use `--input` and `--career` for a custom
+single-career artifact, or provide `--term-code` to import a different term.
 
 The legacy import replaces all previously imported legacy summaries and
 comments. Mindbox imports remove only the selected career/term sections;

@@ -4,6 +4,7 @@ import argparse
 import asyncio
 import json
 import sys
+from datetime import date
 from pathlib import Path
 
 from playwright.async_api import TimeoutError as PlaywrightTimeoutError
@@ -18,8 +19,15 @@ DEFAULT_SESSION_DIR = PROJECT_DIR / "sessions"
 OUTPUT_DIR = PROJECT_DIR / "output"
 
 
-def add_common_arguments(parser: argparse.ArgumentParser) -> None:
-    parser.add_argument("--career", required=True, choices=CAREERS, help="Career identifier")
+def add_common_arguments(
+    parser: argparse.ArgumentParser, *, career_required: bool = False
+) -> None:
+    parser.add_argument(
+        "--career",
+        required=career_required,
+        choices=CAREERS,
+        help="Career identifier; omit to scrape every career",
+    )
     parser.add_argument("--session-file", type=Path)
     parser.add_argument("--headed", action="store_true", help="Show the Chromium browser")
 
@@ -29,7 +37,7 @@ def parse_args() -> argparse.Namespace:
     subparsers = parser.add_subparsers(dest="command", required=True)
 
     auth = subparsers.add_parser("auth", help="Log in and save an authenticated browser session")
-    add_common_arguments(auth)
+    add_common_arguments(auth, career_required=True)
     auth.add_argument(
         "--credentials-file",
         type=Path,
@@ -39,17 +47,38 @@ def parse_args() -> argparse.Namespace:
 
     scrape = subparsers.add_parser("scrape", help="Scrape all available semesters")
     add_common_arguments(scrape)
-    scrape.add_argument("--filename", help="Output filename only; otherwise prompt")
+    scrape.add_argument(
+        "--filename",
+        help="Output filename for one career; default: {career}-{year}-{term}.json",
+    )
     scrape.add_argument("--semester", type=int, nargs="+", help="Specific semesters; default: all")
+    scrape.add_argument(
+        "--auth",
+        action="store_true",
+        help="Authenticate before scraping (uses credentials.json)",
+    )
+    scrape.add_argument(
+        "--credentials-file",
+        type=Path,
+        default=DEFAULT_CREDENTIALS_FILE,
+        help="Local JSON credentials file used with --auth",
+    )
     return parser.parse_args()
 
 
-def session_path(args: argparse.Namespace) -> Path:
-    return args.session_file or DEFAULT_SESSION_DIR / f"{args.career}.json"
+def session_path(args: argparse.Namespace, career: str | None = None) -> Path:
+    career = career or args.career
+    return args.session_file or DEFAULT_SESSION_DIR / f"{career}.json"
 
 
-def output_path(filename: str | None) -> Path:
-    value = filename or input("Output filename: ").strip()
+def default_filename(career: str, today: date | None = None) -> str:
+    today = today or date.today()
+    term = 1 if today.month <= 7 else 2
+    return f"{career}-{today.year}-{term}.json"
+
+
+def output_path(filename: str | None, career: str) -> Path:
+    value = filename or default_filename(career)
     if not value:
         raise ValueError("Output filename cannot be empty")
     path = Path(value)
@@ -83,12 +112,21 @@ async def run_auth(args: argparse.Namespace) -> int:
     return 0
 
 
-async def run_scrape(args: argparse.Namespace) -> int:
-    destination = output_path(args.filename)
-    session = session_path(args)
+async def scrape_career(args: argparse.Namespace, career: str) -> None:
+    if args.auth:
+        username, password = load_credentials(args.credentials_file, career)
+        async with PlaywrightMindboxClient(
+            session_file=session_path(args, career),
+            career=career,
+            headed=args.headed,
+        ) as client:
+            await client.authenticate(username, password)
+
+    destination = output_path(args.filename, career)
+    session = session_path(args, career)
     async with PlaywrightMindboxClient(
         session_file=session,
-        career=args.career,
+        career=career,
         headed=args.headed,
     ) as client:
         offerings, available, empty_semesters = await client.scrape(args.semester)
@@ -96,7 +134,7 @@ async def run_scrape(args: argparse.Namespace) -> int:
     requested = available if args.semester is None else sorted(set(args.semester))
     artifact = build_artifact(
         offerings,
-        career=args.career,
+        career=career,
         endpoint="https://itsaltillo.mindbox.app/students/enrollment/groups",
         semesters=requested,
     )
@@ -112,6 +150,23 @@ async def run_scrape(args: argparse.Namespace) -> int:
             "No groups were published for semesters: "
             + ", ".join(map(str, empty_semesters))
         )
+
+
+async def run_scrape(args: argparse.Namespace) -> int:
+    careers = (args.career,) if args.career else CAREERS
+    failures: list[tuple[str, Exception]] = []
+
+    for career in careers:
+        try:
+            await scrape_career(args, career)
+        except Exception as error:
+            failures.append((career, error))
+
+    if failures:
+        print("\nScrape failures:", file=sys.stderr)
+        for career, error in failures:
+            print(f"- {career}: {error}", file=sys.stderr)
+        return 1
     return 0
 
 
@@ -120,6 +175,8 @@ def main() -> int:
     try:
         if args.command == "auth":
             return asyncio.run(run_auth(args))
+        if not args.career and (args.filename or args.session_file):
+            raise ValueError("--filename and --session-file require --career")
         return asyncio.run(run_scrape(args))
     except (FileNotFoundError, RuntimeError, ValueError, PlaywrightTimeoutError) as error:
         print(f"Scrape failed: {error}", file=sys.stderr)

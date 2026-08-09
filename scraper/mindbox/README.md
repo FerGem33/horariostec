@@ -5,7 +5,10 @@ HazTuHorario scraper for importing historical teacher reviews.
 
 This directory contains the semester data importer for HorariosTec.
 
-The scraper is intentionally independent from the public API. It runs manually with a dedicated Mindbox account for a career, validates the resulting catalog, and writes a versioned JSON artifact. Publishing to Cloudflare D1 will be added separately.
+The scraper is intentionally independent from the public API. It runs manually
+with a dedicated Mindbox account for each career and writes a JSON artifact.
+The separate API importer publishes verified artifacts to local or remote D1;
+see [`../../docs/data-update.md`](../../docs/data-update.md).
 
 ## Setup
 
@@ -69,23 +72,45 @@ The scraper loads the matching matrícula and password from `credentials.json`.
 The session is saved under `sessions/` and must never be committed. If the
 session expires, run the authentication command again.
 
-## Scrape all semesters
+## Scrape semesters
 
 By default, the scraper reads the semester options displayed by Mindbox and
-imports every available semester in one run:
+imports every available semester in one run. The output filename is automatic:
+`{career}-{year}-{term}.json`, where term is `1` from January through July and
+`2` from August through December.
+
+```bash
+uv run python -m scraper scrape \
+  --career sistemas
+```
+
+To scrape every supported career, omit `--career`. Each career is written to
+its own automatic output file. If one career fails, the others still run and
+all failures are reported at the end:
+
+```bash
+uv run python -m scraper scrape
+```
+
+If the saved session has expired, add `--auth` to authenticate immediately
+before scraping. This can also be used with the all-careers command:
 
 ```bash
 uv run python -m scraper scrape \
   --career sistemas \
-  --filename sistemas-2026-2.json
+  --auth \
+  --headed
 ```
+
+Use `--filename` when scraping one career and you need a custom name. The
+value is treated as a filename in `output/` (a `.json` extension is added when
+omitted).
 
 To scrape only selected semesters:
 
 ```bash
 uv run python -m scraper scrape \
   --career sistemas \
-  --filename sistemas-semesters-7-8.json \
   --semester 7 8
 ```
 

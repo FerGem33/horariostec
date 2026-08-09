@@ -4,13 +4,16 @@ import argparse
 import json
 import re
 import subprocess
+import sys
 import tempfile
 import unicodedata
+from datetime import date
 from pathlib import Path
 from typing import Any, Iterable
 
 
 API_DIR = Path(__file__).resolve().parent
+MINDBOX_OUTPUT_DIR = API_DIR.parent / "scraper/mindbox/output"
 CAREER_NAMES = {
     "sistemas": "Sistemas",
     "mecatronica": "Mecatrónica",
@@ -88,6 +91,22 @@ def load_json(path: Path) -> dict[str, Any]:
     if not isinstance(data, dict):
         raise ValueError(f"Artifact must contain a JSON object: {path}")
     return data
+
+
+def current_term(today: date | None = None) -> tuple[str, str]:
+    """Return the current academic term code and its Spanish display name."""
+
+    today = today or date.today()
+    number = 1 if today.month <= 7 else 2
+    if number == 1:
+        name = f"Enero - Junio {today.year}"
+    else:
+        name = f"Agosto - Diciembre {today.year}"
+    return f"{today.year}-{number}", name
+
+
+def default_mindbox_input(career: str, term_code: str) -> Path:
+    return MINDBOX_OUTPUT_DIR / f"{career}-{term_code}.json"
 
 
 def teacher_upsert(name: str, *, normalized: str | None = None) -> str:
@@ -272,6 +291,69 @@ def execute_sql(sql: str, *, database: str, sql_file: Path | None, remote: bool 
             temporary.unlink(missing_ok=True)
 
 
+def import_mindbox_career(
+    args: argparse.Namespace,
+    *,
+    career: str,
+    term_code: str,
+    term_name: str,
+) -> None:
+    input_path = args.input or default_mindbox_input(career, term_code)
+    artifact = load_json(input_path)
+    statements = mindbox_sql(
+        artifact,
+        career=career,
+        term_code=term_code,
+        term_name=term_name,
+        activate=args.activate,
+    )
+    execute_sql(
+        sql_statements(statements, transaction=not args.remote),
+        database=args.database,
+        sql_file=args.sql_file,
+        remote=args.remote,
+    )
+    location = "remote" if args.remote else "local"
+    print(f"Imported {career} data from {input_path} into {location} D1 database {args.database}")
+
+
+def run_mindbox_import(args: argparse.Namespace) -> int:
+    term_code, term_name = current_term()
+    term_code = args.term_code or term_code
+    term_name = args.term_name or current_term_name(term_code)
+    careers = (args.career,) if args.career else tuple(CAREER_NAMES)
+    failures: list[tuple[str, Exception]] = []
+
+    for career in careers:
+        input_path = args.input or default_mindbox_input(career, term_code)
+        print(f"Importing {career} from {input_path}...", flush=True)
+        try:
+            import_mindbox_career(
+                args,
+                career=career,
+                term_code=term_code,
+                term_name=term_name,
+            )
+        except Exception as error:
+            failures.append((career, error))
+
+    if failures:
+        print("\nMindbox import failures (successful careers were kept):", file=sys.stderr)
+        for career, error in failures:
+            print(f"- {career}: {error}", file=sys.stderr)
+        return 1
+    return 0
+
+
+def current_term_name(term_code: str) -> str:
+    year, number = term_code.split("-", maxsplit=1)
+    if number == "1":
+        return f"Enero - Junio {year}"
+    if number == "2":
+        return f"Agosto - Diciembre {year}"
+    raise ValueError(f"Unsupported term code: {term_code}")
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Import local HorariosTec D1 data")
     subparsers = parser.add_subparsers(dest="command", required=True)
@@ -281,32 +363,35 @@ def main() -> int:
     legacy.add_argument("--database", default="horariostec")
     legacy.add_argument("--sql-file", type=Path)
 
-    mindbox = subparsers.add_parser("mindbox", help="Replace one Mindbox career/term catalog")
-    mindbox.add_argument("--input", type=Path, required=True)
-    mindbox.add_argument("--career", choices=tuple(CAREER_NAMES), required=True)
-    mindbox.add_argument("--term-code", required=True, help="Stable code, e.g. 2026-2")
-    mindbox.add_argument("--term-name", required=True, help="Display name, e.g. Agosto - Diciembre 2026")
+    mindbox = subparsers.add_parser("mindbox", help="Replace Mindbox career/term catalogs")
+    mindbox.add_argument(
+        "--input",
+        type=Path,
+        help="Artifact for one career; default: output/{career}-{term}.json",
+    )
+    mindbox.add_argument(
+        "--career",
+        choices=tuple(CAREER_NAMES),
+        help="Career to import; omit to import every career",
+    )
+    mindbox.add_argument("--term-code", help="Stable code; default: current academic term")
+    mindbox.add_argument("--term-name", help="Display name; default: derived from term code")
     mindbox.add_argument("--activate", action="store_true")
     mindbox.add_argument("--database", default="horariostec")
     mindbox.add_argument("--sql-file", type=Path)
     mindbox.add_argument("--remote", action="store_true", help="Write to the deployed remote D1 database")
     args = parser.parse_args()
 
-    artifact = load_json(args.input)
     if args.command == "legacy":
+        artifact = load_json(args.input)
         statements = legacy_sql(artifact)
+        execute_sql(sql_statements(statements), database=args.database, sql_file=args.sql_file)
+        print(f"Imported {args.command} data into local D1 database {args.database}")
+        return 0
     else:
-        statements = mindbox_sql(
-            artifact,
-            career=args.career,
-            term_code=args.term_code,
-            term_name=args.term_name,
-            activate=args.activate,
-        )
-    execute_sql(sql_statements(statements, transaction=not getattr(args, "remote", False)), database=args.database, sql_file=args.sql_file, remote=getattr(args, "remote", False))
-    location = "remote" if getattr(args, "remote", False) else "local"
-    print(f"Imported {args.command} data into {location} D1 database {args.database}")
-    return 0
+        if not args.career and (args.input or args.sql_file):
+            raise ValueError("--input and --sql-file require --career")
+        return run_mindbox_import(args)
 
 
 if __name__ == "__main__":
