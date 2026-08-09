@@ -23,3 +23,6 @@
 **/dist/
 app/.env.local
 app/.env.*.local
+
+# Secrets
+*.env

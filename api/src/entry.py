@@ -14,11 +14,15 @@ from validation import (
 )
 
 
-def absolute_global_rating(current: object, legacy: object) -> float | None:
-    values = [float(value) for value in (current, legacy) if value is not None and float(value) >= 0]
-    if not values:
+def weighted_global_rating(current_average: object, current_count: object, legacy_average: object, legacy_count: object) -> float | None:
+    sources = []
+    for average, count in ((current_average, current_count), (legacy_average, legacy_count)):
+        if average is not None and float(average) >= 0 and count is not None and int(count) > 0:
+            sources.append((float(average), int(count)))
+    total_reviews = sum(count for _, count in sources)
+    if not total_reviews:
         return None
-    return round(sum(values) / len(values), 2)
+    return round(sum(average * count for average, count in sources) / total_reviews, 2)
 
 
 API_PREFIX = "/api/v1"
@@ -129,7 +133,7 @@ class Default(WorkerEntrypoint):
                       current.average_global_rating,
                       CASE
                         WHEN current.average_global_rating >= 0 AND ls.general_score >= 0
-                          THEN ROUND((current.average_global_rating + ls.general_score) / 2, 2)
+                          THEN ROUND((current.average_global_rating * current.evaluation_count + ls.general_score * ls.review_count) / (current.evaluation_count + ls.review_count), 2)
                         WHEN current.average_global_rating >= 0 THEN current.average_global_rating
                         WHEN ls.general_score >= 0 THEN ls.general_score
                         ELSE NULL
@@ -215,7 +219,7 @@ class Default(WorkerEntrypoint):
                  t.display_name AS teacher, ls.general_score AS teacher_legacy_general_score,
                  CASE
                    WHEN current.average_global_rating >= 0 AND ls.general_score >= 0
-                     THEN ROUND((current.average_global_rating + ls.general_score) / 2, 2)
+                     THEN ROUND((current.average_global_rating * current.evaluation_count + ls.general_score * ls.review_count) / (current.evaluation_count + ls.review_count), 2)
                    WHEN current.average_global_rating >= 0 THEN current.average_global_rating
                    WHEN ls.general_score >= 0 THEN ls.general_score
                    ELSE NULL
@@ -228,7 +232,7 @@ class Default(WorkerEntrypoint):
           JOIN teachers t ON t.id = sec.teacher_id
           LEFT JOIN legacy_teacher_summaries ls ON ls.teacher_id = t.id
           LEFT JOIN (
-            SELECT teacher_id, ROUND(AVG(global_rating), 2) AS average_global_rating
+            SELECT teacher_id, COUNT(*) AS evaluation_count, ROUND(AVG(global_rating), 2) AS average_global_rating
             FROM teacher_evaluations
             WHERE status = 'visible'
             GROUP BY teacher_id
@@ -294,7 +298,7 @@ class Default(WorkerEntrypoint):
                WHERE teacher_id = ? AND status = 'visible'"""
         ).bind(teacher_id).first()
         legacy_summary = await self.env.DB.prepare(
-            "SELECT general_score FROM legacy_teacher_summaries WHERE teacher_id = ?"
+            "SELECT general_score, review_count FROM legacy_teacher_summaries WHERE teacher_id = ?"
         ).bind(teacher_id).first()
         quality = await self.env.DB.prepare(
             """SELECT ROUND(AVG(numeric_value), 2) AS quality_average
@@ -317,9 +321,11 @@ class Default(WorkerEntrypoint):
                     **(summary or {}),
                     **(quality or {}),
                     **(difficulty or {}),
-                    "absolute_global_rating": absolute_global_rating(
+                      "absolute_global_rating": weighted_global_rating(
                         (summary or {}).get("average_global_rating"),
+                        (summary or {}).get("evaluation_count"),
                         (legacy_summary or {}).get("general_score"),
+                        (legacy_summary or {}).get("review_count"),
                     ),
                 },
             },

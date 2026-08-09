@@ -289,6 +289,7 @@ def main() -> int:
     mindbox.add_argument("--activate", action="store_true")
     mindbox.add_argument("--database", default="horariostec")
     mindbox.add_argument("--sql-file", type=Path)
+    mindbox.add_argument("--remote", action="store_true", help="Write to the deployed remote D1 database")
     args = parser.parse_args()
 
     artifact = load_json(args.input)
@@ -302,8 +303,9 @@ def main() -> int:
             term_name=args.term_name,
             activate=args.activate,
         )
-    execute_sql(sql_statements(statements), database=args.database, sql_file=args.sql_file)
-    print(f"Imported {args.command} data into local D1 database {args.database}")
+    execute_sql(sql_statements(statements, transaction=not getattr(args, "remote", False)), database=args.database, sql_file=args.sql_file, remote=getattr(args, "remote", False))
+    location = "remote" if getattr(args, "remote", False) else "local"
+    print(f"Imported {args.command} data into {location} D1 database {args.database}")
     return 0
 
 

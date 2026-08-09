@@ -1,6 +1,8 @@
 name = "horariostec-api"
 main = "src/entry.py"
-compatibility_date = "2026-08-06"
+# Keep the Python Workers runtime on the stable Pyodide generation. The
+# 2026-08 runtime currently fails validation with a dynamic `fs` require.
+compatibility_date = "2026-07-28"
 compatibility_flags = ["python_workers"]
 
 [[d1_databases]]
@@ -10,7 +12,7 @@ database_id = "fa38b7f7-fe69-4dae-a1e2-995abf512948"
 migrations_dir = "migrations"
 
 [vars]
-ALLOWED_ORIGIN = "*"
+ALLOWED_ORIGIN = "https://horariostec.pages.dev"
 
 [dev]
 ip = "0.0.0.0"

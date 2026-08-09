@@ -88,8 +88,8 @@ class PlaywrightMindboxClient:
                 if not has_results:
                     empty_semesters.append(semester)
                     continue
-                semester_offerings = parse_offerings(
-                    await page.content(), semester=semester, career=self.career
+                semester_offerings = await self._scrape_semester_pages(
+                    page, semester=semester
                 )
                 if not semester_offerings:
                     empty_semesters.append(semester)
@@ -98,6 +98,116 @@ class PlaywrightMindboxClient:
             return offerings, available, empty_semesters
         finally:
             await context.close()
+
+    async def _scrape_semester_pages(self, page: Page, *, semester: int):
+        """Parse every paginated table page for a semester.
+
+        Mindbox renders only one page of groups at a time. The table is
+        replaced after clicking the pagination control, so parsing the page
+        once silently drops all groups after the first page.
+        """
+        offerings = []
+        seen_pages: set[str] = set()
+
+        while True:
+            table = page.locator("table").last
+            page_signature = await table.inner_text()
+            if page_signature in seen_pages:
+                break
+            seen_pages.add(page_signature)
+
+            offerings.extend(
+                parse_offerings(
+                    await page.content(), semester=semester, career=self.career
+                )
+            )
+            if not await self._click_next_page(page, before=page_signature):
+                break
+
+        return offerings
+
+    async def _click_next_page(self, page: Page, *, before: str) -> bool:
+        """Click the next pagination control, returning False on the last page."""
+        containers = page.locator(
+            "ul.pagination, .pagination, nav[aria-label*='pagination' i]"
+        )
+        container = None
+        for index in range(await containers.count() - 1, -1, -1):
+            candidate = containers.nth(index)
+            if await candidate.is_visible():
+                container = candidate
+                break
+        if container is None:
+            return False
+
+        controls = container.locator("a, button")
+        metadata = await controls.evaluate_all(
+            """
+            elements => elements.map((element, index) => {
+              const parent = element.closest('li');
+              const text = (element.textContent || '').trim();
+              const label = (element.getAttribute('aria-label') || '').trim();
+              const title = (element.getAttribute('title') || '').trim();
+              const classes = `${element.className || ''} ${parent?.className || ''}`;
+              return {
+                index,
+                text,
+                label,
+                title,
+                classes,
+                current: element.getAttribute('aria-current') === 'page'
+                  || /(^|\\s)(active|current)(\\s|$)/i.test(classes),
+                disabled: element.hasAttribute('disabled')
+                  || element.getAttribute('aria-disabled') === 'true'
+                  || /(^|\\s)disabled(\\s|$)/i.test(classes),
+              };
+            })
+            """
+        )
+
+        if not metadata:
+            return False
+
+        next_index = None
+        for item in metadata:
+            searchable = " ".join(
+                (item["text"], item["label"], item["title"])
+            ).lower()
+            if not item["disabled"] and any(
+                marker in searchable
+                for marker in ("siguiente", "next", "›", "»", "→")
+            ):
+                next_index = item["index"]
+                break
+
+        if next_index is None:
+            current_index = next(
+                (item["index"] for item in metadata if item["current"]), None
+            )
+            if current_index is not None:
+                candidate = next(
+                    (
+                        item
+                        for item in metadata
+                        if item["index"] > current_index
+                        and item["text"].strip().isdigit()
+                        and not item["disabled"]
+                    ),
+                    None,
+                )
+                if candidate is not None:
+                    next_index = candidate["index"]
+
+        if next_index is None:
+            return False
+
+        await controls.nth(next_index).click()
+        for _ in range(40):
+            await page.wait_for_timeout(100)
+            current = await page.locator("table").last.inner_text()
+            if current != before:
+                return True
+        return False
 
     async def _discover_semesters(self, page: Page) -> list[int]:
         await page.goto(self.groups_url, wait_until="domcontentloaded")
