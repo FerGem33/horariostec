@@ -46,6 +46,7 @@ import {
   type Teacher,
 } from "./api";
 import ScheduleBuilder from "./ScheduleBuilder";
+import AnimatedScheduleIllustration from "./AnimatedScheduleIllustration";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 const Github = Code2;
@@ -148,48 +149,8 @@ function Home() {
             </Link>
           </div>
         </div>
-        <div className="hero-board" aria-hidden="true">
-          <div className="board-window">
-            <span className="board-window-bar">
-              <i />
-              <i />
-              <i />
-            </span>
-            <div className="board-title">
-              <i />
-              <i />
-              <i />
-            </div>
-            <div className="board-row board-row-head">
-              <i />
-              <i />
-              <i />
-            </div>
-            <div className="board-row">
-              <i />
-              <i />
-              <i />
-            </div>
-            <div className="board-row">
-              <i />
-              <i />
-              <i />
-            </div>
-            <div className="board-row">
-              <i />
-              <i />
-              <i />
-            </div>
-          </div>
-          <div className="board-note">
-            <span className="board-note-mark" />
-            <span>
-              <i />
-              <i />
-            </span>
-          </div>
-          <div className="board-orbit orbit-one" />
-          <div className="board-orbit orbit-two" />
+        <div className="hero-board">
+          <AnimatedScheduleIllustration />
         </div>
       </section>
     </div>
