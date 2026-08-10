@@ -657,10 +657,12 @@ function TeacherPage() {
   const evaluationsQuery = useQuery({
     queryKey: ["evaluations", id],
     queryFn: () => api.evaluations(id),
+    enabled: Boolean(teacherQuery.data?.teacher),
   });
   const legacyQuery = useQuery({
     queryKey: ["legacy", id],
     queryFn: () => api.legacy(id),
+    enabled: Boolean(teacherQuery.data?.teacher),
   });
   const teacher = teacherQuery.data?.teacher ?? null;
   const summary = teacherQuery.data?.summary ?? {};
