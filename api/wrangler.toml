@@ -13,7 +13,8 @@ migrations_dir = "migrations"
 
 [vars]
 # Add origins as a comma-separated list, without trailing slashes.
-ALLOWED_ORIGINS = "https://horariostec.pages.dev,https://horariostec.com"
+ALLOWED_ORIGINS = "https://horariostec.pages.dev,https://horariostec.com,http://localhost:5173,http://localhost:8787"
+
 
 [dev]
 ip = "0.0.0.0"
