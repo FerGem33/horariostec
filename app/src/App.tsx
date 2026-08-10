@@ -31,7 +31,9 @@ import {
   Info,
   LockKeyhole,
   MessageSquare,
+  Moon,
   Search,
+  Sun,
   ThumbsDown,
   ThumbsUp,
   UserRound,
@@ -70,8 +72,23 @@ function CareerIcon({ career }: { career: string }) {
 function Layout({ children }: { children: ReactNode }) {
   const location = useLocation();
   const isSchedule = location.pathname.startsWith("/horario");
+  const [theme, setTheme] = useState<"light" | "dark">(() => {
+    const saved = localStorage.getItem("theme") as "light" | "dark";
+    if (saved) return saved;
+    return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "dark";
+  });
+
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme((t) => (t === "light" ? "dark" : "light"));
+  };
+
   return (
-    <div className={isSchedule ? "schedule-layout" : ""}>
+    <div className={`app-shell ${isSchedule ? "schedule-layout" : ""}`}>
       <header className="site-header">
         <div className="header-inner">
           <Link to="/" className="brand">
@@ -81,12 +98,14 @@ function Layout({ children }: { children: ReactNode }) {
             </span>
           </Link>
           <nav>
-            <NavLink to="/horario">Horarios</NavLink>
-            <NavLink to="/docentes">Docentes</NavLink>
+            <NavLink to="/horario" data-tooltip="Generador de Horarios" data-tooltip-pos="bottom">Horarios</NavLink>
+            <NavLink to="/docentes" data-tooltip="Directorio de Docentes" data-tooltip-pos="bottom">Docentes</NavLink>
             <NavLink
               className="about-nav-link"
               to="/nosotros"
               aria-label="Nosotros"
+              data-tooltip="Acerca de HorariosTec"
+              data-tooltip-pos="bottom"
             >
               <span className="nav-label">Nosotros</span>
               <Info
@@ -96,10 +115,30 @@ function Layout({ children }: { children: ReactNode }) {
                 aria-hidden="true"
               />
             </NavLink>
+            <button
+              type="button"
+              className="theme-toggle-btn"
+              onClick={toggleTheme}
+              aria-label={theme === "dark" ? "Cambiar a modo claro" : "Cambiar a modo oscuro"}
+              data-tooltip={theme === "dark" ? "Modo Claro" : "Modo Oscuro"}
+              data-tooltip-pos="bottom"
+            >
+              {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
+            </button>
           </nav>
         </div>
       </header>
       <main>{children}</main>
+      <footer>
+        <div className="container footer-inner">
+          <div className="footer-brand">
+            <strong>HorariosTec</strong> — Planificador de Horarios & Evaluaciones Docentes
+          </div>
+          <div className="footer-meta">
+            Instituto Tecnológico de Saltillo • Proyecto Open Source
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
@@ -316,28 +355,18 @@ function CareerCard({ career }: { career: Career }) {
         <small>
           {career.teacher_count
             ? `${career.teacher_count} docentes · ${career.subject_count} materias`
-            : "Aún sin datos importados"}
+            : "Explorar docentes"}
         </small>
       </span>
-      {!career.teacher_count && (
-        <LockKeyhole className="career-lock" size={20} aria-hidden="true" />
-      )}
     </>
   );
-  return career.teacher_count ? (
+  return (
     <Link
       to={`/docentes/carrera/${career.slug}`}
       className={`career-card career-${career.slug}`}
     >
       {content}
     </Link>
-  ) : (
-    <div
-      className={`career-card career-${career.slug} career-card-locked`}
-      aria-disabled="true"
-    >
-      {content}
-    </div>
   );
 }
 function Teachers() {

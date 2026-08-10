@@ -5,15 +5,25 @@ import {
   BriefcaseBusiness,
   Bot,
   Boxes,
+  Calendar,
   ChevronDown,
   ChevronUp,
+  Clock,
   Code2,
   Cog,
   Cpu,
+  Dices,
   Download,
   Factory,
+  FileImage,
+  FileText,
   GripVertical,
+  Layers,
   LockKeyhole,
+  SlidersHorizontal,
+  Sparkles,
+  Star,
+  Trash2,
   Zap,
   type LucideIcon,
 } from "lucide-react";
@@ -130,10 +140,9 @@ function CareerSelection({
         {careers.map((career) => (
           <button
             type="button"
-            disabled={!career.teacher_count}
-            className={`career-card career-${career.slug} schedule-career-card${career.teacher_count ? "" : " career-card-locked"}`}
+            className={`career-card career-${career.slug} schedule-career-card`}
             key={career.slug}
-            onClick={() => career.teacher_count && onSelect(career)}
+            onClick={() => onSelect(career)}
           >
             <CareerIcon career={career} />
             <span className="career-card-content">
@@ -141,18 +150,10 @@ function CareerSelection({
               <small>
                 {career.teacher_count
                   ? `${career.teacher_count} docentes · ${career.subject_count} materias`
-                  : "Aún sin datos importados"}
+                  : "Seleccionar carrera"}
               </small>
             </span>
-            {career.teacher_count ? (
-              <b className="schedule-card-arrow">→</b>
-            ) : (
-              <LockKeyhole
-                className="career-lock"
-                size={20}
-                aria-hidden="true"
-              />
-            )}
+            <b className="schedule-card-arrow">→</b>
           </button>
         ))}
       </div>
@@ -311,6 +312,27 @@ function SubjectSelection({
             </small>
           </span>
         </label>
+        <button
+          type="button"
+          className="button button-light surprise-btn"
+          data-tooltip="Seleccionar 5-7 materias al azar automáticamente (Fisher-Yates)"
+          style={{ marginLeft: "auto" }}
+          onClick={() => {
+            if (!subjects.length) return;
+            const count = Math.min(subjects.length, Math.floor(Math.random() * 3) + 5);
+            // Algoritmo Fisher-Yates para barajado insesgado estricto
+            const shuffled = [...subjects];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+              const j = Math.floor(Math.random() * (i + 1));
+              [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            const randomPicked = shuffled.slice(0, count).map((s) => s.id);
+            setSelected(randomPicked);
+            setTarget(count);
+          }}
+        >
+          <Dices size={16} /> 🎲 Modo Azar
+        </button>
       </div>
       <div className="reticula">
         {Object.entries(grouped).map(([semester, items]) => (
@@ -517,6 +539,32 @@ function Availability({
           <TimeSelect label="Desde" value={start} onChange={setStart} />
           <span className="range-dash">—</span>
           <TimeSelect label="Hasta" value={end} onChange={setEnd} />
+        </div>
+        <div className="shift-presets">
+          <span className="shift-presets-title"><Clock size={15} /> Presets rápidos:</span>
+          <div className="shift-presets-buttons">
+            <button
+              type="button"
+              className={start === "07:00" && end === "14:00" ? "shift-btn active" : "shift-btn"}
+              onClick={() => { setStart("07:00"); setEnd("14:00"); }}
+            >
+              🌅 Matutino (07:00–14:00)
+            </button>
+            <button
+              type="button"
+              className={start === "14:00" && end === "21:00" ? "shift-btn active" : "shift-btn"}
+              onClick={() => { setStart("14:00"); setEnd("21:00"); }}
+            >
+              🌇 Vespertino (14:00–21:00)
+            </button>
+            <button
+              type="button"
+              className={start === "07:00" && end === "22:00" ? "shift-btn active" : "shift-btn"}
+              onClick={() => { setStart("07:00"); setEnd("22:00"); }}
+            >
+              ☀️ Jornada Completa
+            </button>
+          </div>
         </div>
         {hasSaturday && (
           <label className="toggle-field saturday-toggle">
@@ -1376,12 +1424,43 @@ function ScheduleReport({
   );
 }
 
+export type SavedSchedule = {
+  id: string;
+  name: string;
+  createdAt: string;
+  careerName: string;
+  offerings: CatalogOffering[];
+  totalGapsMinutes: number;
+};
+
+function computeTotalGapMinutes(offerings: CatalogOffering[]) {
+  let totalGaps = 0;
+  const meetingsByDay: Record<number, { start: number; end: number }[]> = {};
+  offerings
+    .flatMap((item) => item.meetings)
+    .forEach((m) => {
+      (meetingsByDay[m.day_of_week] ??= []).push({
+        start: minutes(m.start_time),
+        end: minutes(m.end_time),
+      });
+    });
+  Object.values(meetingsByDay).forEach((dayMeetings) => {
+    dayMeetings.sort((a, b) => a.start - b.start);
+    for (let i = 0; i < dayMeetings.length - 1; i++) {
+      const gap = dayMeetings[i + 1].start - dayMeetings[i].end;
+      if (gap > 0) totalGaps += gap;
+    }
+  });
+  return totalGaps;
+}
+
 async function exportPdf(element: HTMLElement | null) {
   if (!element) return;
+  const isDark = document.documentElement.getAttribute("data-theme") === "dark";
   const canvas = await html2canvas(element, {
     scale: 3,
     useCORS: true,
-    backgroundColor: "#fffdfb",
+    backgroundColor: isDark ? "#0f172a" : "#fffdfb",
     imageTimeout: 0,
   });
   const pdf = new jsPDF({
@@ -1400,7 +1479,231 @@ async function exportPdf(element: HTMLElement | null) {
     undefined,
     "MEDIUM",
   );
-  pdf.save("horario.pdf");
+  pdf.save("horario-horariostec.pdf");
+}
+
+async function exportPng(element: HTMLElement | null, careerName = "horariostec") {
+  if (!element) return;
+  const isDark = document.documentElement.getAttribute("data-theme") === "dark";
+  const canvas = await html2canvas(element, {
+    scale: 3,
+    useCORS: true,
+    backgroundColor: isDark ? "#0f172a" : "#fffdfb",
+    imageTimeout: 0,
+  });
+  const link = document.createElement("a");
+  link.download = `horario-${careerName.toLowerCase().replace(/\s+/g, "_")}.png`;
+  link.href = canvas.toDataURL("image/png");
+  link.click();
+}
+
+function exportIcs(offerings: CatalogOffering[], careerName = "Tec") {
+  if (!offerings.length) return;
+  const lines: string[] = [
+    "BEGIN:VCALENDAR",
+    "VERSION:2.0",
+    "PRODID:-//HorariosTec//ES",
+    "CALSCALE:GREGORIAN",
+    "METHOD:PUBLISH",
+    "X-WR-CALNAME:Horario de Clases - HorariosTec",
+    "X-WR-TIMEZONE:America/Mexico_City",
+  ];
+
+  const dayMap: Record<number, string> = {
+    0: "MO",
+    1: "TU",
+    2: "WE",
+    3: "TH",
+    4: "FR",
+    5: "SA",
+  };
+
+  const now = new Date();
+  const nextMonday = new Date(now);
+  nextMonday.setDate(now.getDate() + ((1 + 7 - now.getDay()) % 7));
+
+  offerings.forEach((offering) => {
+    offering.meetings.forEach((meeting) => {
+      const dayOffset = meeting.day_of_week;
+      const eventDate = new Date(nextMonday);
+      eventDate.setDate(nextMonday.getDate() + dayOffset);
+
+      const [sH, sM] = meeting.start_time.split(":").map(Number);
+      const [eH, eM] = meeting.end_time.split(":").map(Number);
+
+      const dtStart = new Date(eventDate);
+      dtStart.setHours(sH, sM, 0);
+      const dtEnd = new Date(eventDate);
+      dtEnd.setHours(eH, eM, 0);
+
+      const formatIcsTime = (d: Date) =>
+        d.toISOString().replace(/[-:]/g, "").split(".")[0] + "Z";
+
+      const byDay = dayMap[meeting.day_of_week] || "MO";
+
+      lines.push(
+        "BEGIN:VEVENT",
+        `SUMMARY:${offering.subject}`,
+        `DESCRIPTION:Docente: ${offering.teacher} \\nGrupo: ${offering.group_name || "Único"}`,
+        `LOCATION:${meeting.room || "Aula por asignar"}`,
+        `DTSTART:${formatIcsTime(dtStart)}`,
+        `DTEND:${formatIcsTime(dtEnd)}`,
+        `RRULE:FREQ=WEEKLY;BYDAY=${byDay}`,
+        "END:VEVENT",
+      );
+    });
+  });
+
+  lines.push("END:VCALENDAR");
+
+  const blob = new Blob([lines.join("\r\n")], {
+    type: "text/calendar;charset=utf-8",
+  });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = `horario-${careerName.toLowerCase().replace(/\s+/g, "_")}.ics`;
+  link.click();
+  URL.revokeObjectURL(url);
+}
+
+function CompareSavedModal({
+  savedList,
+  onRemove,
+  onClose,
+  start,
+  end,
+}: {
+  savedList: SavedSchedule[];
+  onRemove: (id: string) => void;
+  onClose: () => void;
+  start: string;
+  end: string;
+}) {
+  const [selectedIds, setSelectedIds] = useState<string[]>(() =>
+    savedList.slice(0, 2).map((item: SavedSchedule) => item.id),
+  );
+
+  const toggleSelect = (id: string) => {
+    setSelectedIds((prev: string[]) =>
+      prev.includes(id)
+        ? prev.filter((item: string) => item !== id)
+        : prev.length < 3
+          ? [...prev, id]
+          : prev,
+    );
+  };
+
+  const selectedSchedules = savedList.filter((item: SavedSchedule) =>
+    selectedIds.includes(item.id),
+  );
+
+  return (
+    <div
+      className="modal-backdrop"
+      role="presentation"
+      onMouseDown={(e) => {
+        if (e.target === e.currentTarget) onClose();
+      }}
+    >
+      <section className="compare-modal" role="dialog" aria-modal="true">
+        <div className="modal-header">
+          <div>
+            <span className="eyebrow">HORARIOS GUARDADOS Y COMPARADOR</span>
+            <h2>Tus opciones guardadas ({savedList.length})</h2>
+            <p>Selecciona hasta 3 horarios para compararlos lado a lado.</p>
+          </div>
+          <button
+            type="button"
+            className="modal-close"
+            onClick={onClose}
+            aria-label="Cerrar"
+          >
+            ×
+          </button>
+        </div>
+
+        <div className="saved-chips-list">
+          {savedList.map((item: SavedSchedule) => {
+            const isSelected = selectedIds.includes(item.id);
+            return (
+              <div
+                key={item.id}
+                className={`saved-chip ${isSelected ? "active" : ""}`}
+                onClick={() => toggleSelect(item.id)}
+              >
+                <div className="chip-content">
+                  <strong>{item.name}</strong>
+                  <small>
+                    {item.offerings.length} materias ·{" "}
+                    {item.totalGapsMinutes > 0
+                      ? `${item.totalGapsMinutes} min libres`
+                      : "Sin huecos"}
+                  </small>
+                </div>
+                <button
+                  type="button"
+                  className="chip-delete"
+                  data-tooltip="Eliminar favorito"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onRemove(item.id);
+                  }}
+                >
+                  <Trash2 size={14} />
+                </button>
+              </div>
+            );
+          })}
+        </div>
+
+        {selectedSchedules.length > 0 ? (
+          <div
+            className="compare-grid"
+            style={{
+              gridTemplateColumns: `repeat(${selectedSchedules.length}, 1fr)`,
+            }}
+          >
+            {selectedSchedules.map((item: SavedSchedule) => (
+              <div className="compare-column" key={item.id}>
+                <div className="compare-col-header">
+                  <h3>{item.name}</h3>
+                  <span>{item.careerName}</span>
+                  <div className="compare-stats">
+                    <span className="stat-badge">
+                      📚 {item.offerings.length} materias
+                    </span>
+                    <span className="stat-badge">
+                      ⏱️ {item.totalGapsMinutes} min libres
+                    </span>
+                  </div>
+                </div>
+                <ScheduleGrid
+                  candidate={item.offerings}
+                  start={start}
+                  end={end}
+                />
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className="empty-panel">
+            Selecciona al menos 1 horario guardado de la lista para visualizarlo.
+          </div>
+        )}
+
+        <div className="modal-actions">
+          <button
+            type="button"
+            className="button button-light"
+            onClick={onClose}
+          >
+            Cerrar
+          </button>
+        </div>
+      </section>
+    </div>
+  );
 }
 
 function Results({
@@ -1410,6 +1713,7 @@ function Results({
   onStrictChange,
   start,
   end,
+  careerName = "Tec",
   onBack,
 }: {
   candidates: Candidate[];
@@ -1418,34 +1722,118 @@ function Results({
   onStrictChange: (value: boolean) => void;
   start: string;
   end: string;
+  careerName?: string;
   onBack: () => void;
 }) {
   const [index, setIndex] = useState(0);
   const [subjectFilter, setSubjectFilter] = useState<"all" | number>("all");
+  const [sortMode, setSortMode] = useState<"score" | "gaps" | "earliest" | "latest">("score");
+  const [savedSchedules, setSavedSchedules] = useState<SavedSchedule[]>(() => {
+    try {
+      const raw = localStorage.getItem("horariostec_favorites");
+      return raw ? JSON.parse(raw) : [];
+    } catch {
+      return [];
+    }
+  });
+  const [showCompareModal, setShowCompareModal] = useState(false);
+  const [randomNotice, setRandomNotice] = useState<string | null>(null);
   const scheduleRef = useRef<HTMLDivElement>(null);
   const pdfRef = useRef<HTMLDivElement>(null);
-  useEffect(() => setIndex(0), [candidates]);
-  const counts = [
-    ...new Set(candidates.map((item) => item.offerings.length)),
-  ].sort((a, b) => a - b);
+
+  const pickRandomCandidate = () => {
+    if (visibleCandidates.length > 0) {
+      let nextIndex = Math.floor(Math.random() * visibleCandidates.length);
+      if (visibleCandidates.length > 1 && nextIndex === index) {
+        nextIndex = (nextIndex + 1) % visibleCandidates.length;
+      }
+      setIndex(nextIndex);
+      setRandomNotice(`🎲 ¡Opción #${nextIndex + 1} de ${visibleCandidates.length} elegida al azar!`);
+      setTimeout(() => setRandomNotice(null), 3000);
+    }
+  };
+
+  useEffect(() => {
+    try {
+      localStorage.setItem("horariostec_favorites", JSON.stringify(savedSchedules));
+    } catch (e) {
+      console.error("Failed to save favorites", e);
+    }
+  }, [savedSchedules]);
+
+  useEffect(() => setIndex(0), [candidates, sortMode]);
+
+  const sortedCandidates = useMemo(() => {
+    const list = [...candidates];
+    if (sortMode === "gaps") {
+      return list.sort(
+        (a: Candidate, b: Candidate) => computeTotalGapMinutes(a.offerings) - computeTotalGapMinutes(b.offerings)
+      );
+    } else if (sortMode === "earliest") {
+      return list.sort((a: Candidate, b: Candidate) => {
+        const minA = Math.min(...a.offerings.flatMap((i) => i.meetings.map((m) => minutes(m.start_time))));
+        const minB = Math.min(...b.offerings.flatMap((i) => i.meetings.map((m) => minutes(m.start_time))));
+        return minA - minB;
+      });
+    } else if (sortMode === "latest") {
+      return list.sort((a: Candidate, b: Candidate) => {
+        const maxA = Math.max(...a.offerings.flatMap((i) => i.meetings.map((m) => minutes(m.end_time))));
+        const maxB = Math.max(...b.offerings.flatMap((i) => i.meetings.map((m) => minutes(m.end_time))));
+        return maxB - maxA;
+      });
+    }
+    return list;
+  }, [candidates, sortMode]);
+
+  const counts: number[] = [
+    ...new Set(sortedCandidates.map((item: Candidate) => item.offerings.length)),
+  ].sort((a: number, b: number) => a - b);
+
   const visibleCandidates =
     subjectFilter === "all"
-      ? candidates
-      : candidates.filter((item) => item.offerings.length === subjectFilter);
+      ? sortedCandidates
+      : sortedCandidates.filter((item: Candidate) => item.offerings.length === subjectFilter);
+
   const candidate = visibleCandidates[index];
+
+  const currentGaps = candidate ? computeTotalGapMinutes(candidate.offerings) : 0;
+
+  const isSaved = candidate
+    ? savedSchedules.some((s: SavedSchedule) => JSON.stringify(s.offerings) === JSON.stringify(candidate.offerings))
+    : false;
+
+  const toggleSaveCurrent = () => {
+    if (!candidate) return;
+    if (isSaved) {
+      setSavedSchedules((prev: SavedSchedule[]) =>
+        prev.filter((s: SavedSchedule) => JSON.stringify(s.offerings) !== JSON.stringify(candidate.offerings))
+      );
+    } else {
+      const newItem: SavedSchedule = {
+        id: Date.now().toString(),
+        name: `Horario #${savedSchedules.length + 1} (${candidate.offerings.length} mat.)`,
+        createdAt: new Date().toLocaleDateString("es-MX"),
+        careerName,
+        offerings: candidate.offerings,
+        totalGapsMinutes: currentGaps,
+      };
+      setSavedSchedules((prev: SavedSchedule[]) => [newItem, ...prev]);
+    }
+  };
+
   const move = (delta: number) =>
-    setIndex((current) =>
+    setIndex((current: number) =>
       visibleCandidates.length
-        ? (current + delta + visibleCandidates.length) %
-          visibleCandidates.length
-        : 0,
+        ? (current + delta + visibleCandidates.length) % visibleCandidates.length
+        : 0
     );
+
   return (
     <div className="container page schedule-page">
       <div className="schedule-heading">
         <div>
           <div className="eyebrow">PASO 05 / RESULTADOS</div>
-          <h1>Tus opciones</h1>
+          <h1>Tus opciones de horario</h1>
           <p>
             {visibleCandidates.length
               ? `${visibleCandidates.length} ${visibleCandidates.length === 1 ? "opción compatible" : "opciones compatibles"} encontradas${subjectFilter === "all" && strict ? ` con ${target} materias` : ""}.`
@@ -1453,6 +1841,20 @@ function Results({
           </p>
         </div>
         <div className="result-tools">
+          <div className="sort-filter">
+            <span><SlidersHorizontal size={14} /> Orden:</span>
+            <select
+              value={sortMode}
+              onChange={(e) => setSortMode(e.target.value as any)}
+              className="result-filter-select"
+            >
+              <option value="score">🏆 Mejor puntuación</option>
+              <option value="gaps">⚡ Menos horas libres</option>
+              <option value="earliest">🌅 Clases temprano</option>
+              <option value="latest">🌇 Clases tarde</option>
+            </select>
+          </div>
+
           <ResultFilter
             counts={counts}
             value={subjectFilter}
@@ -1463,6 +1865,7 @@ function Results({
               setIndex(0);
             }}
           />
+
           <label className="result-strict-toggle">
             <input
               type="checkbox"
@@ -1471,21 +1874,83 @@ function Results({
             />
             <span>
               <strong>Estricto</strong>
-              <small>Exactamente la cantidad elegida</small>
+              <small>Cantidad exacta</small>
             </span>
           </label>
-          <button
-            type="button"
-            className="button button-light"
-            onClick={() => void exportPdf(pdfRef.current)}
-            disabled={!candidate}
-          >
-            <Download size={16} /> PDF
-          </button>
+
+          {visibleCandidates.length > 1 && (
+            <button
+              type="button"
+              className="button button-light random-btn"
+              data-tooltip="Elige una combinación de horario al azar"
+              onClick={pickRandomCandidate}
+            >
+              <Dices size={16} /> Horario al azar
+            </button>
+          )}
+
+          {savedSchedules.length > 0 && (
+            <button
+              type="button"
+              className="button button-light compare-btn"
+              data-tooltip="Compara tus horarios guardados lado a lado"
+              onClick={() => setShowCompareModal(true)}
+            >
+              <Layers size={16} /> Comparar ({savedSchedules.length})
+            </button>
+          )}
         </div>
       </div>
+
+      {randomNotice && (
+        <div className="random-notice-banner">
+          <span>{randomNotice}</span>
+        </div>
+      )}
+
       {candidate ? (
         <>
+          <div className="result-stats-bar">
+            <div className="gap-indicator">
+              ⏱️ <strong>{currentGaps > 0 ? `${currentGaps} minutos libres` : "0 minutos libres (Horario compacto)"}</strong>
+            </div>
+            <div className="export-actions">
+              <button
+                type="button"
+                className={`favorite-btn ${isSaved ? "saved" : ""}`}
+                data-tooltip={isSaved ? "Quitar de favoritos" : "Guardar este horario en tus favoritos del navegador"}
+                onClick={toggleSaveCurrent}
+              >
+                <Star size={16} fill={isSaved ? "currentColor" : "none"} />
+                {isSaved ? "Guardado en Favoritos" : "Guardar opción"}
+              </button>
+              <button
+                type="button"
+                className="button button-light export-btn"
+                data-tooltip="Descargar horario como imagen PNG"
+                onClick={() => void exportPng(pdfRef.current, `horario-${careerName}`)}
+              >
+                <FileImage size={16} /> PNG
+              </button>
+              <button
+                type="button"
+                className="button button-light export-btn"
+                data-tooltip="Descargar reporte oficial en formato PDF"
+                onClick={() => void exportPdf(pdfRef.current)}
+              >
+                <FileText size={16} /> PDF
+              </button>
+              <button
+                type="button"
+                className="button button-light export-btn"
+                data-tooltip="Exportar archivo .ics para Google Calendar, Apple u Outlook"
+                onClick={() => exportIcs(candidate.offerings, careerName)}
+              >
+                <Calendar size={16} /> Calendario (.ics)
+              </button>
+            </div>
+          </div>
+
           <div className="result-viewer">
             <div className="result-navigation">
               <button
@@ -1533,7 +1998,7 @@ function Results({
             >
               <ArrowLeft size={17} /> Volver
             </button>
-            <span>Usa las flechas para comparar horarios.</span>
+            <span>Usa las flechas para explorar y comparar horarios.</span>
           </div>
         </>
       ) : (
@@ -1541,8 +2006,7 @@ function Results({
           <div className="empty-panel results-empty">
             <strong>Prueba con alguno de estos cambios:</strong>
             <span>
-              Amplía tu rango, quita una hora libre, incluye el sábado o
-              desactiva “Cantidad estricta”.
+              Amplía tu rango, quita una hora libre, incluye el sábado o desactiva “Cantidad estricta”.
             </span>
           </div>
           <div className="schedule-actions result-actions">
@@ -1555,6 +2019,16 @@ function Results({
             </button>
           </div>
         </>
+      )}
+
+      {showCompareModal && (
+        <CompareSavedModal
+          savedList={savedSchedules}
+          onRemove={(id) => setSavedSchedules((prev) => prev.filter((s) => s.id !== id))}
+          onClose={() => setShowCompareModal(false)}
+          start={start}
+          end={end}
+        />
       )}
     </div>
   );
@@ -1764,6 +2238,7 @@ export default function ScheduleBuilder() {
           onStrictChange={changeStrict}
           start={start}
           end={end}
+          careerName={career.name}
           onBack={() => setStep(4)}
         />
       ) : null}
