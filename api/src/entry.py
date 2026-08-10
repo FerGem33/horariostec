@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from asyncio import Lock
 from urllib.parse import parse_qs, urlparse
 
 from workers import Response, WorkerEntrypoint
@@ -27,6 +28,11 @@ def weighted_global_rating(current_average: object, current_count: object, legac
 
 
 API_PREFIX = "/api/v1"
+
+# Python Workers execute through Pyodide. Keep application code from overlapping
+# inside the same isolate, where concurrent requests can otherwise trigger
+# Pyodide GIL/task errors while awaiting D1 operations.
+DISPATCH_LOCK = Lock()
 
 
 def cors_headers(origin: str = "*") -> dict[str, str]:
@@ -67,7 +73,8 @@ class Default(WorkerEntrypoint):
             return Response("", status=204, headers=cors_headers(origin))
 
         try:
-            return await self._dispatch(request, parsed.path, origin)
+            async with DISPATCH_LOCK:
+                return await self._dispatch(request, parsed.path, origin)
         except ValueError as error:
             return json_response({"error": str(error)}, status=400, origin=origin)
         except Exception:
