@@ -362,6 +362,7 @@ def main() -> int:
     legacy.add_argument("--input", type=Path, required=True)
     legacy.add_argument("--database", default="horariostec")
     legacy.add_argument("--sql-file", type=Path)
+    legacy.add_argument("--remote", action="store_true", help="Write to the deployed remote D1 database")
 
     mindbox = subparsers.add_parser("mindbox", help="Replace Mindbox career/term catalogs")
     mindbox.add_argument(
@@ -385,8 +386,14 @@ def main() -> int:
     if args.command == "legacy":
         artifact = load_json(args.input)
         statements = legacy_sql(artifact)
-        execute_sql(sql_statements(statements), database=args.database, sql_file=args.sql_file)
-        print(f"Imported {args.command} data into local D1 database {args.database}")
+        execute_sql(
+            sql_statements(statements, transaction=not args.remote),
+            database=args.database,
+            sql_file=args.sql_file,
+            remote=args.remote,
+        )
+        location = "remote" if args.remote else "local"
+        print(f"Imported {args.command} data into {location} D1 database {args.database}")
         return 0
     else:
         if not args.career and (args.input or args.sql_file):
