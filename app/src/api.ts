@@ -1,6 +1,13 @@
 const localApiUrl = typeof window !== "undefined" ? `${window.location.protocol}//${window.location.hostname}:8787` : "http://localhost:8787";
 const API_BASE_URL = (import.meta.env.VITE_API_BASE_URL ?? (import.meta.env.DEV ? localApiUrl : "")).replace(/\/$/, "");
 
+export const LOAD_ERROR_MESSAGE =
+  "No pudimos cargar la información. Intenta recargar la página.";
+export const SAVE_ERROR_MESSAGE =
+  "No pudimos guardar tu evaluación. Intenta recargar la página y volver a intentarlo.";
+export const VOTE_ERROR_MESSAGE =
+  "No pudimos registrar tu voto. Intenta recargar la página y volver a intentarlo.";
+
 export type Teacher = {
   id: number;
   display_name: string;
@@ -76,9 +83,16 @@ export type CatalogOffering = {
 };
 
 async function get<T>(path: string): Promise<T> {
-  const response = await fetch(`${API_BASE_URL}${path}`);
-  if (!response.ok) throw new Error("No pudimos comunicarnos con el servidor.");
-  return response.json() as Promise<T>;
+  try {
+    const response = await fetch(`${API_BASE_URL}${path}`);
+    if (!response.ok) {
+      throw new Error("La respuesta del servidor no fue válida.");
+    }
+    return (await response.json()) as T;
+  } catch (error) {
+    console.error("API request failed", { path, error });
+    throw new Error(LOAD_ERROR_MESSAGE);
+  }
 }
 
 export const api = {
@@ -97,27 +111,31 @@ export const api = {
   subjects: (career: string) => get<{ subjects: Subject[] }>(`/api/v1/subjects?career=${encodeURIComponent(career)}`),
   catalog: (career: string) => get<{ career: string; term: string | null; offerings: CatalogOffering[] }>(`/api/v1/catalog?career=${encodeURIComponent(career)}`),
   submitEvaluation: async (id: string, payload: object) => {
-    const response = await fetch(`${API_BASE_URL}/api/v1/teachers/${id}/evaluations`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
-    });
-    if (!response.ok) {
-      const body = await response.json().catch(() => ({}));
-      throw new Error(body.error ?? "No pudimos guardar tu evaluación.");
+    try {
+      const response = await fetch(`${API_BASE_URL}/api/v1/teachers/${id}/evaluations`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      if (!response.ok) throw new Error("La respuesta del servidor no fue válida.");
+      return (await response.json()) as { created: boolean; evaluation_id: number };
+    } catch (error) {
+      console.error("Evaluation submission failed", { teacherId: id, error });
+      throw new Error(SAVE_ERROR_MESSAGE);
     }
-    return response.json() as Promise<{ created: boolean; evaluation_id: number }>;
   },
   voteComment: async (source: CommentVote["source"], commentId: number, voterId: string, vote: "like" | "dislike" | "remove") => {
-    const response = await fetch(`${API_BASE_URL}/api/v1/comments/${source}/${commentId}/vote`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ voter_id: voterId, vote }),
-    });
-    if (!response.ok) {
-      const body = await response.json().catch(() => ({}));
-      throw new Error(body.error ?? "No pudimos registrar tu voto.");
+    try {
+      const response = await fetch(`${API_BASE_URL}/api/v1/comments/${source}/${commentId}/vote`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ voter_id: voterId, vote }),
+      });
+      if (!response.ok) throw new Error("La respuesta del servidor no fue válida.");
+      return (await response.json()) as CommentVote;
+    } catch (error) {
+      console.error("Comment vote failed", { source, commentId, error });
+      throw new Error(VOTE_ERROR_MESSAGE);
     }
-    return response.json() as Promise<CommentVote>;
   },
 };

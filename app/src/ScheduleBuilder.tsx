@@ -74,11 +74,11 @@ function rankList<T>(
 function BuilderLoading() {
   return <div className="state">Cargando información...</div>;
 }
-function BuilderError({ message }: { message: string }) {
+function BuilderError() {
   return (
     <div className="state error-state">
       <strong>Algo no salió bien</strong>
-      <span>{message}</span>
+      <span>No pudimos cargar la información. Intenta recargar la página.</span>
     </div>
   );
 }
@@ -1692,7 +1692,7 @@ export default function ScheduleBuilder() {
   if (careersQuery.error && !career)
     return (
       <div className="container page">
-        <BuilderError message={careersQuery.error.message} />
+        <BuilderError />
       </div>
     );
   if (!career)
@@ -1711,7 +1711,7 @@ export default function ScheduleBuilder() {
       </div>
       {directoryError ? (
         <div className="container page">
-          <BuilderError message={directoryError.message} />
+          <BuilderError />
         </div>
       ) : directoryPending ? (
         <div className="container page">

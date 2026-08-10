@@ -40,6 +40,8 @@ import {
 } from "lucide-react";
 import {
   api,
+  LOAD_ERROR_MESSAGE,
+  SAVE_ERROR_MESSAGE,
   type Career,
   type Evaluation,
   type Legacy,
@@ -103,11 +105,11 @@ function Layout({ children }: { children: ReactNode }) {
     </div>
   );
 }
-function ErrorMessage({ message }: { message: string }) {
+function ErrorMessage() {
   return (
     <div className="state error-state">
       <strong>Algo no salió bien</strong>
-      <span>{message}</span>
+      <span>{LOAD_ERROR_MESSAGE}</span>
     </div>
   );
 }
@@ -357,7 +359,7 @@ function Teachers() {
         <span className="heading-rule" />
       </div>
       {error ? (
-        <ErrorMessage message={error.message} />
+        <ErrorMessage />
       ) : isPending || !careers.length ? (
         <Loading />
       ) : (
@@ -476,7 +478,7 @@ function CareerDirectory() {
         />
       </div>
       {error ? (
-        <ErrorMessage message={error.message} />
+        <ErrorMessage />
       ) : isPending ? (
         <Loading />
       ) : !teachers.length ? (
@@ -671,7 +673,7 @@ function TeacherPage() {
   if (teacherQuery.error)
     return (
       <div className="container page">
-        <ErrorMessage message={teacherQuery.error.message} />
+        <ErrorMessage />
       </div>
     );
   if (!teacher)
@@ -708,14 +710,10 @@ function TeacherPage() {
         </Link>
       </section>
       {evaluationsQuery.error && (
-        <ErrorMessage
-          message={`No pudimos cargar las evaluaciones: ${evaluationsQuery.error.message}`}
-        />
+        <ErrorMessage />
       )}
       {legacyQuery.error && (
-        <ErrorMessage
-          message={`No pudimos cargar las reseñas históricas: ${legacyQuery.error.message}`}
-        />
+        <ErrorMessage />
       )}
       <div className="profile-panels">
         <CurrentPanel summary={summary} evaluationCount={evaluations.length} />
@@ -1270,7 +1268,13 @@ function Evaluate() {
     api
       .teacher(id)
       .then((data) => setTeacher(data.teacher))
-      .catch((e) => setMessage(e.message));
+      .catch((e) =>
+        setMessage(
+          e instanceof Error
+            ? LOAD_ERROR_MESSAGE
+            : LOAD_ERROR_MESSAGE,
+        ),
+      );
   }, [id]);
   const update = (key: string, value: string) =>
     setForm((current) => ({ ...current, [key]: value }));
@@ -1301,7 +1305,9 @@ function Evaluate() {
       setMessage("Tu evaluación se publicó correctamente.");
     } catch (e) {
       setMessage(
-        e instanceof Error ? e.message : "No pudimos guardar tu evaluación.",
+        e instanceof Error
+          ? SAVE_ERROR_MESSAGE
+          : SAVE_ERROR_MESSAGE,
       );
     } finally {
       setSaving(false);
@@ -1629,7 +1635,7 @@ function EvaluationForm() {
   if (error)
     return (
       <div className="container page">
-        <ErrorMessage message={error.message} />
+        <ErrorMessage />
       </div>
     );
   if (isPending || !teacher)
@@ -1769,8 +1775,7 @@ function EvaluationForm() {
         </FormSection>
         {submitEvaluation.isError && (
           <div className="form-error">
-            {submitEvaluation.error?.message ??
-              "No pudimos guardar tu evaluación."}
+            {SAVE_ERROR_MESSAGE}
           </div>
         )}
         <button
