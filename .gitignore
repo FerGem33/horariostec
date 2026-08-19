@@ -8,8 +8,9 @@
 **/sessions/
 **/credentials.json
 
-# Generated scraper artifacts
-**/output/
+# Generated scraper artifacts (allow tracking scraped datasets)
+**/output/*
+!scraper/haztuhorario/output/*.json
 
 # Tool caches and local files
 .pytest_cache/

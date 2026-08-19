@@ -1,0 +1,4036 @@
+{
+  "total_semesters": 9,
+  "total_subjects": 56,
+  "subjects_single_teacher_count": 27,
+  "subjects_single_teacher": [
+    [
+      2,
+      "COMUNICACIÓN HUMANA",
+      "Torres Ordaz Adriana Elena"
+    ],
+    [
+      2,
+      "TECNOLOGÍA DE LOS MATERIALES",
+      "Alejandra Hernandez Rodriguez"
+    ],
+    [
+      3,
+      "MECÁNICA DE FLUIDOS Y TERMODINÁMICA",
+      "Luis Miguel Veloz Pachicano"
+    ],
+    [
+      4,
+      "CIRCUITOS ELÉCTRICOS II",
+      "Francisco Javier Gonzalez Olivares"
+    ],
+    [
+      4,
+      "ELECTRÓNICA ANALÓGICA",
+      "Docente Sin Asignar"
+    ],
+    [
+      4,
+      "FÍSICA MODERNA",
+      "Alma Leticia Cazares Arreguin"
+    ],
+    [
+      5,
+      "ELECTRÓNICA DIGITAL",
+      "Karina Diaz Rosas"
+    ],
+    [
+      5,
+      "EQUIPOS MECÁNICOS",
+      "Hernandez Cortes Anabel Azucena"
+    ],
+    [
+      5,
+      "INSTALACIONES ELÉCTRICAS",
+      "Daniel Ruiz Calderon"
+    ],
+    [
+      6,
+      "CONTROL II",
+      "Yolanda Cepeda Rodriguez"
+    ],
+    [
+      6,
+      "INSTALACIONES ELÉCTRICAS INDUSTRIALES",
+      "Saul Orzua Gonzalez"
+    ],
+    [
+      6,
+      "MOTORES DE INDUCCIÓN Y ESPECIALES",
+      "Saul Orzua Gonzalez"
+    ],
+    [
+      6,
+      "SISTEMAS DE ILUMINACIÓN",
+      "Horacio Tolentino Quilantan"
+    ],
+    [
+      6,
+      "Subestaciones Eléctricas",
+      "Jorge Humberto Salas Rodriguez"
+    ],
+    [
+      7,
+      "CENTRALES ELÉCTRICAS",
+      "Juan Pablo Nieto Gonzalez"
+    ],
+    [
+      7,
+      "ELECTRÓNICA INDUSTRIAL",
+      "Obed Ramirez Gomez"
+    ],
+    [
+      7,
+      "MODELADO DE SISTEMAS ELÉCTRICOS DE POTENCIA",
+      "Saul Orzua Gonzalez"
+    ],
+    [
+      7,
+      "Tópicos de Ingeniaría Eléctrica",
+      "Juan Pablo Nieto Gonzalez"
+    ],
+    [
+      7,
+      "TÓPICOS SELECTOS DE LA INGENIERÍA ELÉCTRICA I",
+      "Hernandez Gonzalez Gerardo"
+    ],
+    [
+      8,
+      "Análisis de Sistemas Eléctricos de Potencia",
+      "Juan Pablo Nieto Gonzalez"
+    ],
+    [
+      8,
+      "LEGISLACIÓN EN MATERIA ELÉCTRICA",
+      "Allende Sancho Gabriel"
+    ],
+    [
+      8,
+      "PRUEBAS Y MANTENIMIENTO ELÉCTRICO",
+      "Jorge Humberto Salas Rodriguez"
+    ],
+    [
+      8,
+      "TÓPICOS SELECTOS DE LA INGENIERÍA ELÉCTRICA II",
+      "Juan Pablo Nieto Gonzalez"
+    ],
+    [
+      9,
+      "Coordinación de Protecciones Eléctricas",
+      "Daniel Ruiz Calderon"
+    ],
+    [
+      9,
+      "COSTOS Y PRESUPUESTOS DE PROYECTOS ELÉCTRICOS",
+      "Horacio Tolentino Quilantan"
+    ],
+    [
+      9,
+      "Curso Avanzado de PLC",
+      "Hernandez Gonzalez Gerardo"
+    ],
+    [
+      9,
+      "DETECCIÓN Y DIAGNÓSTICO INTELIGENTE DE FALLAS",
+      "Cavazos Hernandez Enrique Alejandro"
+    ]
+  ],
+  "subjects_with_unassigned": [
+    [
+      1,
+      "FUNDAMENTOS DE INVESTIGACIÓN"
+    ],
+    [
+      4,
+      "ELECTRÓNICA ANALÓGICA"
+    ],
+    [
+      5,
+      "TALLER DE INVESTIGACIÓN I"
+    ]
+  ],
+  "semesters": [
+    {
+      "semester": 1,
+      "title": "Semestre 1",
+      "subjects_count": 6,
+      "subjects": [
+        {
+          "name": "CÁLCULO DIFERENCIAL",
+          "teacher_count": 5,
+          "teachers": [
+            {
+              "name": "Cerda Leon Erwin Rommel",
+              "slug": "455823-cerda-leon-erwin-rommel",
+              "url": "https://haztuhorario.com/profesores/455823-cerda-leon-erwin-rommel",
+              "score": 52.4,
+              "reviews": 44,
+              "fair": 59.4,
+              "explains": 52.6,
+              "hard": 55.8,
+              "homework": 63.1,
+              "attendance": 71.9,
+              "comments_count": 8
+            },
+            {
+              "name": "Cordova Ventura Kevin Alberto",
+              "slug": "891402-cordova-ventura-kevin-alberto",
+              "url": "https://haztuhorario.com/profesores/891402-cordova-ventura-kevin-alberto",
+              "score": 22.1,
+              "reviews": 19,
+              "fair": 28.4,
+              "explains": 15.2,
+              "hard": 53.1,
+              "homework": 37.2,
+              "attendance": 31.8,
+              "comments_count": 7
+            },
+            {
+              "name": "Flores Villa Miguel Angel",
+              "slug": "744929-flores-villa-miguel-angel",
+              "url": "https://haztuhorario.com/profesores/744929-flores-villa-miguel-angel",
+              "score": 82.3,
+              "reviews": 36,
+              "fair": 79.0,
+              "explains": 75.0,
+              "hard": 18.5,
+              "homework": 18.6,
+              "attendance": 65.0,
+              "comments_count": 8
+            },
+            {
+              "name": "Morales Sandoval Jesus Antonio",
+              "slug": "1028383-morales-sandoval-jesus-antonio",
+              "url": "https://haztuhorario.com/profesores/1028383-morales-sandoval-jesus-antonio",
+              "score": null,
+              "reviews": 0,
+              "fair": null,
+              "explains": null,
+              "hard": null,
+              "homework": null,
+              "attendance": null,
+              "comments_count": 0
+            },
+            {
+              "name": "Olmedo Landeros Irma Karina",
+              "slug": "814736-olmedo-landeros-irma-karina",
+              "url": "https://haztuhorario.com/profesores/814736-olmedo-landeros-irma-karina",
+              "score": 94.5,
+              "reviews": 41,
+              "fair": 95.1,
+              "explains": 95.1,
+              "hard": 36.2,
+              "homework": 41.4,
+              "attendance": 70.6,
+              "comments_count": 7
+            }
+          ],
+          "best_teacher": {
+            "name": "Olmedo Landeros Irma Karina",
+            "slug": "814736-olmedo-landeros-irma-karina",
+            "url": "https://haztuhorario.com/profesores/814736-olmedo-landeros-irma-karina",
+            "score": 94.5,
+            "reviews": 41,
+            "fair": 95.1,
+            "explains": 95.1,
+            "hard": 36.2,
+            "homework": 41.4,
+            "attendance": 70.6,
+            "comments_count": 7
+          },
+          "hardest_teacher": {
+            "name": "Cerda Leon Erwin Rommel",
+            "slug": "455823-cerda-leon-erwin-rommel",
+            "url": "https://haztuhorario.com/profesores/455823-cerda-leon-erwin-rommel",
+            "score": 52.4,
+            "reviews": 44,
+            "fair": 59.4,
+            "explains": 52.6,
+            "hard": 55.8,
+            "homework": 63.1,
+            "attendance": 71.9,
+            "comments_count": 8
+          },
+          "has_unassigned": false
+        },
+        {
+          "name": "DESARROLLO HUMANO INTEGRAL",
+          "teacher_count": 3,
+          "teachers": [
+            {
+              "name": "Alvarez Cordova Brisa Yadira",
+              "slug": "891329-alvarez-cordova-brisa-yadira",
+              "url": "https://haztuhorario.com/profesores/891329-alvarez-cordova-brisa-yadira",
+              "score": 100.0,
+              "reviews": 1,
+              "fair": 100.0,
+              "explains": 100.0,
+              "hard": 0.0,
+              "homework": 74.0,
+              "attendance": 100.0,
+              "comments_count": 2
+            },
+            {
+              "name": "Castillo Zamarron Yajaira Miyoshi Valentina",
+              "slug": "412348-castillo-zamarron-yajaira-miyoshi-valentina",
+              "url": "https://haztuhorario.com/profesores/412348-castillo-zamarron-yajaira-miyoshi-valentina",
+              "score": 96.3,
+              "reviews": 6,
+              "fair": 96.8,
+              "explains": 100.0,
+              "hard": 20.5,
+              "homework": 21.8,
+              "attendance": 100.0,
+              "comments_count": 2
+            },
+            {
+              "name": "Juanita Elena Gongora Solis",
+              "slug": "19350-juanita-elena-gongora-solis",
+              "url": "https://haztuhorario.com/profesores/19350-juanita-elena-gongora-solis",
+              "score": 86.8,
+              "reviews": 29,
+              "fair": 87.7,
+              "explains": 84.4,
+              "hard": 13.5,
+              "homework": 36.4,
+              "attendance": 81.4,
+              "comments_count": 6
+            }
+          ],
+          "best_teacher": {
+            "name": "Alvarez Cordova Brisa Yadira",
+            "slug": "891329-alvarez-cordova-brisa-yadira",
+            "url": "https://haztuhorario.com/profesores/891329-alvarez-cordova-brisa-yadira",
+            "score": 100.0,
+            "reviews": 1,
+            "fair": 100.0,
+            "explains": 100.0,
+            "hard": 0.0,
+            "homework": 74.0,
+            "attendance": 100.0,
+            "comments_count": 2
+          },
+          "hardest_teacher": {
+            "name": "Castillo Zamarron Yajaira Miyoshi Valentina",
+            "slug": "412348-castillo-zamarron-yajaira-miyoshi-valentina",
+            "url": "https://haztuhorario.com/profesores/412348-castillo-zamarron-yajaira-miyoshi-valentina",
+            "score": 96.3,
+            "reviews": 6,
+            "fair": 96.8,
+            "explains": 100.0,
+            "hard": 20.5,
+            "homework": 21.8,
+            "attendance": 100.0,
+            "comments_count": 2
+          },
+          "has_unassigned": false
+        },
+        {
+          "name": "FUNDAMENTOS DE INVESTIGACIÓN",
+          "teacher_count": 4,
+          "teachers": [
+            {
+              "name": "Docente Sin Asignar",
+              "slug": "1028372-docente-sin-asignar",
+              "url": "https://haztuhorario.com/profesores/1028372-docente-sin-asignar",
+              "score": 50.0,
+              "reviews": 1,
+              "fair": 96.0,
+              "explains": 50.0,
+              "hard": 50.0,
+              "homework": 50.0,
+              "attendance": 50.0,
+              "comments_count": 1
+            },
+            {
+              "name": "Dueñaz Reyes Juana Maria",
+              "slug": "1028371-duenaz-reyes-juana-maria",
+              "url": "https://haztuhorario.com/profesores/1028371-duenaz-reyes-juana-maria",
+              "score": null,
+              "reviews": 0,
+              "fair": null,
+              "explains": null,
+              "hard": null,
+              "homework": null,
+              "attendance": null,
+              "comments_count": 0
+            },
+            {
+              "name": "Maldonado Hernandez Juan De Dios Gerardo",
+              "slug": "412369-maldonado-hernandez-juan-de-dios-gerardo",
+              "url": "https://haztuhorario.com/profesores/412369-maldonado-hernandez-juan-de-dios-gerardo",
+              "score": 72.0,
+              "reviews": 32,
+              "fair": 82.1,
+              "explains": 54.3,
+              "hard": 7.4,
+              "homework": 17.4,
+              "attendance": 38.7,
+              "comments_count": 8
+            },
+            {
+              "name": "Zavala Torres Ma. Elida",
+              "slug": "526027-zavala-torres-ma-elida",
+              "url": "https://haztuhorario.com/profesores/526027-zavala-torres-ma-elida",
+              "score": 48.0,
+              "reviews": 3,
+              "fair": 60.0,
+              "explains": 51.7,
+              "hard": 36.7,
+              "homework": 58.0,
+              "attendance": 73.3,
+              "comments_count": 2
+            }
+          ],
+          "best_teacher": {
+            "name": "Maldonado Hernandez Juan De Dios Gerardo",
+            "slug": "412369-maldonado-hernandez-juan-de-dios-gerardo",
+            "url": "https://haztuhorario.com/profesores/412369-maldonado-hernandez-juan-de-dios-gerardo",
+            "score": 72.0,
+            "reviews": 32,
+            "fair": 82.1,
+            "explains": 54.3,
+            "hard": 7.4,
+            "homework": 17.4,
+            "attendance": 38.7,
+            "comments_count": 8
+          },
+          "hardest_teacher": {
+            "name": "Zavala Torres Ma. Elida",
+            "slug": "526027-zavala-torres-ma-elida",
+            "url": "https://haztuhorario.com/profesores/526027-zavala-torres-ma-elida",
+            "score": 48.0,
+            "reviews": 3,
+            "fair": 60.0,
+            "explains": 51.7,
+            "hard": 36.7,
+            "homework": 58.0,
+            "attendance": 73.3,
+            "comments_count": 2
+          },
+          "has_unassigned": true
+        },
+        {
+          "name": "PROBABILIDAD Y ESTADÍSTICA",
+          "teacher_count": 5,
+          "teachers": [
+            {
+              "name": "Ana Luisa Rodriguez Medina",
+              "slug": "26519-ana-luisa-rodriguez-medina",
+              "url": "https://haztuhorario.com/profesores/26519-ana-luisa-rodriguez-medina",
+              "score": 99.9,
+              "reviews": 30,
+              "fair": 98.7,
+              "explains": 99.0,
+              "hard": 20.6,
+              "homework": 32.2,
+              "attendance": 82.7,
+              "comments_count": 6
+            },
+            {
+              "name": "Antonio Hernandez Gaytan",
+              "slug": "15482-antonio-hernandez-gaytan",
+              "url": "https://haztuhorario.com/profesores/15482-antonio-hernandez-gaytan",
+              "score": 78.1,
+              "reviews": 73,
+              "fair": 72.1,
+              "explains": 69.9,
+              "hard": 9.0,
+              "homework": 14.3,
+              "attendance": 38.8,
+              "comments_count": 7
+            },
+            {
+              "name": "Nava Oyervides Sergio German",
+              "slug": "1028384-nava-oyervides-sergio-german",
+              "url": "https://haztuhorario.com/profesores/1028384-nava-oyervides-sergio-german",
+              "score": null,
+              "reviews": 0,
+              "fair": null,
+              "explains": null,
+              "hard": null,
+              "homework": null,
+              "attendance": null,
+              "comments_count": 0
+            },
+            {
+              "name": "Roberto Enrique Gonzalez Munoz",
+              "slug": "17071-roberto-enrique-gonzalez-munoz",
+              "url": "https://haztuhorario.com/profesores/17071-roberto-enrique-gonzalez-munoz",
+              "score": 83.9,
+              "reviews": 48,
+              "fair": 83.4,
+              "explains": 78.0,
+              "hard": 13.2,
+              "homework": 25.0,
+              "attendance": 67.9,
+              "comments_count": 7
+            },
+            {
+              "name": "Sorkee Quiroz Eduardo Ernesto",
+              "slug": "1028402-sorkee-quiroz-eduardo-ernesto",
+              "url": "https://haztuhorario.com/profesores/1028402-sorkee-quiroz-eduardo-ernesto",
+              "score": 50.0,
+              "reviews": 2,
+              "fair": 50.0,
+              "explains": 50.0,
+              "hard": 25.0,
+              "homework": 65.0,
+              "attendance": 100.0,
+              "comments_count": 1
+            }
+          ],
+          "best_teacher": {
+            "name": "Ana Luisa Rodriguez Medina",
+            "slug": "26519-ana-luisa-rodriguez-medina",
+            "url": "https://haztuhorario.com/profesores/26519-ana-luisa-rodriguez-medina",
+            "score": 99.9,
+            "reviews": 30,
+            "fair": 98.7,
+            "explains": 99.0,
+            "hard": 20.6,
+            "homework": 32.2,
+            "attendance": 82.7,
+            "comments_count": 6
+          },
+          "hardest_teacher": {
+            "name": "Sorkee Quiroz Eduardo Ernesto",
+            "slug": "1028402-sorkee-quiroz-eduardo-ernesto",
+            "url": "https://haztuhorario.com/profesores/1028402-sorkee-quiroz-eduardo-ernesto",
+            "score": 50.0,
+            "reviews": 2,
+            "fair": 50.0,
+            "explains": 50.0,
+            "hard": 25.0,
+            "homework": 65.0,
+            "attendance": 100.0,
+            "comments_count": 1
+          },
+          "has_unassigned": false
+        },
+        {
+          "name": "QUÍMICA",
+          "teacher_count": 6,
+          "teachers": [
+            {
+              "name": "Alejandra Torres Ordaz",
+              "slug": "11743-alejandra-torres-ordaz",
+              "url": "https://haztuhorario.com/profesores/11743-alejandra-torres-ordaz",
+              "score": 41.9,
+              "reviews": 139,
+              "fair": 44.1,
+              "explains": 38.2,
+              "hard": 65.9,
+              "homework": 68.1,
+              "attendance": 47.2,
+              "comments_count": 6
+            },
+            {
+              "name": "Ayala Torres Karina Azucena",
+              "slug": "999448-ayala-torres-karina-azucena",
+              "url": "https://haztuhorario.com/profesores/999448-ayala-torres-karina-azucena",
+              "score": 100.0,
+              "reviews": 6,
+              "fair": 96.8,
+              "explains": 100.0,
+              "hard": 46.3,
+              "homework": 51.8,
+              "attendance": 96.0,
+              "comments_count": 7
+            },
+            {
+              "name": "Hilda Araceli Torres Plata",
+              "slug": "5132-hilda-araceli-torres-plata",
+              "url": "https://haztuhorario.com/profesores/5132-hilda-araceli-torres-plata",
+              "score": 57.5,
+              "reviews": 98,
+              "fair": 66.4,
+              "explains": 54.5,
+              "hard": 62.4,
+              "homework": 65.6,
+              "attendance": 72.4,
+              "comments_count": 8
+            },
+            {
+              "name": "Norma Hernandez Flores",
+              "slug": "30570-norma-hernandez-flores",
+              "url": "https://haztuhorario.com/profesores/30570-norma-hernandez-flores",
+              "score": 95.2,
+              "reviews": 168,
+              "fair": 95.5,
+              "explains": 95.3,
+              "hard": 42.2,
+              "homework": 44.0,
+              "attendance": 89.6,
+              "comments_count": 7
+            },
+            {
+              "name": "Silvia Susana Aguirre Sanchez",
+              "slug": "16785-silvia-susana-aguirre-sanchez",
+              "url": "https://haztuhorario.com/profesores/16785-silvia-susana-aguirre-sanchez",
+              "score": 87.6,
+              "reviews": 61,
+              "fair": 84.9,
+              "explains": 86.2,
+              "hard": 21.9,
+              "homework": 48.3,
+              "attendance": 76.8,
+              "comments_count": 7
+            },
+            {
+              "name": "Victor Martinez Rivera",
+              "slug": "24153-victor-martinez-rivera",
+              "url": "https://haztuhorario.com/profesores/24153-victor-martinez-rivera",
+              "score": 16.3,
+              "reviews": 21,
+              "fair": 18.2,
+              "explains": 18.5,
+              "hard": 47.0,
+              "homework": 43.0,
+              "attendance": 56.5,
+              "comments_count": 6
+            }
+          ],
+          "best_teacher": {
+            "name": "Ayala Torres Karina Azucena",
+            "slug": "999448-ayala-torres-karina-azucena",
+            "url": "https://haztuhorario.com/profesores/999448-ayala-torres-karina-azucena",
+            "score": 100.0,
+            "reviews": 6,
+            "fair": 96.8,
+            "explains": 100.0,
+            "hard": 46.3,
+            "homework": 51.8,
+            "attendance": 96.0,
+            "comments_count": 7
+          },
+          "hardest_teacher": {
+            "name": "Alejandra Torres Ordaz",
+            "slug": "11743-alejandra-torres-ordaz",
+            "url": "https://haztuhorario.com/profesores/11743-alejandra-torres-ordaz",
+            "score": 41.9,
+            "reviews": 139,
+            "fair": 44.1,
+            "explains": 38.2,
+            "hard": 65.9,
+            "homework": 68.1,
+            "attendance": 47.2,
+            "comments_count": 6
+          },
+          "has_unassigned": false
+        },
+        {
+          "name": "TALLER DE ÉTICA",
+          "teacher_count": 7,
+          "teachers": [
+            {
+              "name": "Ana Laura Pena Cruz",
+              "slug": "37030-ana-laura-pena-cruz",
+              "url": "https://haztuhorario.com/profesores/37030-ana-laura-pena-cruz",
+              "score": 88.5,
+              "reviews": 46,
+              "fair": 87.8,
+              "explains": 90.5,
+              "hard": 26.9,
+              "homework": 50.9,
+              "attendance": 78.4,
+              "comments_count": 7
+            },
+            {
+              "name": "Arriaga Aguilar Carlos Benito",
+              "slug": "593233-arriaga-aguilar-carlos-benito",
+              "url": "https://haztuhorario.com/profesores/593233-arriaga-aguilar-carlos-benito",
+              "score": 89.6,
+              "reviews": 5,
+              "fair": 84.8,
+              "explains": 64.0,
+              "hard": 30.0,
+              "homework": 24.8,
+              "attendance": 58.6,
+              "comments_count": 1
+            },
+            {
+              "name": "Edgar Allan Lopez Arteaga",
+              "slug": "22065-edgar-allan-lopez-arteaga",
+              "url": "https://haztuhorario.com/profesores/22065-edgar-allan-lopez-arteaga",
+              "score": 55.3,
+              "reviews": 12,
+              "fair": 63.0,
+              "explains": 24.8,
+              "hard": 8.5,
+              "homework": 32.1,
+              "attendance": 28.8,
+              "comments_count": 7
+            },
+            {
+              "name": "Emma Julia Velarde Sanchez",
+              "slug": "37055-emma-julia-velarde-sanchez",
+              "url": "https://haztuhorario.com/profesores/37055-emma-julia-velarde-sanchez",
+              "score": 88.1,
+              "reviews": 63,
+              "fair": 88.5,
+              "explains": 81.7,
+              "hard": 10.8,
+              "homework": 45.7,
+              "attendance": 86.7,
+              "comments_count": 8
+            },
+            {
+              "name": "Juana Maria Espinoza Rocha",
+              "slug": "85149-juana-maria-espinoza-rocha",
+              "url": "https://haztuhorario.com/profesores/85149-juana-maria-espinoza-rocha",
+              "score": 61.4,
+              "reviews": 20,
+              "fair": 84.5,
+              "explains": 51.9,
+              "hard": 24.0,
+              "homework": 82.1,
+              "attendance": 74.4,
+              "comments_count": 8
+            },
+            {
+              "name": "Maria Del Refugio Quijano Urbano",
+              "slug": "17526-maria-del-refugio-quijano-urbano",
+              "url": "https://haztuhorario.com/profesores/17526-maria-del-refugio-quijano-urbano",
+              "score": 65.0,
+              "reviews": 80,
+              "fair": 62.4,
+              "explains": 41.1,
+              "hard": 17.5,
+              "homework": 29.6,
+              "attendance": 87.5,
+              "comments_count": 6
+            },
+            {
+              "name": "Pena Cruz Guadalupe Del Socorro",
+              "slug": "455776-pena-cruz-guadalupe-del-socorro",
+              "url": "https://haztuhorario.com/profesores/455776-pena-cruz-guadalupe-del-socorro",
+              "score": 62.0,
+              "reviews": 20,
+              "fair": 65.9,
+              "explains": 47.5,
+              "hard": 24.0,
+              "homework": 31.6,
+              "attendance": 56.4,
+              "comments_count": 7
+            }
+          ],
+          "best_teacher": {
+            "name": "Arriaga Aguilar Carlos Benito",
+            "slug": "593233-arriaga-aguilar-carlos-benito",
+            "url": "https://haztuhorario.com/profesores/593233-arriaga-aguilar-carlos-benito",
+            "score": 89.6,
+            "reviews": 5,
+            "fair": 84.8,
+            "explains": 64.0,
+            "hard": 30.0,
+            "homework": 24.8,
+            "attendance": 58.6,
+            "comments_count": 1
+          },
+          "hardest_teacher": {
+            "name": "Arriaga Aguilar Carlos Benito",
+            "slug": "593233-arriaga-aguilar-carlos-benito",
+            "url": "https://haztuhorario.com/profesores/593233-arriaga-aguilar-carlos-benito",
+            "score": 89.6,
+            "reviews": 5,
+            "fair": 84.8,
+            "explains": 64.0,
+            "hard": 30.0,
+            "homework": 24.8,
+            "attendance": 58.6,
+            "comments_count": 1
+          },
+          "has_unassigned": false
+        }
+      ]
+    },
+    {
+      "semester": 2,
+      "title": "Semestre 2",
+      "subjects_count": 6,
+      "subjects": [
+        {
+          "name": "CÁLCULO INTEGRAL",
+          "teacher_count": 10,
+          "teachers": [
+            {
+              "name": "Cantu Ing. Cesar Ivan",
+              "slug": "455684-cantu-ing-cesar-ivan",
+              "url": "https://haztuhorario.com/profesores/455684-cantu-ing-cesar-ivan",
+              "score": 74.8,
+              "reviews": 5,
+              "fair": 80.0,
+              "explains": 53.2,
+              "hard": 20.0,
+              "homework": 31.0,
+              "attendance": 72.0,
+              "comments_count": 2
+            },
+            {
+              "name": "Fabio Lopez Campos",
+              "slug": "18340-fabio-lopez-campos",
+              "url": "https://haztuhorario.com/profesores/18340-fabio-lopez-campos",
+              "score": 87.4,
+              "reviews": 80,
+              "fair": 83.9,
+              "explains": 83.7,
+              "hard": 30.4,
+              "homework": 55.6,
+              "attendance": 86.3,
+              "comments_count": 7
+            },
+            {
+              "name": "Felipe De Jesus Mendoza Morales",
+              "slug": "3790-felipe-de-jesus-mendoza-morales",
+              "url": "https://haztuhorario.com/profesores/3790-felipe-de-jesus-mendoza-morales",
+              "score": 25.4,
+              "reviews": 89,
+              "fair": 33.8,
+              "explains": 30.2,
+              "hard": 72.6,
+              "homework": 78.1,
+              "attendance": 89.2,
+              "comments_count": 8
+            },
+            {
+              "name": "Ignacio Davila Rios",
+              "slug": "17162-ignacio-davila-rios",
+              "url": "https://haztuhorario.com/profesores/17162-ignacio-davila-rios",
+              "score": 93.9,
+              "reviews": 160,
+              "fair": 93.7,
+              "explains": 92.6,
+              "hard": 25.0,
+              "homework": 64.8,
+              "attendance": 65.4,
+              "comments_count": 7
+            },
+            {
+              "name": "Luis Alberto Cabello Rangel",
+              "slug": "5428-luis-alberto-cabello-rangel",
+              "url": "https://haztuhorario.com/profesores/5428-luis-alberto-cabello-rangel",
+              "score": 83.5,
+              "reviews": 21,
+              "fair": 85.7,
+              "explains": 82.6,
+              "hard": 27.9,
+              "homework": 36.1,
+              "attendance": 87.3,
+              "comments_count": 2
+            },
+            {
+              "name": "Luis Manuel Ferniza Perez",
+              "slug": "14681-luis-manuel-ferniza-perez",
+              "url": "https://haztuhorario.com/profesores/14681-luis-manuel-ferniza-perez",
+              "score": 47.6,
+              "reviews": 41,
+              "fair": 45.8,
+              "explains": 48.7,
+              "hard": 51.1,
+              "homework": 41.3,
+              "attendance": 80.3,
+              "comments_count": 7
+            },
+            {
+              "name": "Narda Lucely Reyes Acosta",
+              "slug": "2653-narda-lucely-reyes-acosta",
+              "url": "https://haztuhorario.com/profesores/2653-narda-lucely-reyes-acosta",
+              "score": 80.2,
+              "reviews": 113,
+              "fair": 85.1,
+              "explains": 78.2,
+              "hard": 52.4,
+              "homework": 72.4,
+              "attendance": 52.9,
+              "comments_count": 7
+            },
+            {
+              "name": "Silvia Polendo Luis",
+              "slug": "15041-silvia-polendo-luis",
+              "url": "https://haztuhorario.com/profesores/15041-silvia-polendo-luis",
+              "score": 63.7,
+              "reviews": 186,
+              "fair": 63.5,
+              "explains": 67.1,
+              "hard": 71.3,
+              "homework": 89.0,
+              "attendance": 35.3,
+              "comments_count": 7
+            },
+            {
+              "name": "Valdez Perez J. Santos",
+              "slug": "704096-valdez-perez-j-santos",
+              "url": "https://haztuhorario.com/profesores/704096-valdez-perez-j-santos",
+              "score": 98.9,
+              "reviews": 9,
+              "fair": 99.2,
+              "explains": 97.8,
+              "hard": 7.8,
+              "homework": 7.8,
+              "attendance": 68.2,
+              "comments_count": 4
+            },
+            {
+              "name": "Victor Arturo Ferniza Perez",
+              "slug": "19902-victor-arturo-ferniza-perez",
+              "url": "https://haztuhorario.com/profesores/19902-victor-arturo-ferniza-perez",
+              "score": 12.4,
+              "reviews": 23,
+              "fair": 16.1,
+              "explains": 9.8,
+              "hard": 86.4,
+              "homework": 16.8,
+              "attendance": 33.9,
+              "comments_count": 8
+            }
+          ],
+          "best_teacher": {
+            "name": "Valdez Perez J. Santos",
+            "slug": "704096-valdez-perez-j-santos",
+            "url": "https://haztuhorario.com/profesores/704096-valdez-perez-j-santos",
+            "score": 98.9,
+            "reviews": 9,
+            "fair": 99.2,
+            "explains": 97.8,
+            "hard": 7.8,
+            "homework": 7.8,
+            "attendance": 68.2,
+            "comments_count": 4
+          },
+          "hardest_teacher": {
+            "name": "Victor Arturo Ferniza Perez",
+            "slug": "19902-victor-arturo-ferniza-perez",
+            "url": "https://haztuhorario.com/profesores/19902-victor-arturo-ferniza-perez",
+            "score": 12.4,
+            "reviews": 23,
+            "fair": 16.1,
+            "explains": 9.8,
+            "hard": 86.4,
+            "homework": 16.8,
+            "attendance": 33.9,
+            "comments_count": 8
+          },
+          "has_unassigned": false
+        },
+        {
+          "name": "COMUNICACIÓN HUMANA",
+          "teacher_count": 1,
+          "teachers": [
+            {
+              "name": "Torres Ordaz Adriana Elena",
+              "slug": "1028404-torres-ordaz-adriana-elena",
+              "url": "https://haztuhorario.com/profesores/1028404-torres-ordaz-adriana-elena",
+              "score": null,
+              "reviews": 0,
+              "fair": null,
+              "explains": null,
+              "hard": null,
+              "homework": null,
+              "attendance": null,
+              "comments_count": 0
+            }
+          ],
+          "best_teacher": null,
+          "hardest_teacher": null,
+          "has_unassigned": false
+        },
+        {
+          "name": "DIBUJO ASISTIDO POR COMPUTADORA",
+          "teacher_count": 2,
+          "teachers": [
+            {
+              "name": "De La Pena Flores Alma Leticia",
+              "slug": "412345-de-la-pena-flores-alma-leticia",
+              "url": "https://haztuhorario.com/profesores/412345-de-la-pena-flores-alma-leticia",
+              "score": 88.6,
+              "reviews": 9,
+              "fair": 89.0,
+              "explains": 95.6,
+              "hard": 15.7,
+              "homework": 46.3,
+              "attendance": 75.2,
+              "comments_count": 0
+            },
+            {
+              "name": "Gloria Arcelia Martinez Tovar",
+              "slug": "33367-gloria-arcelia-martinez-tovar",
+              "url": "https://haztuhorario.com/profesores/33367-gloria-arcelia-martinez-tovar",
+              "score": 99.9,
+              "reviews": 23,
+              "fair": 100.0,
+              "explains": 97.0,
+              "hard": 13.1,
+              "homework": 8.4,
+              "attendance": 44.4,
+              "comments_count": 7
+            }
+          ],
+          "best_teacher": {
+            "name": "Gloria Arcelia Martinez Tovar",
+            "slug": "33367-gloria-arcelia-martinez-tovar",
+            "url": "https://haztuhorario.com/profesores/33367-gloria-arcelia-martinez-tovar",
+            "score": 99.9,
+            "reviews": 23,
+            "fair": 100.0,
+            "explains": 97.0,
+            "hard": 13.1,
+            "homework": 8.4,
+            "attendance": 44.4,
+            "comments_count": 7
+          },
+          "hardest_teacher": {
+            "name": "De La Pena Flores Alma Leticia",
+            "slug": "412345-de-la-pena-flores-alma-leticia",
+            "url": "https://haztuhorario.com/profesores/412345-de-la-pena-flores-alma-leticia",
+            "score": 88.6,
+            "reviews": 9,
+            "fair": 89.0,
+            "explains": 95.6,
+            "hard": 15.7,
+            "homework": 46.3,
+            "attendance": 75.2,
+            "comments_count": 0
+          },
+          "has_unassigned": false
+        },
+        {
+          "name": "ELECTROMAGNETISMO",
+          "teacher_count": 4,
+          "teachers": [
+            {
+              "name": "De La Pena Duron Aida",
+              "slug": "412330-de-la-pena-duron-aida",
+              "url": "https://haztuhorario.com/profesores/412330-de-la-pena-duron-aida",
+              "score": 84.1,
+              "reviews": 63,
+              "fair": 85.6,
+              "explains": 89.4,
+              "hard": 66.1,
+              "homework": 64.1,
+              "attendance": 49.0,
+              "comments_count": 6
+            },
+            {
+              "name": "Ivan De Jesus Epifanio Lopez",
+              "slug": "37042-ivan-de-jesus-epifanio-lopez",
+              "url": "https://haztuhorario.com/profesores/37042-ivan-de-jesus-epifanio-lopez",
+              "score": 30.4,
+              "reviews": 94,
+              "fair": 42.0,
+              "explains": 27.4,
+              "hard": 83.5,
+              "homework": 74.1,
+              "attendance": 55.4,
+              "comments_count": 8
+            },
+            {
+              "name": "Oliver Renato Garcia Saucedo",
+              "slug": "26919-oliver-renato-garcia-saucedo",
+              "url": "https://haztuhorario.com/profesores/26919-oliver-renato-garcia-saucedo",
+              "score": 99.7,
+              "reviews": 7,
+              "fair": 96.3,
+              "explains": 99.9,
+              "hard": 31.6,
+              "homework": 27.1,
+              "attendance": 77.6,
+              "comments_count": 3
+            },
+            {
+              "name": "Ramon Osvaldo Rodriguez Gaytan",
+              "slug": "1870-ramon-osvaldo-rodriguez-gaytan",
+              "url": "https://haztuhorario.com/profesores/1870-ramon-osvaldo-rodriguez-gaytan",
+              "score": 58.1,
+              "reviews": 15,
+              "fair": 70.1,
+              "explains": 27.1,
+              "hard": 17.5,
+              "homework": 22.9,
+              "attendance": 21.5,
+              "comments_count": 8
+            }
+          ],
+          "best_teacher": {
+            "name": "Oliver Renato Garcia Saucedo",
+            "slug": "26919-oliver-renato-garcia-saucedo",
+            "url": "https://haztuhorario.com/profesores/26919-oliver-renato-garcia-saucedo",
+            "score": 99.7,
+            "reviews": 7,
+            "fair": 96.3,
+            "explains": 99.9,
+            "hard": 31.6,
+            "homework": 27.1,
+            "attendance": 77.6,
+            "comments_count": 3
+          },
+          "hardest_teacher": {
+            "name": "Ivan De Jesus Epifanio Lopez",
+            "slug": "37042-ivan-de-jesus-epifanio-lopez",
+            "url": "https://haztuhorario.com/profesores/37042-ivan-de-jesus-epifanio-lopez",
+            "score": 30.4,
+            "reviews": 94,
+            "fair": 42.0,
+            "explains": 27.4,
+            "hard": 83.5,
+            "homework": 74.1,
+            "attendance": 55.4,
+            "comments_count": 8
+          },
+          "has_unassigned": false
+        },
+        {
+          "name": "MECÁNICA CLÁSICA",
+          "teacher_count": 2,
+          "teachers": [
+            {
+              "name": "Antuna Garcia Salvador Aaron",
+              "slug": "412366-antuna-garcia-salvador-aaron",
+              "url": "https://haztuhorario.com/profesores/412366-antuna-garcia-salvador-aaron",
+              "score": 91.3,
+              "reviews": 71,
+              "fair": 92.9,
+              "explains": 88.9,
+              "hard": 49.8,
+              "homework": 50.9,
+              "attendance": 86.3,
+              "comments_count": 8
+            },
+            {
+              "name": "Juan Eudes Castro Perez",
+              "slug": "26218-juan-eudes-castro-perez",
+              "url": "https://haztuhorario.com/profesores/26218-juan-eudes-castro-perez",
+              "score": 43.2,
+              "reviews": 30,
+              "fair": 45.4,
+              "explains": 42.1,
+              "hard": 15.2,
+              "homework": 8.6,
+              "attendance": 9.6,
+              "comments_count": 9
+            }
+          ],
+          "best_teacher": {
+            "name": "Antuna Garcia Salvador Aaron",
+            "slug": "412366-antuna-garcia-salvador-aaron",
+            "url": "https://haztuhorario.com/profesores/412366-antuna-garcia-salvador-aaron",
+            "score": 91.3,
+            "reviews": 71,
+            "fair": 92.9,
+            "explains": 88.9,
+            "hard": 49.8,
+            "homework": 50.9,
+            "attendance": 86.3,
+            "comments_count": 8
+          },
+          "hardest_teacher": {
+            "name": "Antuna Garcia Salvador Aaron",
+            "slug": "412366-antuna-garcia-salvador-aaron",
+            "url": "https://haztuhorario.com/profesores/412366-antuna-garcia-salvador-aaron",
+            "score": 91.3,
+            "reviews": 71,
+            "fair": 92.9,
+            "explains": 88.9,
+            "hard": 49.8,
+            "homework": 50.9,
+            "attendance": 86.3,
+            "comments_count": 8
+          },
+          "has_unassigned": false
+        },
+        {
+          "name": "TECNOLOGÍA DE LOS MATERIALES",
+          "teacher_count": 1,
+          "teachers": [
+            {
+              "name": "Alejandra Hernandez Rodriguez",
+              "slug": "704284-alejandra-hernandez-rodriguez",
+              "url": "https://haztuhorario.com/profesores/704284-alejandra-hernandez-rodriguez",
+              "score": 78.9,
+              "reviews": 7,
+              "fair": 75.7,
+              "explains": 67.3,
+              "hard": 28.6,
+              "homework": 40.0,
+              "attendance": 27.6,
+              "comments_count": 1
+            }
+          ],
+          "best_teacher": {
+            "name": "Alejandra Hernandez Rodriguez",
+            "slug": "704284-alejandra-hernandez-rodriguez",
+            "url": "https://haztuhorario.com/profesores/704284-alejandra-hernandez-rodriguez",
+            "score": 78.9,
+            "reviews": 7,
+            "fair": 75.7,
+            "explains": 67.3,
+            "hard": 28.6,
+            "homework": 40.0,
+            "attendance": 27.6,
+            "comments_count": 1
+          },
+          "hardest_teacher": {
+            "name": "Alejandra Hernandez Rodriguez",
+            "slug": "704284-alejandra-hernandez-rodriguez",
+            "url": "https://haztuhorario.com/profesores/704284-alejandra-hernandez-rodriguez",
+            "score": 78.9,
+            "reviews": 7,
+            "fair": 75.7,
+            "explains": 67.3,
+            "hard": 28.6,
+            "homework": 40.0,
+            "attendance": 27.6,
+            "comments_count": 1
+          },
+          "has_unassigned": false
+        }
+      ]
+    },
+    {
+      "semester": 3,
+      "title": "Semestre 3",
+      "subjects_count": 6,
+      "subjects": [
+        {
+          "name": "ÁLGEBRA LINEAL",
+          "teacher_count": 10,
+          "teachers": [
+            {
+              "name": "Celina Gaytan Tanguma",
+              "slug": "13315-celina-gaytan-tanguma",
+              "url": "https://haztuhorario.com/profesores/13315-celina-gaytan-tanguma",
+              "score": 63.4,
+              "reviews": 161,
+              "fair": 68.8,
+              "explains": 59.8,
+              "hard": 60.1,
+              "homework": 54.2,
+              "attendance": 34.0,
+              "comments_count": 8
+            },
+            {
+              "name": "Ignacio Davila Rios",
+              "slug": "17162-ignacio-davila-rios",
+              "url": "https://haztuhorario.com/profesores/17162-ignacio-davila-rios",
+              "score": 93.9,
+              "reviews": 160,
+              "fair": 93.7,
+              "explains": 92.6,
+              "hard": 25.0,
+              "homework": 64.8,
+              "attendance": 65.4,
+              "comments_count": 7
+            },
+            {
+              "name": "Juan Angel Sanchez Espinoza",
+              "slug": "1517-juan-angel-sanchez-espinoza",
+              "url": "https://haztuhorario.com/profesores/1517-juan-angel-sanchez-espinoza",
+              "score": 47.4,
+              "reviews": 92,
+              "fair": 49.3,
+              "explains": 53.2,
+              "hard": 46.6,
+              "homework": 74.7,
+              "attendance": 31.2,
+              "comments_count": 6
+            },
+            {
+              "name": "Juan Antonio Ruiz Muniz",
+              "slug": "29174-juan-antonio-ruiz-muniz",
+              "url": "https://haztuhorario.com/profesores/29174-juan-antonio-ruiz-muniz",
+              "score": 37.5,
+              "reviews": 62,
+              "fair": 37.4,
+              "explains": 28.6,
+              "hard": 50.1,
+              "homework": 36.9,
+              "attendance": 36.3,
+              "comments_count": 7
+            },
+            {
+              "name": "Juan Francisco Benavides Ramos",
+              "slug": "8992-juan-francisco-benavides-ramos",
+              "url": "https://haztuhorario.com/profesores/8992-juan-francisco-benavides-ramos",
+              "score": 27.4,
+              "reviews": 46,
+              "fair": 27.9,
+              "explains": 22.3,
+              "hard": 53.5,
+              "homework": 76.0,
+              "attendance": 68.6,
+              "comments_count": 8
+            },
+            {
+              "name": "Justino Barrales Montes",
+              "slug": "12221-justino-barrales-montes",
+              "url": "https://haztuhorario.com/profesores/12221-justino-barrales-montes",
+              "score": 82.1,
+              "reviews": 40,
+              "fair": 88.3,
+              "explains": 83.1,
+              "hard": 31.9,
+              "homework": 25.6,
+              "attendance": 75.3,
+              "comments_count": 8
+            },
+            {
+              "name": "Ruiz Muniz Jorge Alberto",
+              "slug": "412319-ruiz-muniz-jorge-alberto",
+              "url": "https://haztuhorario.com/profesores/412319-ruiz-muniz-jorge-alberto",
+              "score": 58.4,
+              "reviews": 35,
+              "fair": 62.3,
+              "explains": 52.3,
+              "hard": 33.7,
+              "homework": 32.1,
+              "attendance": 43.7,
+              "comments_count": 8
+            },
+            {
+              "name": "Sanchez Romina Denisse",
+              "slug": "1028400-sanchez-romina-denisse",
+              "url": "https://haztuhorario.com/profesores/1028400-sanchez-romina-denisse",
+              "score": 0.0,
+              "reviews": 1,
+              "fair": 0.0,
+              "explains": 0.0,
+              "hard": 0.0,
+              "homework": 0.0,
+              "attendance": 0.0,
+              "comments_count": 0
+            },
+            {
+              "name": "Velazquez Rodriguez Liliana",
+              "slug": "891558-velazquez-rodriguez-liliana",
+              "url": "https://haztuhorario.com/profesores/891558-velazquez-rodriguez-liliana",
+              "score": 84.8,
+              "reviews": 24,
+              "fair": 87.7,
+              "explains": 74.0,
+              "hard": 20.3,
+              "homework": 44.7,
+              "attendance": 66.1,
+              "comments_count": 7
+            },
+            {
+              "name": "Veronica Martinez Villafuerte",
+              "slug": "19821-veronica-martinez-villafuerte",
+              "url": "https://haztuhorario.com/profesores/19821-veronica-martinez-villafuerte",
+              "score": 75.8,
+              "reviews": 90,
+              "fair": 78.2,
+              "explains": 78.1,
+              "hard": 52.5,
+              "homework": 37.2,
+              "attendance": 61.9,
+              "comments_count": 8
+            }
+          ],
+          "best_teacher": {
+            "name": "Ignacio Davila Rios",
+            "slug": "17162-ignacio-davila-rios",
+            "url": "https://haztuhorario.com/profesores/17162-ignacio-davila-rios",
+            "score": 93.9,
+            "reviews": 160,
+            "fair": 93.7,
+            "explains": 92.6,
+            "hard": 25.0,
+            "homework": 64.8,
+            "attendance": 65.4,
+            "comments_count": 7
+          },
+          "hardest_teacher": {
+            "name": "Celina Gaytan Tanguma",
+            "slug": "13315-celina-gaytan-tanguma",
+            "url": "https://haztuhorario.com/profesores/13315-celina-gaytan-tanguma",
+            "score": 63.4,
+            "reviews": 161,
+            "fair": 68.8,
+            "explains": 59.8,
+            "hard": 60.1,
+            "homework": 54.2,
+            "attendance": 34.0,
+            "comments_count": 8
+          },
+          "has_unassigned": false
+        },
+        {
+          "name": "CÁLCULO VECTORIAL",
+          "teacher_count": 9,
+          "teachers": [
+            {
+              "name": "Araceli Elizabeth Rodriguez Contreras",
+              "slug": "37014-araceli-elizabeth-rodriguez-contreras",
+              "url": "https://haztuhorario.com/profesores/37014-araceli-elizabeth-rodriguez-contreras",
+              "score": 91.0,
+              "reviews": 117,
+              "fair": 90.8,
+              "explains": 92.0,
+              "hard": 40.9,
+              "homework": 43.8,
+              "attendance": 89.8,
+              "comments_count": 6
+            },
+            {
+              "name": "Del Bosque Martínez Alicia Guadalupe",
+              "slug": "1028370-del-bosque-martinez-alicia-guadalupe",
+              "url": "https://haztuhorario.com/profesores/1028370-del-bosque-martinez-alicia-guadalupe",
+              "score": 41.7,
+              "reviews": 6,
+              "fair": 38.3,
+              "explains": 21.7,
+              "hard": 70.0,
+              "homework": 63.3,
+              "attendance": 0.0,
+              "comments_count": 3
+            },
+            {
+              "name": "Flores Villa Miguel Angel",
+              "slug": "744929-flores-villa-miguel-angel",
+              "url": "https://haztuhorario.com/profesores/744929-flores-villa-miguel-angel",
+              "score": 82.3,
+              "reviews": 36,
+              "fair": 79.0,
+              "explains": 75.0,
+              "hard": 18.5,
+              "homework": 18.6,
+              "attendance": 65.0,
+              "comments_count": 8
+            },
+            {
+              "name": "Jose Ignacio Garcia Alvarez",
+              "slug": "13877-jose-ignacio-garcia-alvarez",
+              "url": "https://haztuhorario.com/profesores/13877-jose-ignacio-garcia-alvarez",
+              "score": 65.1,
+              "reviews": 46,
+              "fair": 72.9,
+              "explains": 64.0,
+              "hard": 42.4,
+              "homework": 25.6,
+              "attendance": 72.2,
+              "comments_count": 6
+            },
+            {
+              "name": "Lucia Marisol Valdes Gonzalez",
+              "slug": "4143-lucia-marisol-valdes-gonzalez",
+              "url": "https://haztuhorario.com/profesores/4143-lucia-marisol-valdes-gonzalez",
+              "score": 74.1,
+              "reviews": 148,
+              "fair": 79.1,
+              "explains": 76.3,
+              "hard": 52.9,
+              "homework": 62.0,
+              "attendance": 55.8,
+              "comments_count": 7
+            },
+            {
+              "name": "Maria Elena Berlanga Ortiz",
+              "slug": "24225-maria-elena-berlanga-ortiz",
+              "url": "https://haztuhorario.com/profesores/24225-maria-elena-berlanga-ortiz",
+              "score": 31.3,
+              "reviews": 10,
+              "fair": 36.6,
+              "explains": 31.1,
+              "hard": 60.4,
+              "homework": 80.4,
+              "attendance": 38.2,
+              "comments_count": 7
+            },
+            {
+              "name": "Martinez Montemayor Gloria Estela",
+              "slug": "412321-martinez-montemayor-gloria-estela",
+              "url": "https://haztuhorario.com/profesores/412321-martinez-montemayor-gloria-estela",
+              "score": 64.9,
+              "reviews": 42,
+              "fair": 65.9,
+              "explains": 65.0,
+              "hard": 41.4,
+              "homework": 45.0,
+              "attendance": 26.9,
+              "comments_count": 7
+            },
+            {
+              "name": "Ruiz Benitez Jose Jesus Israel",
+              "slug": "999307-ruiz-benitez-jose-jesus-israel",
+              "url": "https://haztuhorario.com/profesores/999307-ruiz-benitez-jose-jesus-israel",
+              "score": 89.0,
+              "reviews": 23,
+              "fair": 91.3,
+              "explains": 87.4,
+              "hard": 28.3,
+              "homework": 27.3,
+              "attendance": 27.6,
+              "comments_count": 7
+            },
+            {
+              "name": "Silvia Deyanira Rodriguez Luna",
+              "slug": "7461-silvia-deyanira-rodriguez-luna",
+              "url": "https://haztuhorario.com/profesores/7461-silvia-deyanira-rodriguez-luna",
+              "score": 71.3,
+              "reviews": 39,
+              "fair": 77.2,
+              "explains": 72.6,
+              "hard": 54.2,
+              "homework": 67.0,
+              "attendance": 66.9,
+              "comments_count": 7
+            }
+          ],
+          "best_teacher": {
+            "name": "Araceli Elizabeth Rodriguez Contreras",
+            "slug": "37014-araceli-elizabeth-rodriguez-contreras",
+            "url": "https://haztuhorario.com/profesores/37014-araceli-elizabeth-rodriguez-contreras",
+            "score": 91.0,
+            "reviews": 117,
+            "fair": 90.8,
+            "explains": 92.0,
+            "hard": 40.9,
+            "homework": 43.8,
+            "attendance": 89.8,
+            "comments_count": 6
+          },
+          "hardest_teacher": {
+            "name": "Del Bosque Martínez Alicia Guadalupe",
+            "slug": "1028370-del-bosque-martinez-alicia-guadalupe",
+            "url": "https://haztuhorario.com/profesores/1028370-del-bosque-martinez-alicia-guadalupe",
+            "score": 41.7,
+            "reviews": 6,
+            "fair": 38.3,
+            "explains": 21.7,
+            "hard": 70.0,
+            "homework": 63.3,
+            "attendance": 0.0,
+            "comments_count": 3
+          },
+          "has_unassigned": false
+        },
+        {
+          "name": "CIRCUITOS ELÉCTRICOS I",
+          "teacher_count": 2,
+          "teachers": [
+            {
+              "name": "De La Pena Duron Aida",
+              "slug": "412330-de-la-pena-duron-aida",
+              "url": "https://haztuhorario.com/profesores/412330-de-la-pena-duron-aida",
+              "score": 84.1,
+              "reviews": 63,
+              "fair": 85.6,
+              "explains": 89.4,
+              "hard": 66.1,
+              "homework": 64.1,
+              "attendance": 49.0,
+              "comments_count": 6
+            },
+            {
+              "name": "Joaquin Antonio Alvarado Bustos",
+              "slug": "26038-joaquin-antonio-alvarado-bustos",
+              "url": "https://haztuhorario.com/profesores/26038-joaquin-antonio-alvarado-bustos",
+              "score": 49.4,
+              "reviews": 27,
+              "fair": 49.1,
+              "explains": 42.6,
+              "hard": 31.6,
+              "homework": 38.1,
+              "attendance": 67.4,
+              "comments_count": 7
+            }
+          ],
+          "best_teacher": {
+            "name": "De La Pena Duron Aida",
+            "slug": "412330-de-la-pena-duron-aida",
+            "url": "https://haztuhorario.com/profesores/412330-de-la-pena-duron-aida",
+            "score": 84.1,
+            "reviews": 63,
+            "fair": 85.6,
+            "explains": 89.4,
+            "hard": 66.1,
+            "homework": 64.1,
+            "attendance": 49.0,
+            "comments_count": 6
+          },
+          "hardest_teacher": {
+            "name": "De La Pena Duron Aida",
+            "slug": "412330-de-la-pena-duron-aida",
+            "url": "https://haztuhorario.com/profesores/412330-de-la-pena-duron-aida",
+            "score": 84.1,
+            "reviews": 63,
+            "fair": 85.6,
+            "explains": 89.4,
+            "hard": 66.1,
+            "homework": 64.1,
+            "attendance": 49.0,
+            "comments_count": 6
+          },
+          "has_unassigned": false
+        },
+        {
+          "name": "MECÁNICA DE FLUIDOS Y TERMODINÁMICA",
+          "teacher_count": 1,
+          "teachers": [
+            {
+              "name": "Luis Miguel Veloz Pachicano",
+              "slug": "35953-luis-miguel-veloz-pachicano",
+              "url": "https://haztuhorario.com/profesores/35953-luis-miguel-veloz-pachicano",
+              "score": 39.1,
+              "reviews": 17,
+              "fair": 37.0,
+              "explains": 39.6,
+              "hard": 53.8,
+              "homework": 51.9,
+              "attendance": 65.7,
+              "comments_count": 7
+            }
+          ],
+          "best_teacher": {
+            "name": "Luis Miguel Veloz Pachicano",
+            "slug": "35953-luis-miguel-veloz-pachicano",
+            "url": "https://haztuhorario.com/profesores/35953-luis-miguel-veloz-pachicano",
+            "score": 39.1,
+            "reviews": 17,
+            "fair": 37.0,
+            "explains": 39.6,
+            "hard": 53.8,
+            "homework": 51.9,
+            "attendance": 65.7,
+            "comments_count": 7
+          },
+          "hardest_teacher": {
+            "name": "Luis Miguel Veloz Pachicano",
+            "slug": "35953-luis-miguel-veloz-pachicano",
+            "url": "https://haztuhorario.com/profesores/35953-luis-miguel-veloz-pachicano",
+            "score": 39.1,
+            "reviews": 17,
+            "fair": 37.0,
+            "explains": 39.6,
+            "hard": 53.8,
+            "homework": 51.9,
+            "attendance": 65.7,
+            "comments_count": 7
+          },
+          "has_unassigned": false
+        },
+        {
+          "name": "MEDICIONES ELÉCTRICAS",
+          "teacher_count": 2,
+          "teachers": [
+            {
+              "name": "Fritsche Ramirez Ewald",
+              "slug": "455880-fritsche-ramirez-ewald",
+              "url": "https://haztuhorario.com/profesores/455880-fritsche-ramirez-ewald",
+              "score": 53.2,
+              "reviews": 37,
+              "fair": 52.0,
+              "explains": 37.2,
+              "hard": 48.9,
+              "homework": 69.6,
+              "attendance": 64.5,
+              "comments_count": 7
+            },
+            {
+              "name": "Saul Orzua Gonzalez",
+              "slug": "26877-saul-orzua-gonzalez",
+              "url": "https://haztuhorario.com/profesores/26877-saul-orzua-gonzalez",
+              "score": 84.0,
+              "reviews": 11,
+              "fair": 86.5,
+              "explains": 80.0,
+              "hard": 39.5,
+              "homework": 42.6,
+              "attendance": 73.7,
+              "comments_count": 6
+            }
+          ],
+          "best_teacher": {
+            "name": "Saul Orzua Gonzalez",
+            "slug": "26877-saul-orzua-gonzalez",
+            "url": "https://haztuhorario.com/profesores/26877-saul-orzua-gonzalez",
+            "score": 84.0,
+            "reviews": 11,
+            "fair": 86.5,
+            "explains": 80.0,
+            "hard": 39.5,
+            "homework": 42.6,
+            "attendance": 73.7,
+            "comments_count": 6
+          },
+          "hardest_teacher": {
+            "name": "Fritsche Ramirez Ewald",
+            "slug": "455880-fritsche-ramirez-ewald",
+            "url": "https://haztuhorario.com/profesores/455880-fritsche-ramirez-ewald",
+            "score": 53.2,
+            "reviews": 37,
+            "fair": 52.0,
+            "explains": 37.2,
+            "hard": 48.9,
+            "homework": 69.6,
+            "attendance": 64.5,
+            "comments_count": 7
+          },
+          "has_unassigned": false
+        },
+        {
+          "name": "PROGRAMACIÓN",
+          "teacher_count": 2,
+          "teachers": [
+            {
+              "name": "Avendano Mendez Roberto Pablo",
+              "slug": "412320-avendano-mendez-roberto-pablo",
+              "url": "https://haztuhorario.com/profesores/412320-avendano-mendez-roberto-pablo",
+              "score": 52.4,
+              "reviews": 42,
+              "fair": 59.9,
+              "explains": 57.8,
+              "hard": 69.8,
+              "homework": 57.3,
+              "attendance": 66.1,
+              "comments_count": 7
+            },
+            {
+              "name": "Leticia Castillo Hernandez",
+              "slug": "19777-leticia-castillo-hernandez",
+              "url": "https://haztuhorario.com/profesores/19777-leticia-castillo-hernandez",
+              "score": 81.4,
+              "reviews": 35,
+              "fair": 90.0,
+              "explains": 72.7,
+              "hard": 14.7,
+              "homework": 35.8,
+              "attendance": 38.0,
+              "comments_count": 7
+            }
+          ],
+          "best_teacher": {
+            "name": "Leticia Castillo Hernandez",
+            "slug": "19777-leticia-castillo-hernandez",
+            "url": "https://haztuhorario.com/profesores/19777-leticia-castillo-hernandez",
+            "score": 81.4,
+            "reviews": 35,
+            "fair": 90.0,
+            "explains": 72.7,
+            "hard": 14.7,
+            "homework": 35.8,
+            "attendance": 38.0,
+            "comments_count": 7
+          },
+          "hardest_teacher": {
+            "name": "Avendano Mendez Roberto Pablo",
+            "slug": "412320-avendano-mendez-roberto-pablo",
+            "url": "https://haztuhorario.com/profesores/412320-avendano-mendez-roberto-pablo",
+            "score": 52.4,
+            "reviews": 42,
+            "fair": 59.9,
+            "explains": 57.8,
+            "hard": 69.8,
+            "homework": 57.3,
+            "attendance": 66.1,
+            "comments_count": 7
+          },
+          "has_unassigned": false
+        }
+      ]
+    },
+    {
+      "semester": 4,
+      "title": "Semestre 4",
+      "subjects_count": 6,
+      "subjects": [
+        {
+          "name": "CIRCUITOS ELÉCTRICOS II",
+          "teacher_count": 1,
+          "teachers": [
+            {
+              "name": "Francisco Javier Gonzalez Olivares",
+              "slug": "24852-francisco-javier-gonzalez-olivares",
+              "url": "https://haztuhorario.com/profesores/24852-francisco-javier-gonzalez-olivares",
+              "score": 87.5,
+              "reviews": 42,
+              "fair": 82.7,
+              "explains": 89.7,
+              "hard": 21.7,
+              "homework": 14.7,
+              "attendance": 58.7,
+              "comments_count": 7
+            }
+          ],
+          "best_teacher": {
+            "name": "Francisco Javier Gonzalez Olivares",
+            "slug": "24852-francisco-javier-gonzalez-olivares",
+            "url": "https://haztuhorario.com/profesores/24852-francisco-javier-gonzalez-olivares",
+            "score": 87.5,
+            "reviews": 42,
+            "fair": 82.7,
+            "explains": 89.7,
+            "hard": 21.7,
+            "homework": 14.7,
+            "attendance": 58.7,
+            "comments_count": 7
+          },
+          "hardest_teacher": {
+            "name": "Francisco Javier Gonzalez Olivares",
+            "slug": "24852-francisco-javier-gonzalez-olivares",
+            "url": "https://haztuhorario.com/profesores/24852-francisco-javier-gonzalez-olivares",
+            "score": 87.5,
+            "reviews": 42,
+            "fair": 82.7,
+            "explains": 89.7,
+            "hard": 21.7,
+            "homework": 14.7,
+            "attendance": 58.7,
+            "comments_count": 7
+          },
+          "has_unassigned": false
+        },
+        {
+          "name": "ECUACIONES DIFERENCIALES",
+          "teacher_count": 9,
+          "teachers": [
+            {
+              "name": "Cantu Ing. Cesar Ivan",
+              "slug": "455684-cantu-ing-cesar-ivan",
+              "url": "https://haztuhorario.com/profesores/455684-cantu-ing-cesar-ivan",
+              "score": 74.8,
+              "reviews": 5,
+              "fair": 80.0,
+              "explains": 53.2,
+              "hard": 20.0,
+              "homework": 31.0,
+              "attendance": 72.0,
+              "comments_count": 2
+            },
+            {
+              "name": "Del Bosque Martínez Alicia Guadalupe",
+              "slug": "1028370-del-bosque-martinez-alicia-guadalupe",
+              "url": "https://haztuhorario.com/profesores/1028370-del-bosque-martinez-alicia-guadalupe",
+              "score": 41.7,
+              "reviews": 6,
+              "fair": 38.3,
+              "explains": 21.7,
+              "hard": 70.0,
+              "homework": 63.3,
+              "attendance": 0.0,
+              "comments_count": 3
+            },
+            {
+              "name": "Ismael Luevano Martinez",
+              "slug": "8506-ismael-luevano-martinez",
+              "url": "https://haztuhorario.com/profesores/8506-ismael-luevano-martinez",
+              "score": 60.5,
+              "reviews": 40,
+              "fair": 59.3,
+              "explains": 70.2,
+              "hard": 59.7,
+              "homework": 63.7,
+              "attendance": 54.8,
+              "comments_count": 7
+            },
+            {
+              "name": "Jesus Cantu Perez",
+              "slug": "11802-jesus-cantu-perez",
+              "url": "https://haztuhorario.com/profesores/11802-jesus-cantu-perez",
+              "score": 42.0,
+              "reviews": 22,
+              "fair": 40.4,
+              "explains": 45.1,
+              "hard": 66.1,
+              "homework": 50.1,
+              "attendance": 51.3,
+              "comments_count": 7
+            },
+            {
+              "name": "Lucia Marisol Valdes Gonzalez",
+              "slug": "4143-lucia-marisol-valdes-gonzalez",
+              "url": "https://haztuhorario.com/profesores/4143-lucia-marisol-valdes-gonzalez",
+              "score": 74.1,
+              "reviews": 148,
+              "fair": 79.1,
+              "explains": 76.3,
+              "hard": 52.9,
+              "homework": 62.0,
+              "attendance": 55.8,
+              "comments_count": 7
+            },
+            {
+              "name": "Narda Lucely Reyes Acosta",
+              "slug": "2653-narda-lucely-reyes-acosta",
+              "url": "https://haztuhorario.com/profesores/2653-narda-lucely-reyes-acosta",
+              "score": 80.2,
+              "reviews": 113,
+              "fair": 85.1,
+              "explains": 78.2,
+              "hard": 52.4,
+              "homework": 72.4,
+              "attendance": 52.9,
+              "comments_count": 7
+            },
+            {
+              "name": "Olivia Garcia Calvillo",
+              "slug": "18737-olivia-garcia-calvillo",
+              "url": "https://haztuhorario.com/profesores/18737-olivia-garcia-calvillo",
+              "score": 87.8,
+              "reviews": 141,
+              "fair": 87.9,
+              "explains": 90.9,
+              "hard": 45.8,
+              "homework": 42.7,
+              "attendance": 44.2,
+              "comments_count": 7
+            },
+            {
+              "name": "Ramos Oliveira Jorge Alberto",
+              "slug": "634825-ramos-oliveira-jorge-alberto",
+              "url": "https://haztuhorario.com/profesores/634825-ramos-oliveira-jorge-alberto",
+              "score": 19.2,
+              "reviews": 13,
+              "fair": 30.2,
+              "explains": 28.2,
+              "hard": 79.6,
+              "homework": 29.5,
+              "attendance": 56.2,
+              "comments_count": 8
+            },
+            {
+              "name": "Sanchez Romina Denisse",
+              "slug": "1028400-sanchez-romina-denisse",
+              "url": "https://haztuhorario.com/profesores/1028400-sanchez-romina-denisse",
+              "score": 0.0,
+              "reviews": 1,
+              "fair": 0.0,
+              "explains": 0.0,
+              "hard": 0.0,
+              "homework": 0.0,
+              "attendance": 0.0,
+              "comments_count": 0
+            }
+          ],
+          "best_teacher": {
+            "name": "Olivia Garcia Calvillo",
+            "slug": "18737-olivia-garcia-calvillo",
+            "url": "https://haztuhorario.com/profesores/18737-olivia-garcia-calvillo",
+            "score": 87.8,
+            "reviews": 141,
+            "fair": 87.9,
+            "explains": 90.9,
+            "hard": 45.8,
+            "homework": 42.7,
+            "attendance": 44.2,
+            "comments_count": 7
+          },
+          "hardest_teacher": {
+            "name": "Ramos Oliveira Jorge Alberto",
+            "slug": "634825-ramos-oliveira-jorge-alberto",
+            "url": "https://haztuhorario.com/profesores/634825-ramos-oliveira-jorge-alberto",
+            "score": 19.2,
+            "reviews": 13,
+            "fair": 30.2,
+            "explains": 28.2,
+            "hard": 79.6,
+            "homework": 29.5,
+            "attendance": 56.2,
+            "comments_count": 8
+          },
+          "has_unassigned": false
+        },
+        {
+          "name": "ELECTRÓNICA ANALÓGICA",
+          "teacher_count": 1,
+          "teachers": [
+            {
+              "name": "Docente Sin Asignar",
+              "slug": "1028372-docente-sin-asignar",
+              "url": "https://haztuhorario.com/profesores/1028372-docente-sin-asignar",
+              "score": 50.0,
+              "reviews": 1,
+              "fair": 96.0,
+              "explains": 50.0,
+              "hard": 50.0,
+              "homework": 50.0,
+              "attendance": 50.0,
+              "comments_count": 1
+            }
+          ],
+          "best_teacher": null,
+          "hardest_teacher": null,
+          "has_unassigned": true
+        },
+        {
+          "name": "FÍSICA MODERNA",
+          "teacher_count": 1,
+          "teachers": [
+            {
+              "name": "Alma Leticia Cazares Arreguin",
+              "slug": "13049-alma-leticia-cazares-arreguin",
+              "url": "https://haztuhorario.com/profesores/13049-alma-leticia-cazares-arreguin",
+              "score": 76.9,
+              "reviews": 79,
+              "fair": 72.2,
+              "explains": 76.8,
+              "hard": 23.8,
+              "homework": 38.7,
+              "attendance": 71.5,
+              "comments_count": 7
+            }
+          ],
+          "best_teacher": {
+            "name": "Alma Leticia Cazares Arreguin",
+            "slug": "13049-alma-leticia-cazares-arreguin",
+            "url": "https://haztuhorario.com/profesores/13049-alma-leticia-cazares-arreguin",
+            "score": 76.9,
+            "reviews": 79,
+            "fair": 72.2,
+            "explains": 76.8,
+            "hard": 23.8,
+            "homework": 38.7,
+            "attendance": 71.5,
+            "comments_count": 7
+          },
+          "hardest_teacher": {
+            "name": "Alma Leticia Cazares Arreguin",
+            "slug": "13049-alma-leticia-cazares-arreguin",
+            "url": "https://haztuhorario.com/profesores/13049-alma-leticia-cazares-arreguin",
+            "score": 76.9,
+            "reviews": 79,
+            "fair": 72.2,
+            "explains": 76.8,
+            "hard": 23.8,
+            "homework": 38.7,
+            "attendance": 71.5,
+            "comments_count": 7
+          },
+          "has_unassigned": false
+        },
+        {
+          "name": "MÉTODOS NUMÉRICOS",
+          "teacher_count": 3,
+          "teachers": [
+            {
+              "name": "Justino Barrales Montes",
+              "slug": "12221-justino-barrales-montes",
+              "url": "https://haztuhorario.com/profesores/12221-justino-barrales-montes",
+              "score": 82.1,
+              "reviews": 40,
+              "fair": 88.3,
+              "explains": 83.1,
+              "hard": 31.9,
+              "homework": 25.6,
+              "attendance": 75.3,
+              "comments_count": 8
+            },
+            {
+              "name": "Lopez Guarin Gustavo",
+              "slug": "999485-lopez-guarin-gustavo",
+              "url": "https://haztuhorario.com/profesores/999485-lopez-guarin-gustavo",
+              "score": 83.5,
+              "reviews": 6,
+              "fair": 83.7,
+              "explains": 83.7,
+              "hard": 66.5,
+              "homework": 66.7,
+              "attendance": 58.3,
+              "comments_count": 1
+            },
+            {
+              "name": "Mora Gonzalez Ada Paulina",
+              "slug": "455888-mora-gonzalez-ada-paulina",
+              "url": "https://haztuhorario.com/profesores/455888-mora-gonzalez-ada-paulina",
+              "score": 94.2,
+              "reviews": 25,
+              "fair": 96.4,
+              "explains": 98.5,
+              "hard": 21.4,
+              "homework": 30.1,
+              "attendance": 52.6,
+              "comments_count": 7
+            }
+          ],
+          "best_teacher": {
+            "name": "Mora Gonzalez Ada Paulina",
+            "slug": "455888-mora-gonzalez-ada-paulina",
+            "url": "https://haztuhorario.com/profesores/455888-mora-gonzalez-ada-paulina",
+            "score": 94.2,
+            "reviews": 25,
+            "fair": 96.4,
+            "explains": 98.5,
+            "hard": 21.4,
+            "homework": 30.1,
+            "attendance": 52.6,
+            "comments_count": 7
+          },
+          "hardest_teacher": {
+            "name": "Lopez Guarin Gustavo",
+            "slug": "999485-lopez-guarin-gustavo",
+            "url": "https://haztuhorario.com/profesores/999485-lopez-guarin-gustavo",
+            "score": 83.5,
+            "reviews": 6,
+            "fair": 83.7,
+            "explains": 83.7,
+            "hard": 66.5,
+            "homework": 66.7,
+            "attendance": 58.3,
+            "comments_count": 1
+          },
+          "has_unassigned": false
+        },
+        {
+          "name": "TEORÍA ELECTROMAGNÉTICA",
+          "teacher_count": 2,
+          "teachers": [
+            {
+              "name": "De La Pena Duron Aida",
+              "slug": "412330-de-la-pena-duron-aida",
+              "url": "https://haztuhorario.com/profesores/412330-de-la-pena-duron-aida",
+              "score": 84.1,
+              "reviews": 63,
+              "fair": 85.6,
+              "explains": 89.4,
+              "hard": 66.1,
+              "homework": 64.1,
+              "attendance": 49.0,
+              "comments_count": 6
+            },
+            {
+              "name": "Joaquin Antonio Alvarado Bustos",
+              "slug": "26038-joaquin-antonio-alvarado-bustos",
+              "url": "https://haztuhorario.com/profesores/26038-joaquin-antonio-alvarado-bustos",
+              "score": 49.4,
+              "reviews": 27,
+              "fair": 49.1,
+              "explains": 42.6,
+              "hard": 31.6,
+              "homework": 38.1,
+              "attendance": 67.4,
+              "comments_count": 7
+            }
+          ],
+          "best_teacher": {
+            "name": "De La Pena Duron Aida",
+            "slug": "412330-de-la-pena-duron-aida",
+            "url": "https://haztuhorario.com/profesores/412330-de-la-pena-duron-aida",
+            "score": 84.1,
+            "reviews": 63,
+            "fair": 85.6,
+            "explains": 89.4,
+            "hard": 66.1,
+            "homework": 64.1,
+            "attendance": 49.0,
+            "comments_count": 6
+          },
+          "hardest_teacher": {
+            "name": "De La Pena Duron Aida",
+            "slug": "412330-de-la-pena-duron-aida",
+            "url": "https://haztuhorario.com/profesores/412330-de-la-pena-duron-aida",
+            "score": 84.1,
+            "reviews": 63,
+            "fair": 85.6,
+            "explains": 89.4,
+            "hard": 66.1,
+            "homework": 64.1,
+            "attendance": 49.0,
+            "comments_count": 6
+          },
+          "has_unassigned": false
+        }
+      ]
+    },
+    {
+      "semester": 5,
+      "title": "Semestre 5",
+      "subjects_count": 7,
+      "subjects": [
+        {
+          "name": "CONTROL I",
+          "teacher_count": 2,
+          "teachers": [
+            {
+              "name": "Cesar Gerardo Martinez Sanchez",
+              "slug": "25959-cesar-gerardo-martinez-sanchez",
+              "url": "https://haztuhorario.com/profesores/25959-cesar-gerardo-martinez-sanchez",
+              "score": 79.7,
+              "reviews": 53,
+              "fair": 86.7,
+              "explains": 75.9,
+              "hard": 33.1,
+              "homework": 18.5,
+              "attendance": 19.6,
+              "comments_count": 8
+            },
+            {
+              "name": "Ruiz Ramos Isaac",
+              "slug": "745144-ruiz-ramos-isaac",
+              "url": "https://haztuhorario.com/profesores/745144-ruiz-ramos-isaac",
+              "score": 85.3,
+              "reviews": 41,
+              "fair": 83.7,
+              "explains": 85.4,
+              "hard": 35.5,
+              "homework": 33.1,
+              "attendance": 33.5,
+              "comments_count": 7
+            }
+          ],
+          "best_teacher": {
+            "name": "Ruiz Ramos Isaac",
+            "slug": "745144-ruiz-ramos-isaac",
+            "url": "https://haztuhorario.com/profesores/745144-ruiz-ramos-isaac",
+            "score": 85.3,
+            "reviews": 41,
+            "fair": 83.7,
+            "explains": 85.4,
+            "hard": 35.5,
+            "homework": 33.1,
+            "attendance": 33.5,
+            "comments_count": 7
+          },
+          "hardest_teacher": {
+            "name": "Ruiz Ramos Isaac",
+            "slug": "745144-ruiz-ramos-isaac",
+            "url": "https://haztuhorario.com/profesores/745144-ruiz-ramos-isaac",
+            "score": 85.3,
+            "reviews": 41,
+            "fair": 83.7,
+            "explains": 85.4,
+            "hard": 35.5,
+            "homework": 33.1,
+            "attendance": 33.5,
+            "comments_count": 7
+          },
+          "has_unassigned": false
+        },
+        {
+          "name": "DESARROLLO SUSTENTABLE",
+          "teacher_count": 12,
+          "teachers": [
+            {
+              "name": "Aida Isolda Fernandez De La Cerda",
+              "slug": "19414-aida-isolda-fernandez-de-la-cerda",
+              "url": "https://haztuhorario.com/profesores/19414-aida-isolda-fernandez-de-la-cerda",
+              "score": 63.6,
+              "reviews": 36,
+              "fair": 68.1,
+              "explains": 50.5,
+              "hard": 28.2,
+              "homework": 77.7,
+              "attendance": 91.9,
+              "comments_count": 7
+            },
+            {
+              "name": "Alicia Orta Mendoza",
+              "slug": "7887-alicia-orta-mendoza",
+              "url": "https://haztuhorario.com/profesores/7887-alicia-orta-mendoza",
+              "score": 50.7,
+              "reviews": 51,
+              "fair": 59.0,
+              "explains": 47.1,
+              "hard": 30.0,
+              "homework": 79.4,
+              "attendance": 85.4,
+              "comments_count": 7
+            },
+            {
+              "name": "Duron Ibarra Ramon Andres",
+              "slug": "930681-duron-ibarra-ramon-andres",
+              "url": "https://haztuhorario.com/profesores/930681-duron-ibarra-ramon-andres",
+              "score": null,
+              "reviews": 0,
+              "fair": null,
+              "explains": null,
+              "hard": null,
+              "homework": null,
+              "attendance": null,
+              "comments_count": 2
+            },
+            {
+              "name": "Fernando Miguel Viesca Farias",
+              "slug": "1047-fernando-miguel-viesca-farias",
+              "url": "https://haztuhorario.com/profesores/1047-fernando-miguel-viesca-farias",
+              "score": 69.5,
+              "reviews": 89,
+              "fair": 70.9,
+              "explains": 66.9,
+              "hard": 34.0,
+              "homework": 58.9,
+              "attendance": 90.4,
+              "comments_count": 7
+            },
+            {
+              "name": "Flores Sanchez Alexeyevich",
+              "slug": "455937-flores-sanchez-alexeyevich",
+              "url": "https://haztuhorario.com/profesores/455937-flores-sanchez-alexeyevich",
+              "score": 94.8,
+              "reviews": 4,
+              "fair": 96.5,
+              "explains": 91.8,
+              "hard": 22.8,
+              "homework": 41.0,
+              "attendance": 80.5,
+              "comments_count": 2
+            },
+            {
+              "name": "Juan Carlos Loyola Licea",
+              "slug": "14869-juan-carlos-loyola-licea",
+              "url": "https://haztuhorario.com/profesores/14869-juan-carlos-loyola-licea",
+              "score": 92.6,
+              "reviews": 83,
+              "fair": 94.4,
+              "explains": 94.6,
+              "hard": 11.5,
+              "homework": 32.4,
+              "attendance": 77.9,
+              "comments_count": 7
+            },
+            {
+              "name": "Manuel Rodarte Carrillo",
+              "slug": "9650-manuel-rodarte-carrillo",
+              "url": "https://haztuhorario.com/profesores/9650-manuel-rodarte-carrillo",
+              "score": 82.0,
+              "reviews": 10,
+              "fair": 76.2,
+              "explains": 61.2,
+              "hard": 14.0,
+              "homework": 44.9,
+              "attendance": 95.7,
+              "comments_count": 4
+            },
+            {
+              "name": "Marcela Guadalupe Moreno Padilla",
+              "slug": "28359-marcela-guadalupe-moreno-padilla",
+              "url": "https://haztuhorario.com/profesores/28359-marcela-guadalupe-moreno-padilla",
+              "score": 52.5,
+              "reviews": 28,
+              "fair": 46.8,
+              "explains": 42.8,
+              "hard": 26.9,
+              "homework": 42.8,
+              "attendance": 78.2,
+              "comments_count": 8
+            },
+            {
+              "name": "Mario Alberto De La Rosa Cepeda",
+              "slug": "16309-mario-alberto-de-la-rosa-cepeda",
+              "url": "https://haztuhorario.com/profesores/16309-mario-alberto-de-la-rosa-cepeda",
+              "score": 88.6,
+              "reviews": 30,
+              "fair": 86.1,
+              "explains": 83.0,
+              "hard": 18.9,
+              "homework": 32.9,
+              "attendance": 69.2,
+              "comments_count": 7
+            },
+            {
+              "name": "Martinez Perez Rene",
+              "slug": "412327-martinez-perez-rene",
+              "url": "https://haztuhorario.com/profesores/412327-martinez-perez-rene",
+              "score": 99.5,
+              "reviews": 25,
+              "fair": 98.9,
+              "explains": 98.0,
+              "hard": 1.7,
+              "homework": 29.1,
+              "attendance": 83.5,
+              "comments_count": 7
+            },
+            {
+              "name": "Pedro Angel Gonzalez Barrera",
+              "slug": "5229-pedro-angel-gonzalez-barrera",
+              "url": "https://haztuhorario.com/profesores/5229-pedro-angel-gonzalez-barrera",
+              "score": 83.4,
+              "reviews": 46,
+              "fair": 82.7,
+              "explains": 86.6,
+              "hard": 17.8,
+              "homework": 31.3,
+              "attendance": 62.5,
+              "comments_count": 7
+            },
+            {
+              "name": "Virginia Flores Gaytan",
+              "slug": "10632-virginia-flores-gaytan",
+              "url": "https://haztuhorario.com/profesores/10632-virginia-flores-gaytan",
+              "score": 94.6,
+              "reviews": 92,
+              "fair": 96.8,
+              "explains": 88.0,
+              "hard": 9.9,
+              "homework": 51.6,
+              "attendance": 86.7,
+              "comments_count": 8
+            }
+          ],
+          "best_teacher": {
+            "name": "Martinez Perez Rene",
+            "slug": "412327-martinez-perez-rene",
+            "url": "https://haztuhorario.com/profesores/412327-martinez-perez-rene",
+            "score": 99.5,
+            "reviews": 25,
+            "fair": 98.9,
+            "explains": 98.0,
+            "hard": 1.7,
+            "homework": 29.1,
+            "attendance": 83.5,
+            "comments_count": 7
+          },
+          "hardest_teacher": {
+            "name": "Fernando Miguel Viesca Farias",
+            "slug": "1047-fernando-miguel-viesca-farias",
+            "url": "https://haztuhorario.com/profesores/1047-fernando-miguel-viesca-farias",
+            "score": 69.5,
+            "reviews": 89,
+            "fair": 70.9,
+            "explains": 66.9,
+            "hard": 34.0,
+            "homework": 58.9,
+            "attendance": 90.4,
+            "comments_count": 7
+          },
+          "has_unassigned": false
+        },
+        {
+          "name": "ELECTRÓNICA DIGITAL",
+          "teacher_count": 1,
+          "teachers": [
+            {
+              "name": "Karina Diaz Rosas",
+              "slug": "30891-karina-diaz-rosas",
+              "url": "https://haztuhorario.com/profesores/30891-karina-diaz-rosas",
+              "score": 90.4,
+              "reviews": 22,
+              "fair": 89.5,
+              "explains": 82.9,
+              "hard": 25.0,
+              "homework": 55.1,
+              "attendance": 54.0,
+              "comments_count": 7
+            }
+          ],
+          "best_teacher": {
+            "name": "Karina Diaz Rosas",
+            "slug": "30891-karina-diaz-rosas",
+            "url": "https://haztuhorario.com/profesores/30891-karina-diaz-rosas",
+            "score": 90.4,
+            "reviews": 22,
+            "fair": 89.5,
+            "explains": 82.9,
+            "hard": 25.0,
+            "homework": 55.1,
+            "attendance": 54.0,
+            "comments_count": 7
+          },
+          "hardest_teacher": {
+            "name": "Karina Diaz Rosas",
+            "slug": "30891-karina-diaz-rosas",
+            "url": "https://haztuhorario.com/profesores/30891-karina-diaz-rosas",
+            "score": 90.4,
+            "reviews": 22,
+            "fair": 89.5,
+            "explains": 82.9,
+            "hard": 25.0,
+            "homework": 55.1,
+            "attendance": 54.0,
+            "comments_count": 7
+          },
+          "has_unassigned": false
+        },
+        {
+          "name": "EQUIPOS MECÁNICOS",
+          "teacher_count": 1,
+          "teachers": [
+            {
+              "name": "Hernandez Cortes Anabel Azucena",
+              "slug": "593172-hernandez-cortes-anabel-azucena",
+              "url": "https://haztuhorario.com/profesores/593172-hernandez-cortes-anabel-azucena",
+              "score": 18.2,
+              "reviews": 29,
+              "fair": 15.9,
+              "explains": 18.8,
+              "hard": 61.9,
+              "homework": 42.1,
+              "attendance": 35.6,
+              "comments_count": 7
+            }
+          ],
+          "best_teacher": {
+            "name": "Hernandez Cortes Anabel Azucena",
+            "slug": "593172-hernandez-cortes-anabel-azucena",
+            "url": "https://haztuhorario.com/profesores/593172-hernandez-cortes-anabel-azucena",
+            "score": 18.2,
+            "reviews": 29,
+            "fair": 15.9,
+            "explains": 18.8,
+            "hard": 61.9,
+            "homework": 42.1,
+            "attendance": 35.6,
+            "comments_count": 7
+          },
+          "hardest_teacher": {
+            "name": "Hernandez Cortes Anabel Azucena",
+            "slug": "593172-hernandez-cortes-anabel-azucena",
+            "url": "https://haztuhorario.com/profesores/593172-hernandez-cortes-anabel-azucena",
+            "score": 18.2,
+            "reviews": 29,
+            "fair": 15.9,
+            "explains": 18.8,
+            "hard": 61.9,
+            "homework": 42.1,
+            "attendance": 35.6,
+            "comments_count": 7
+          },
+          "has_unassigned": false
+        },
+        {
+          "name": "INSTALACIONES ELÉCTRICAS",
+          "teacher_count": 1,
+          "teachers": [
+            {
+              "name": "Daniel Ruiz Calderon",
+              "slug": "26748-daniel-ruiz-calderon",
+              "url": "https://haztuhorario.com/profesores/26748-daniel-ruiz-calderon",
+              "score": 96.9,
+              "reviews": 9,
+              "fair": 88.4,
+              "explains": 93.4,
+              "hard": 20.0,
+              "homework": 32.9,
+              "attendance": 64.2,
+              "comments_count": 6
+            }
+          ],
+          "best_teacher": {
+            "name": "Daniel Ruiz Calderon",
+            "slug": "26748-daniel-ruiz-calderon",
+            "url": "https://haztuhorario.com/profesores/26748-daniel-ruiz-calderon",
+            "score": 96.9,
+            "reviews": 9,
+            "fair": 88.4,
+            "explains": 93.4,
+            "hard": 20.0,
+            "homework": 32.9,
+            "attendance": 64.2,
+            "comments_count": 6
+          },
+          "hardest_teacher": {
+            "name": "Daniel Ruiz Calderon",
+            "slug": "26748-daniel-ruiz-calderon",
+            "url": "https://haztuhorario.com/profesores/26748-daniel-ruiz-calderon",
+            "score": 96.9,
+            "reviews": 9,
+            "fair": 88.4,
+            "explains": 93.4,
+            "hard": 20.0,
+            "homework": 32.9,
+            "attendance": 64.2,
+            "comments_count": 6
+          },
+          "has_unassigned": false
+        },
+        {
+          "name": "TALLER DE INVESTIGACIÓN I",
+          "teacher_count": 4,
+          "teachers": [
+            {
+              "name": "Docente Sin Asignar",
+              "slug": "1028372-docente-sin-asignar",
+              "url": "https://haztuhorario.com/profesores/1028372-docente-sin-asignar",
+              "score": 50.0,
+              "reviews": 1,
+              "fair": 96.0,
+              "explains": 50.0,
+              "hard": 50.0,
+              "homework": 50.0,
+              "attendance": 50.0,
+              "comments_count": 1
+            },
+            {
+              "name": "Dueñaz Reyes Juana Maria",
+              "slug": "1028371-duenaz-reyes-juana-maria",
+              "url": "https://haztuhorario.com/profesores/1028371-duenaz-reyes-juana-maria",
+              "score": null,
+              "reviews": 0,
+              "fair": null,
+              "explains": null,
+              "hard": null,
+              "homework": null,
+              "attendance": null,
+              "comments_count": 0
+            },
+            {
+              "name": "Fernando Alfonso Ruiz Moreno",
+              "slug": "31527-fernando-alfonso-ruiz-moreno",
+              "url": "https://haztuhorario.com/profesores/31527-fernando-alfonso-ruiz-moreno",
+              "score": 32.3,
+              "reviews": 14,
+              "fair": 38.7,
+              "explains": 32.1,
+              "hard": 86.7,
+              "homework": 96.1,
+              "attendance": 69.4,
+              "comments_count": 4
+            },
+            {
+              "name": "Luis Manuel Navarro Huitron",
+              "slug": "484518-luis-manuel-navarro-huitron",
+              "url": "https://haztuhorario.com/profesores/484518-luis-manuel-navarro-huitron",
+              "score": 64.6,
+              "reviews": 32,
+              "fair": 70.8,
+              "explains": 59.2,
+              "hard": 35.1,
+              "homework": 38.3,
+              "attendance": 75.7,
+              "comments_count": 7
+            }
+          ],
+          "best_teacher": {
+            "name": "Luis Manuel Navarro Huitron",
+            "slug": "484518-luis-manuel-navarro-huitron",
+            "url": "https://haztuhorario.com/profesores/484518-luis-manuel-navarro-huitron",
+            "score": 64.6,
+            "reviews": 32,
+            "fair": 70.8,
+            "explains": 59.2,
+            "hard": 35.1,
+            "homework": 38.3,
+            "attendance": 75.7,
+            "comments_count": 7
+          },
+          "hardest_teacher": {
+            "name": "Fernando Alfonso Ruiz Moreno",
+            "slug": "31527-fernando-alfonso-ruiz-moreno",
+            "url": "https://haztuhorario.com/profesores/31527-fernando-alfonso-ruiz-moreno",
+            "score": 32.3,
+            "reviews": 14,
+            "fair": 38.7,
+            "explains": 32.1,
+            "hard": 86.7,
+            "homework": 96.1,
+            "attendance": 69.4,
+            "comments_count": 4
+          },
+          "has_unassigned": true
+        },
+        {
+          "name": "TRANSFORMADORES",
+          "teacher_count": 2,
+          "teachers": [
+            {
+              "name": "Aguero Duran Julio",
+              "slug": "1028362-aguero-duran-julio",
+              "url": "https://haztuhorario.com/profesores/1028362-aguero-duran-julio",
+              "score": null,
+              "reviews": 0,
+              "fair": null,
+              "explains": null,
+              "hard": null,
+              "homework": null,
+              "attendance": null,
+              "comments_count": 0
+            },
+            {
+              "name": "Jorge Humberto Salas Rodriguez",
+              "slug": "26943-jorge-humberto-salas-rodriguez",
+              "url": "https://haztuhorario.com/profesores/26943-jorge-humberto-salas-rodriguez",
+              "score": 85.3,
+              "reviews": 3,
+              "fair": 88.3,
+              "explains": 88.3,
+              "hard": 49.3,
+              "homework": 17.7,
+              "attendance": 66.3,
+              "comments_count": 1
+            }
+          ],
+          "best_teacher": {
+            "name": "Jorge Humberto Salas Rodriguez",
+            "slug": "26943-jorge-humberto-salas-rodriguez",
+            "url": "https://haztuhorario.com/profesores/26943-jorge-humberto-salas-rodriguez",
+            "score": 85.3,
+            "reviews": 3,
+            "fair": 88.3,
+            "explains": 88.3,
+            "hard": 49.3,
+            "homework": 17.7,
+            "attendance": 66.3,
+            "comments_count": 1
+          },
+          "hardest_teacher": {
+            "name": "Jorge Humberto Salas Rodriguez",
+            "slug": "26943-jorge-humberto-salas-rodriguez",
+            "url": "https://haztuhorario.com/profesores/26943-jorge-humberto-salas-rodriguez",
+            "score": 85.3,
+            "reviews": 3,
+            "fair": 88.3,
+            "explains": 88.3,
+            "hard": 49.3,
+            "homework": 17.7,
+            "attendance": 66.3,
+            "comments_count": 1
+          },
+          "has_unassigned": false
+        }
+      ]
+    },
+    {
+      "semester": 6,
+      "title": "Semestre 6",
+      "subjects_count": 7,
+      "subjects": [
+        {
+          "name": "CONTROL II",
+          "teacher_count": 1,
+          "teachers": [
+            {
+              "name": "Yolanda Cepeda Rodriguez",
+              "slug": "24799-yolanda-cepeda-rodriguez",
+              "url": "https://haztuhorario.com/profesores/24799-yolanda-cepeda-rodriguez",
+              "score": 72.1,
+              "reviews": 68,
+              "fair": 72.9,
+              "explains": 69.9,
+              "hard": 30.8,
+              "homework": 36.6,
+              "attendance": 69.1,
+              "comments_count": 8
+            }
+          ],
+          "best_teacher": {
+            "name": "Yolanda Cepeda Rodriguez",
+            "slug": "24799-yolanda-cepeda-rodriguez",
+            "url": "https://haztuhorario.com/profesores/24799-yolanda-cepeda-rodriguez",
+            "score": 72.1,
+            "reviews": 68,
+            "fair": 72.9,
+            "explains": 69.9,
+            "hard": 30.8,
+            "homework": 36.6,
+            "attendance": 69.1,
+            "comments_count": 8
+          },
+          "hardest_teacher": {
+            "name": "Yolanda Cepeda Rodriguez",
+            "slug": "24799-yolanda-cepeda-rodriguez",
+            "url": "https://haztuhorario.com/profesores/24799-yolanda-cepeda-rodriguez",
+            "score": 72.1,
+            "reviews": 68,
+            "fair": 72.9,
+            "explains": 69.9,
+            "hard": 30.8,
+            "homework": 36.6,
+            "attendance": 69.1,
+            "comments_count": 8
+          },
+          "has_unassigned": false
+        },
+        {
+          "name": "INSTALACIONES ELÉCTRICAS INDUSTRIALES",
+          "teacher_count": 1,
+          "teachers": [
+            {
+              "name": "Saul Orzua Gonzalez",
+              "slug": "26877-saul-orzua-gonzalez",
+              "url": "https://haztuhorario.com/profesores/26877-saul-orzua-gonzalez",
+              "score": 84.0,
+              "reviews": 11,
+              "fair": 86.5,
+              "explains": 80.0,
+              "hard": 39.5,
+              "homework": 42.6,
+              "attendance": 73.7,
+              "comments_count": 6
+            }
+          ],
+          "best_teacher": {
+            "name": "Saul Orzua Gonzalez",
+            "slug": "26877-saul-orzua-gonzalez",
+            "url": "https://haztuhorario.com/profesores/26877-saul-orzua-gonzalez",
+            "score": 84.0,
+            "reviews": 11,
+            "fair": 86.5,
+            "explains": 80.0,
+            "hard": 39.5,
+            "homework": 42.6,
+            "attendance": 73.7,
+            "comments_count": 6
+          },
+          "hardest_teacher": {
+            "name": "Saul Orzua Gonzalez",
+            "slug": "26877-saul-orzua-gonzalez",
+            "url": "https://haztuhorario.com/profesores/26877-saul-orzua-gonzalez",
+            "score": 84.0,
+            "reviews": 11,
+            "fair": 86.5,
+            "explains": 80.0,
+            "hard": 39.5,
+            "homework": 42.6,
+            "attendance": 73.7,
+            "comments_count": 6
+          },
+          "has_unassigned": false
+        },
+        {
+          "name": "MAQUINAS SINCRÓNICAS Y DE CD",
+          "teacher_count": 2,
+          "teachers": [
+            {
+              "name": "Jose Angel Ruiz Aguilar",
+              "slug": "26931-jose-angel-ruiz-aguilar",
+              "url": "https://haztuhorario.com/profesores/26931-jose-angel-ruiz-aguilar",
+              "score": 54.6,
+              "reviews": 34,
+              "fair": 55.1,
+              "explains": 53.0,
+              "hard": 57.0,
+              "homework": 30.2,
+              "attendance": 31.1,
+              "comments_count": 7
+            },
+            {
+              "name": "Mario Alberto Ponce Llamas",
+              "slug": "484536-mario-alberto-ponce-llamas",
+              "url": "https://haztuhorario.com/profesores/484536-mario-alberto-ponce-llamas",
+              "score": 72.2,
+              "reviews": 41,
+              "fair": 67.5,
+              "explains": 76.0,
+              "hard": 59.3,
+              "homework": 33.6,
+              "attendance": 25.9,
+              "comments_count": 7
+            }
+          ],
+          "best_teacher": {
+            "name": "Mario Alberto Ponce Llamas",
+            "slug": "484536-mario-alberto-ponce-llamas",
+            "url": "https://haztuhorario.com/profesores/484536-mario-alberto-ponce-llamas",
+            "score": 72.2,
+            "reviews": 41,
+            "fair": 67.5,
+            "explains": 76.0,
+            "hard": 59.3,
+            "homework": 33.6,
+            "attendance": 25.9,
+            "comments_count": 7
+          },
+          "hardest_teacher": {
+            "name": "Mario Alberto Ponce Llamas",
+            "slug": "484536-mario-alberto-ponce-llamas",
+            "url": "https://haztuhorario.com/profesores/484536-mario-alberto-ponce-llamas",
+            "score": 72.2,
+            "reviews": 41,
+            "fair": 67.5,
+            "explains": 76.0,
+            "hard": 59.3,
+            "homework": 33.6,
+            "attendance": 25.9,
+            "comments_count": 7
+          },
+          "has_unassigned": false
+        },
+        {
+          "name": "MOTORES DE INDUCCIÓN Y ESPECIALES",
+          "teacher_count": 1,
+          "teachers": [
+            {
+              "name": "Saul Orzua Gonzalez",
+              "slug": "26877-saul-orzua-gonzalez",
+              "url": "https://haztuhorario.com/profesores/26877-saul-orzua-gonzalez",
+              "score": 84.0,
+              "reviews": 11,
+              "fair": 86.5,
+              "explains": 80.0,
+              "hard": 39.5,
+              "homework": 42.6,
+              "attendance": 73.7,
+              "comments_count": 6
+            }
+          ],
+          "best_teacher": {
+            "name": "Saul Orzua Gonzalez",
+            "slug": "26877-saul-orzua-gonzalez",
+            "url": "https://haztuhorario.com/profesores/26877-saul-orzua-gonzalez",
+            "score": 84.0,
+            "reviews": 11,
+            "fair": 86.5,
+            "explains": 80.0,
+            "hard": 39.5,
+            "homework": 42.6,
+            "attendance": 73.7,
+            "comments_count": 6
+          },
+          "hardest_teacher": {
+            "name": "Saul Orzua Gonzalez",
+            "slug": "26877-saul-orzua-gonzalez",
+            "url": "https://haztuhorario.com/profesores/26877-saul-orzua-gonzalez",
+            "score": 84.0,
+            "reviews": 11,
+            "fair": 86.5,
+            "explains": 80.0,
+            "hard": 39.5,
+            "homework": 42.6,
+            "attendance": 73.7,
+            "comments_count": 6
+          },
+          "has_unassigned": false
+        },
+        {
+          "name": "SISTEMAS DE ILUMINACIÓN",
+          "teacher_count": 1,
+          "teachers": [
+            {
+              "name": "Horacio Tolentino Quilantan",
+              "slug": "32579-horacio-tolentino-quilantan",
+              "url": "https://haztuhorario.com/profesores/32579-horacio-tolentino-quilantan",
+              "score": 43.3,
+              "reviews": 16,
+              "fair": 39.0,
+              "explains": 42.3,
+              "hard": 7.0,
+              "homework": 2.3,
+              "attendance": 60.9,
+              "comments_count": 7
+            }
+          ],
+          "best_teacher": {
+            "name": "Horacio Tolentino Quilantan",
+            "slug": "32579-horacio-tolentino-quilantan",
+            "url": "https://haztuhorario.com/profesores/32579-horacio-tolentino-quilantan",
+            "score": 43.3,
+            "reviews": 16,
+            "fair": 39.0,
+            "explains": 42.3,
+            "hard": 7.0,
+            "homework": 2.3,
+            "attendance": 60.9,
+            "comments_count": 7
+          },
+          "hardest_teacher": {
+            "name": "Horacio Tolentino Quilantan",
+            "slug": "32579-horacio-tolentino-quilantan",
+            "url": "https://haztuhorario.com/profesores/32579-horacio-tolentino-quilantan",
+            "score": 43.3,
+            "reviews": 16,
+            "fair": 39.0,
+            "explains": 42.3,
+            "hard": 7.0,
+            "homework": 2.3,
+            "attendance": 60.9,
+            "comments_count": 7
+          },
+          "has_unassigned": false
+        },
+        {
+          "name": "Subestaciones Eléctricas",
+          "teacher_count": 1,
+          "teachers": [
+            {
+              "name": "Jorge Humberto Salas Rodriguez",
+              "slug": "26943-jorge-humberto-salas-rodriguez",
+              "url": "https://haztuhorario.com/profesores/26943-jorge-humberto-salas-rodriguez",
+              "score": 85.3,
+              "reviews": 3,
+              "fair": 88.3,
+              "explains": 88.3,
+              "hard": 49.3,
+              "homework": 17.7,
+              "attendance": 66.3,
+              "comments_count": 1
+            }
+          ],
+          "best_teacher": {
+            "name": "Jorge Humberto Salas Rodriguez",
+            "slug": "26943-jorge-humberto-salas-rodriguez",
+            "url": "https://haztuhorario.com/profesores/26943-jorge-humberto-salas-rodriguez",
+            "score": 85.3,
+            "reviews": 3,
+            "fair": 88.3,
+            "explains": 88.3,
+            "hard": 49.3,
+            "homework": 17.7,
+            "attendance": 66.3,
+            "comments_count": 1
+          },
+          "hardest_teacher": {
+            "name": "Jorge Humberto Salas Rodriguez",
+            "slug": "26943-jorge-humberto-salas-rodriguez",
+            "url": "https://haztuhorario.com/profesores/26943-jorge-humberto-salas-rodriguez",
+            "score": 85.3,
+            "reviews": 3,
+            "fair": 88.3,
+            "explains": 88.3,
+            "hard": 49.3,
+            "homework": 17.7,
+            "attendance": 66.3,
+            "comments_count": 1
+          },
+          "has_unassigned": false
+        },
+        {
+          "name": "TALLER DE INVESTIGACIÓN II",
+          "teacher_count": 5,
+          "teachers": [
+            {
+              "name": "Brenda Del Rocio Ibarra Gonzalez",
+              "slug": "37016-brenda-del-rocio-ibarra-gonzalez",
+              "url": "https://haztuhorario.com/profesores/37016-brenda-del-rocio-ibarra-gonzalez",
+              "score": 47.8,
+              "reviews": 8,
+              "fair": 60.0,
+              "explains": 41.6,
+              "hard": 20.9,
+              "homework": 10.9,
+              "attendance": 37.8,
+              "comments_count": 3
+            },
+            {
+              "name": "Garcia Granados Gonzalo",
+              "slug": "593295-garcia-granados-gonzalo",
+              "url": "https://haztuhorario.com/profesores/593295-garcia-granados-gonzalo",
+              "score": 50.0,
+              "reviews": 1,
+              "fair": 48.0,
+              "explains": 27.0,
+              "hard": 39.0,
+              "homework": 16.0,
+              "attendance": 50.0,
+              "comments_count": 1
+            },
+            {
+              "name": "Iovana Acenet Medina Hernandez",
+              "slug": "22601-iovana-acenet-medina-hernandez",
+              "url": "https://haztuhorario.com/profesores/22601-iovana-acenet-medina-hernandez",
+              "score": 96.5,
+              "reviews": 29,
+              "fair": 97.5,
+              "explains": 95.5,
+              "hard": 18.2,
+              "homework": 52.2,
+              "attendance": 88.7,
+              "comments_count": 7
+            },
+            {
+              "name": "Velarde Sanchez Ada Karina",
+              "slug": "455930-velarde-sanchez-ada-karina",
+              "url": "https://haztuhorario.com/profesores/455930-velarde-sanchez-ada-karina",
+              "score": 59.0,
+              "reviews": 21,
+              "fair": 68.7,
+              "explains": 48.8,
+              "hard": 34.7,
+              "homework": 55.8,
+              "attendance": 52.0,
+              "comments_count": 8
+            },
+            {
+              "name": "Zavala Torres Ma. Elida",
+              "slug": "526027-zavala-torres-ma-elida",
+              "url": "https://haztuhorario.com/profesores/526027-zavala-torres-ma-elida",
+              "score": 48.0,
+              "reviews": 3,
+              "fair": 60.0,
+              "explains": 51.7,
+              "hard": 36.7,
+              "homework": 58.0,
+              "attendance": 73.3,
+              "comments_count": 2
+            }
+          ],
+          "best_teacher": {
+            "name": "Iovana Acenet Medina Hernandez",
+            "slug": "22601-iovana-acenet-medina-hernandez",
+            "url": "https://haztuhorario.com/profesores/22601-iovana-acenet-medina-hernandez",
+            "score": 96.5,
+            "reviews": 29,
+            "fair": 97.5,
+            "explains": 95.5,
+            "hard": 18.2,
+            "homework": 52.2,
+            "attendance": 88.7,
+            "comments_count": 7
+          },
+          "hardest_teacher": {
+            "name": "Garcia Granados Gonzalo",
+            "slug": "593295-garcia-granados-gonzalo",
+            "url": "https://haztuhorario.com/profesores/593295-garcia-granados-gonzalo",
+            "score": 50.0,
+            "reviews": 1,
+            "fair": 48.0,
+            "explains": 27.0,
+            "hard": 39.0,
+            "homework": 16.0,
+            "attendance": 50.0,
+            "comments_count": 1
+          },
+          "has_unassigned": false
+        }
+      ]
+    },
+    {
+      "semester": 7,
+      "title": "Semestre 7",
+      "subjects_count": 7,
+      "subjects": [
+        {
+          "name": "Calidad de la Energía Eléctrica",
+          "teacher_count": 2,
+          "teachers": [
+            {
+              "name": "Juan Pablo Nieto Gonzalez",
+              "slug": "25812-juan-pablo-nieto-gonzalez",
+              "url": "https://haztuhorario.com/profesores/25812-juan-pablo-nieto-gonzalez",
+              "score": 80.3,
+              "reviews": 9,
+              "fair": 96.3,
+              "explains": 78.7,
+              "hard": 75.8,
+              "homework": 9.1,
+              "attendance": 1.2,
+              "comments_count": 2
+            },
+            {
+              "name": "Obed Ramirez Gomez",
+              "slug": "13138-obed-ramirez-gomez",
+              "url": "https://haztuhorario.com/profesores/13138-obed-ramirez-gomez",
+              "score": 79.9,
+              "reviews": 20,
+              "fair": 82.6,
+              "explains": 85.0,
+              "hard": 40.8,
+              "homework": 28.5,
+              "attendance": 84.9,
+              "comments_count": 6
+            }
+          ],
+          "best_teacher": {
+            "name": "Juan Pablo Nieto Gonzalez",
+            "slug": "25812-juan-pablo-nieto-gonzalez",
+            "url": "https://haztuhorario.com/profesores/25812-juan-pablo-nieto-gonzalez",
+            "score": 80.3,
+            "reviews": 9,
+            "fair": 96.3,
+            "explains": 78.7,
+            "hard": 75.8,
+            "homework": 9.1,
+            "attendance": 1.2,
+            "comments_count": 2
+          },
+          "hardest_teacher": {
+            "name": "Juan Pablo Nieto Gonzalez",
+            "slug": "25812-juan-pablo-nieto-gonzalez",
+            "url": "https://haztuhorario.com/profesores/25812-juan-pablo-nieto-gonzalez",
+            "score": 80.3,
+            "reviews": 9,
+            "fair": 96.3,
+            "explains": 78.7,
+            "hard": 75.8,
+            "homework": 9.1,
+            "attendance": 1.2,
+            "comments_count": 2
+          },
+          "has_unassigned": false
+        },
+        {
+          "name": "CENTRALES ELÉCTRICAS",
+          "teacher_count": 1,
+          "teachers": [
+            {
+              "name": "Juan Pablo Nieto Gonzalez",
+              "slug": "25812-juan-pablo-nieto-gonzalez",
+              "url": "https://haztuhorario.com/profesores/25812-juan-pablo-nieto-gonzalez",
+              "score": 80.3,
+              "reviews": 9,
+              "fair": 96.3,
+              "explains": 78.7,
+              "hard": 75.8,
+              "homework": 9.1,
+              "attendance": 1.2,
+              "comments_count": 2
+            }
+          ],
+          "best_teacher": {
+            "name": "Juan Pablo Nieto Gonzalez",
+            "slug": "25812-juan-pablo-nieto-gonzalez",
+            "url": "https://haztuhorario.com/profesores/25812-juan-pablo-nieto-gonzalez",
+            "score": 80.3,
+            "reviews": 9,
+            "fair": 96.3,
+            "explains": 78.7,
+            "hard": 75.8,
+            "homework": 9.1,
+            "attendance": 1.2,
+            "comments_count": 2
+          },
+          "hardest_teacher": {
+            "name": "Juan Pablo Nieto Gonzalez",
+            "slug": "25812-juan-pablo-nieto-gonzalez",
+            "url": "https://haztuhorario.com/profesores/25812-juan-pablo-nieto-gonzalez",
+            "score": 80.3,
+            "reviews": 9,
+            "fair": 96.3,
+            "explains": 78.7,
+            "hard": 75.8,
+            "homework": 9.1,
+            "attendance": 1.2,
+            "comments_count": 2
+          },
+          "has_unassigned": false
+        },
+        {
+          "name": "CONTROL DE MÁQUINAS ELÉCTRICAS",
+          "teacher_count": 2,
+          "teachers": [
+            {
+              "name": "Daniel Ruiz Calderon",
+              "slug": "26748-daniel-ruiz-calderon",
+              "url": "https://haztuhorario.com/profesores/26748-daniel-ruiz-calderon",
+              "score": 96.9,
+              "reviews": 9,
+              "fair": 88.4,
+              "explains": 93.4,
+              "hard": 20.0,
+              "homework": 32.9,
+              "attendance": 64.2,
+              "comments_count": 6
+            },
+            {
+              "name": "Mario Alberto Ponce Llamas",
+              "slug": "484536-mario-alberto-ponce-llamas",
+              "url": "https://haztuhorario.com/profesores/484536-mario-alberto-ponce-llamas",
+              "score": 72.2,
+              "reviews": 41,
+              "fair": 67.5,
+              "explains": 76.0,
+              "hard": 59.3,
+              "homework": 33.6,
+              "attendance": 25.9,
+              "comments_count": 7
+            }
+          ],
+          "best_teacher": {
+            "name": "Daniel Ruiz Calderon",
+            "slug": "26748-daniel-ruiz-calderon",
+            "url": "https://haztuhorario.com/profesores/26748-daniel-ruiz-calderon",
+            "score": 96.9,
+            "reviews": 9,
+            "fair": 88.4,
+            "explains": 93.4,
+            "hard": 20.0,
+            "homework": 32.9,
+            "attendance": 64.2,
+            "comments_count": 6
+          },
+          "hardest_teacher": {
+            "name": "Mario Alberto Ponce Llamas",
+            "slug": "484536-mario-alberto-ponce-llamas",
+            "url": "https://haztuhorario.com/profesores/484536-mario-alberto-ponce-llamas",
+            "score": 72.2,
+            "reviews": 41,
+            "fair": 67.5,
+            "explains": 76.0,
+            "hard": 59.3,
+            "homework": 33.6,
+            "attendance": 25.9,
+            "comments_count": 7
+          },
+          "has_unassigned": false
+        },
+        {
+          "name": "ELECTRÓNICA INDUSTRIAL",
+          "teacher_count": 1,
+          "teachers": [
+            {
+              "name": "Obed Ramirez Gomez",
+              "slug": "13138-obed-ramirez-gomez",
+              "url": "https://haztuhorario.com/profesores/13138-obed-ramirez-gomez",
+              "score": 79.9,
+              "reviews": 20,
+              "fair": 82.6,
+              "explains": 85.0,
+              "hard": 40.8,
+              "homework": 28.5,
+              "attendance": 84.9,
+              "comments_count": 6
+            }
+          ],
+          "best_teacher": {
+            "name": "Obed Ramirez Gomez",
+            "slug": "13138-obed-ramirez-gomez",
+            "url": "https://haztuhorario.com/profesores/13138-obed-ramirez-gomez",
+            "score": 79.9,
+            "reviews": 20,
+            "fair": 82.6,
+            "explains": 85.0,
+            "hard": 40.8,
+            "homework": 28.5,
+            "attendance": 84.9,
+            "comments_count": 6
+          },
+          "hardest_teacher": {
+            "name": "Obed Ramirez Gomez",
+            "slug": "13138-obed-ramirez-gomez",
+            "url": "https://haztuhorario.com/profesores/13138-obed-ramirez-gomez",
+            "score": 79.9,
+            "reviews": 20,
+            "fair": 82.6,
+            "explains": 85.0,
+            "hard": 40.8,
+            "homework": 28.5,
+            "attendance": 84.9,
+            "comments_count": 6
+          },
+          "has_unassigned": false
+        },
+        {
+          "name": "MODELADO DE SISTEMAS ELÉCTRICOS DE POTENCIA",
+          "teacher_count": 1,
+          "teachers": [
+            {
+              "name": "Saul Orzua Gonzalez",
+              "slug": "26877-saul-orzua-gonzalez",
+              "url": "https://haztuhorario.com/profesores/26877-saul-orzua-gonzalez",
+              "score": 84.0,
+              "reviews": 11,
+              "fair": 86.5,
+              "explains": 80.0,
+              "hard": 39.5,
+              "homework": 42.6,
+              "attendance": 73.7,
+              "comments_count": 6
+            }
+          ],
+          "best_teacher": {
+            "name": "Saul Orzua Gonzalez",
+            "slug": "26877-saul-orzua-gonzalez",
+            "url": "https://haztuhorario.com/profesores/26877-saul-orzua-gonzalez",
+            "score": 84.0,
+            "reviews": 11,
+            "fair": 86.5,
+            "explains": 80.0,
+            "hard": 39.5,
+            "homework": 42.6,
+            "attendance": 73.7,
+            "comments_count": 6
+          },
+          "hardest_teacher": {
+            "name": "Saul Orzua Gonzalez",
+            "slug": "26877-saul-orzua-gonzalez",
+            "url": "https://haztuhorario.com/profesores/26877-saul-orzua-gonzalez",
+            "score": 84.0,
+            "reviews": 11,
+            "fair": 86.5,
+            "explains": 80.0,
+            "hard": 39.5,
+            "homework": 42.6,
+            "attendance": 73.7,
+            "comments_count": 6
+          },
+          "has_unassigned": false
+        },
+        {
+          "name": "Tópicos de Ingeniaría Eléctrica",
+          "teacher_count": 1,
+          "teachers": [
+            {
+              "name": "Juan Pablo Nieto Gonzalez",
+              "slug": "25812-juan-pablo-nieto-gonzalez",
+              "url": "https://haztuhorario.com/profesores/25812-juan-pablo-nieto-gonzalez",
+              "score": 80.3,
+              "reviews": 9,
+              "fair": 96.3,
+              "explains": 78.7,
+              "hard": 75.8,
+              "homework": 9.1,
+              "attendance": 1.2,
+              "comments_count": 2
+            }
+          ],
+          "best_teacher": {
+            "name": "Juan Pablo Nieto Gonzalez",
+            "slug": "25812-juan-pablo-nieto-gonzalez",
+            "url": "https://haztuhorario.com/profesores/25812-juan-pablo-nieto-gonzalez",
+            "score": 80.3,
+            "reviews": 9,
+            "fair": 96.3,
+            "explains": 78.7,
+            "hard": 75.8,
+            "homework": 9.1,
+            "attendance": 1.2,
+            "comments_count": 2
+          },
+          "hardest_teacher": {
+            "name": "Juan Pablo Nieto Gonzalez",
+            "slug": "25812-juan-pablo-nieto-gonzalez",
+            "url": "https://haztuhorario.com/profesores/25812-juan-pablo-nieto-gonzalez",
+            "score": 80.3,
+            "reviews": 9,
+            "fair": 96.3,
+            "explains": 78.7,
+            "hard": 75.8,
+            "homework": 9.1,
+            "attendance": 1.2,
+            "comments_count": 2
+          },
+          "has_unassigned": false
+        },
+        {
+          "name": "TÓPICOS SELECTOS DE LA INGENIERÍA ELÉCTRICA I",
+          "teacher_count": 1,
+          "teachers": [
+            {
+              "name": "Hernandez Gonzalez Gerardo",
+              "slug": "891475-hernandez-gonzalez-gerardo",
+              "url": "https://haztuhorario.com/profesores/891475-hernandez-gonzalez-gerardo",
+              "score": 100.0,
+              "reviews": 2,
+              "fair": 100.0,
+              "explains": 99.0,
+              "hard": 0.0,
+              "homework": 19.0,
+              "attendance": 90.5,
+              "comments_count": 1
+            }
+          ],
+          "best_teacher": {
+            "name": "Hernandez Gonzalez Gerardo",
+            "slug": "891475-hernandez-gonzalez-gerardo",
+            "url": "https://haztuhorario.com/profesores/891475-hernandez-gonzalez-gerardo",
+            "score": 100.0,
+            "reviews": 2,
+            "fair": 100.0,
+            "explains": 99.0,
+            "hard": 0.0,
+            "homework": 19.0,
+            "attendance": 90.5,
+            "comments_count": 1
+          },
+          "hardest_teacher": {
+            "name": "Hernandez Gonzalez Gerardo",
+            "slug": "891475-hernandez-gonzalez-gerardo",
+            "url": "https://haztuhorario.com/profesores/891475-hernandez-gonzalez-gerardo",
+            "score": 100.0,
+            "reviews": 2,
+            "fair": 100.0,
+            "explains": 99.0,
+            "hard": 0.0,
+            "homework": 19.0,
+            "attendance": 90.5,
+            "comments_count": 1
+          },
+          "has_unassigned": false
+        }
+      ]
+    },
+    {
+      "semester": 8,
+      "title": "Semestre 8",
+      "subjects_count": 7,
+      "subjects": [
+        {
+          "name": "Análisis de Sistemas Eléctricos de Potencia",
+          "teacher_count": 1,
+          "teachers": [
+            {
+              "name": "Juan Pablo Nieto Gonzalez",
+              "slug": "25812-juan-pablo-nieto-gonzalez",
+              "url": "https://haztuhorario.com/profesores/25812-juan-pablo-nieto-gonzalez",
+              "score": 80.3,
+              "reviews": 9,
+              "fair": 96.3,
+              "explains": 78.7,
+              "hard": 75.8,
+              "homework": 9.1,
+              "attendance": 1.2,
+              "comments_count": 2
+            }
+          ],
+          "best_teacher": {
+            "name": "Juan Pablo Nieto Gonzalez",
+            "slug": "25812-juan-pablo-nieto-gonzalez",
+            "url": "https://haztuhorario.com/profesores/25812-juan-pablo-nieto-gonzalez",
+            "score": 80.3,
+            "reviews": 9,
+            "fair": 96.3,
+            "explains": 78.7,
+            "hard": 75.8,
+            "homework": 9.1,
+            "attendance": 1.2,
+            "comments_count": 2
+          },
+          "hardest_teacher": {
+            "name": "Juan Pablo Nieto Gonzalez",
+            "slug": "25812-juan-pablo-nieto-gonzalez",
+            "url": "https://haztuhorario.com/profesores/25812-juan-pablo-nieto-gonzalez",
+            "score": 80.3,
+            "reviews": 9,
+            "fair": 96.3,
+            "explains": 78.7,
+            "hard": 75.8,
+            "homework": 9.1,
+            "attendance": 1.2,
+            "comments_count": 2
+          },
+          "has_unassigned": false
+        },
+        {
+          "name": "CONTROLADOR LÓGICO PROGRAMABLE",
+          "teacher_count": 4,
+          "teachers": [
+            {
+              "name": "Gomez Munoz Ana Gabriela",
+              "slug": "412339-gomez-munoz-ana-gabriela",
+              "url": "https://haztuhorario.com/profesores/412339-gomez-munoz-ana-gabriela",
+              "score": 73.1,
+              "reviews": 55,
+              "fair": 77.7,
+              "explains": 77.0,
+              "hard": 68.2,
+              "homework": 61.5,
+              "attendance": 73.4,
+              "comments_count": 7
+            },
+            {
+              "name": "Manuel Enrique Sandoval Lopez",
+              "slug": "31083-manuel-enrique-sandoval-lopez",
+              "url": "https://haztuhorario.com/profesores/31083-manuel-enrique-sandoval-lopez",
+              "score": 90.6,
+              "reviews": 114,
+              "fair": 91.4,
+              "explains": 94.3,
+              "hard": 39.8,
+              "homework": 29.1,
+              "attendance": 38.2,
+              "comments_count": 8
+            },
+            {
+              "name": "Mario Alberto Ponce Llamas",
+              "slug": "484536-mario-alberto-ponce-llamas",
+              "url": "https://haztuhorario.com/profesores/484536-mario-alberto-ponce-llamas",
+              "score": 72.2,
+              "reviews": 41,
+              "fair": 67.5,
+              "explains": 76.0,
+              "hard": 59.3,
+              "homework": 33.6,
+              "attendance": 25.9,
+              "comments_count": 7
+            },
+            {
+              "name": "Martinez Miwa Carlos Alberto",
+              "slug": "1028382-martinez-miwa-carlos-alberto",
+              "url": "https://haztuhorario.com/profesores/1028382-martinez-miwa-carlos-alberto",
+              "score": null,
+              "reviews": 0,
+              "fair": null,
+              "explains": null,
+              "hard": null,
+              "homework": null,
+              "attendance": null,
+              "comments_count": 0
+            }
+          ],
+          "best_teacher": {
+            "name": "Manuel Enrique Sandoval Lopez",
+            "slug": "31083-manuel-enrique-sandoval-lopez",
+            "url": "https://haztuhorario.com/profesores/31083-manuel-enrique-sandoval-lopez",
+            "score": 90.6,
+            "reviews": 114,
+            "fair": 91.4,
+            "explains": 94.3,
+            "hard": 39.8,
+            "homework": 29.1,
+            "attendance": 38.2,
+            "comments_count": 8
+          },
+          "hardest_teacher": {
+            "name": "Gomez Munoz Ana Gabriela",
+            "slug": "412339-gomez-munoz-ana-gabriela",
+            "url": "https://haztuhorario.com/profesores/412339-gomez-munoz-ana-gabriela",
+            "score": 73.1,
+            "reviews": 55,
+            "fair": 77.7,
+            "explains": 77.0,
+            "hard": 68.2,
+            "homework": 61.5,
+            "attendance": 73.4,
+            "comments_count": 7
+          },
+          "has_unassigned": false
+        },
+        {
+          "name": "GESTIÓN EMPRESARIAL Y LIDERAZGO",
+          "teacher_count": 2,
+          "teachers": [
+            {
+              "name": "De La Fuente Alvear Leticia Guadalupe",
+              "slug": "1028369-de-la-fuente-alvear-leticia-guadalupe",
+              "url": "https://haztuhorario.com/profesores/1028369-de-la-fuente-alvear-leticia-guadalupe",
+              "score": null,
+              "reviews": 0,
+              "fair": null,
+              "explains": null,
+              "hard": null,
+              "homework": null,
+              "attendance": null,
+              "comments_count": 0
+            },
+            {
+              "name": "Sanchez Andrade Damian",
+              "slug": "412392-sanchez-andrade-damian",
+              "url": "https://haztuhorario.com/profesores/412392-sanchez-andrade-damian",
+              "score": 57.4,
+              "reviews": 7,
+              "fair": 40.6,
+              "explains": 46.4,
+              "hard": 49.4,
+              "homework": 54.4,
+              "attendance": 88.7,
+              "comments_count": 3
+            }
+          ],
+          "best_teacher": {
+            "name": "Sanchez Andrade Damian",
+            "slug": "412392-sanchez-andrade-damian",
+            "url": "https://haztuhorario.com/profesores/412392-sanchez-andrade-damian",
+            "score": 57.4,
+            "reviews": 7,
+            "fair": 40.6,
+            "explains": 46.4,
+            "hard": 49.4,
+            "homework": 54.4,
+            "attendance": 88.7,
+            "comments_count": 3
+          },
+          "hardest_teacher": {
+            "name": "Sanchez Andrade Damian",
+            "slug": "412392-sanchez-andrade-damian",
+            "url": "https://haztuhorario.com/profesores/412392-sanchez-andrade-damian",
+            "score": 57.4,
+            "reviews": 7,
+            "fair": 40.6,
+            "explains": 46.4,
+            "hard": 49.4,
+            "homework": 54.4,
+            "attendance": 88.7,
+            "comments_count": 3
+          },
+          "has_unassigned": false
+        },
+        {
+          "name": "INSTRUMENTACIÓN",
+          "teacher_count": 4,
+          "teachers": [
+            {
+              "name": "Cecilia Mendoza Rivas",
+              "slug": "24742-cecilia-mendoza-rivas",
+              "url": "https://haztuhorario.com/profesores/24742-cecilia-mendoza-rivas",
+              "score": 85.6,
+              "reviews": 64,
+              "fair": 87.1,
+              "explains": 83.2,
+              "hard": 20.0,
+              "homework": 45.3,
+              "attendance": 92.7,
+              "comments_count": 8
+            },
+            {
+              "name": "Flavio Rodriguez Vargas",
+              "slug": "25067-flavio-rodriguez-vargas",
+              "url": "https://haztuhorario.com/profesores/25067-flavio-rodriguez-vargas",
+              "score": 37.5,
+              "reviews": 47,
+              "fair": 42.3,
+              "explains": 42.9,
+              "hard": 61.7,
+              "homework": 56.4,
+              "attendance": 48.7,
+              "comments_count": 7
+            },
+            {
+              "name": "Francisco Agustin Vazquez Esquivel",
+              "slug": "25511-francisco-agustin-vazquez-esquivel",
+              "url": "https://haztuhorario.com/profesores/25511-francisco-agustin-vazquez-esquivel",
+              "score": 37.2,
+              "reviews": 23,
+              "fair": 38.3,
+              "explains": 41.3,
+              "hard": 76.7,
+              "homework": 25.6,
+              "attendance": 63.5,
+              "comments_count": 7
+            },
+            {
+              "name": "Fritsche Ramirez Ewald",
+              "slug": "455880-fritsche-ramirez-ewald",
+              "url": "https://haztuhorario.com/profesores/455880-fritsche-ramirez-ewald",
+              "score": 53.2,
+              "reviews": 37,
+              "fair": 52.0,
+              "explains": 37.2,
+              "hard": 48.9,
+              "homework": 69.6,
+              "attendance": 64.5,
+              "comments_count": 7
+            }
+          ],
+          "best_teacher": {
+            "name": "Cecilia Mendoza Rivas",
+            "slug": "24742-cecilia-mendoza-rivas",
+            "url": "https://haztuhorario.com/profesores/24742-cecilia-mendoza-rivas",
+            "score": 85.6,
+            "reviews": 64,
+            "fair": 87.1,
+            "explains": 83.2,
+            "hard": 20.0,
+            "homework": 45.3,
+            "attendance": 92.7,
+            "comments_count": 8
+          },
+          "hardest_teacher": {
+            "name": "Francisco Agustin Vazquez Esquivel",
+            "slug": "25511-francisco-agustin-vazquez-esquivel",
+            "url": "https://haztuhorario.com/profesores/25511-francisco-agustin-vazquez-esquivel",
+            "score": 37.2,
+            "reviews": 23,
+            "fair": 38.3,
+            "explains": 41.3,
+            "hard": 76.7,
+            "homework": 25.6,
+            "attendance": 63.5,
+            "comments_count": 7
+          },
+          "has_unassigned": false
+        },
+        {
+          "name": "LEGISLACIÓN EN MATERIA ELÉCTRICA",
+          "teacher_count": 1,
+          "teachers": [
+            {
+              "name": "Allende Sancho Gabriel",
+              "slug": "704269-allende-sancho-gabriel",
+              "url": "https://haztuhorario.com/profesores/704269-allende-sancho-gabriel",
+              "score": 68.8,
+              "reviews": 33,
+              "fair": 77.2,
+              "explains": 60.7,
+              "hard": 48.8,
+              "homework": 61.2,
+              "attendance": 91.8,
+              "comments_count": 6
+            }
+          ],
+          "best_teacher": {
+            "name": "Allende Sancho Gabriel",
+            "slug": "704269-allende-sancho-gabriel",
+            "url": "https://haztuhorario.com/profesores/704269-allende-sancho-gabriel",
+            "score": 68.8,
+            "reviews": 33,
+            "fair": 77.2,
+            "explains": 60.7,
+            "hard": 48.8,
+            "homework": 61.2,
+            "attendance": 91.8,
+            "comments_count": 6
+          },
+          "hardest_teacher": {
+            "name": "Allende Sancho Gabriel",
+            "slug": "704269-allende-sancho-gabriel",
+            "url": "https://haztuhorario.com/profesores/704269-allende-sancho-gabriel",
+            "score": 68.8,
+            "reviews": 33,
+            "fair": 77.2,
+            "explains": 60.7,
+            "hard": 48.8,
+            "homework": 61.2,
+            "attendance": 91.8,
+            "comments_count": 6
+          },
+          "has_unassigned": false
+        },
+        {
+          "name": "PRUEBAS Y MANTENIMIENTO ELÉCTRICO",
+          "teacher_count": 1,
+          "teachers": [
+            {
+              "name": "Jorge Humberto Salas Rodriguez",
+              "slug": "26943-jorge-humberto-salas-rodriguez",
+              "url": "https://haztuhorario.com/profesores/26943-jorge-humberto-salas-rodriguez",
+              "score": 85.3,
+              "reviews": 3,
+              "fair": 88.3,
+              "explains": 88.3,
+              "hard": 49.3,
+              "homework": 17.7,
+              "attendance": 66.3,
+              "comments_count": 1
+            }
+          ],
+          "best_teacher": {
+            "name": "Jorge Humberto Salas Rodriguez",
+            "slug": "26943-jorge-humberto-salas-rodriguez",
+            "url": "https://haztuhorario.com/profesores/26943-jorge-humberto-salas-rodriguez",
+            "score": 85.3,
+            "reviews": 3,
+            "fair": 88.3,
+            "explains": 88.3,
+            "hard": 49.3,
+            "homework": 17.7,
+            "attendance": 66.3,
+            "comments_count": 1
+          },
+          "hardest_teacher": {
+            "name": "Jorge Humberto Salas Rodriguez",
+            "slug": "26943-jorge-humberto-salas-rodriguez",
+            "url": "https://haztuhorario.com/profesores/26943-jorge-humberto-salas-rodriguez",
+            "score": 85.3,
+            "reviews": 3,
+            "fair": 88.3,
+            "explains": 88.3,
+            "hard": 49.3,
+            "homework": 17.7,
+            "attendance": 66.3,
+            "comments_count": 1
+          },
+          "has_unassigned": false
+        },
+        {
+          "name": "TÓPICOS SELECTOS DE LA INGENIERÍA ELÉCTRICA II",
+          "teacher_count": 1,
+          "teachers": [
+            {
+              "name": "Juan Pablo Nieto Gonzalez",
+              "slug": "25812-juan-pablo-nieto-gonzalez",
+              "url": "https://haztuhorario.com/profesores/25812-juan-pablo-nieto-gonzalez",
+              "score": 80.3,
+              "reviews": 9,
+              "fair": 96.3,
+              "explains": 78.7,
+              "hard": 75.8,
+              "homework": 9.1,
+              "attendance": 1.2,
+              "comments_count": 2
+            }
+          ],
+          "best_teacher": {
+            "name": "Juan Pablo Nieto Gonzalez",
+            "slug": "25812-juan-pablo-nieto-gonzalez",
+            "url": "https://haztuhorario.com/profesores/25812-juan-pablo-nieto-gonzalez",
+            "score": 80.3,
+            "reviews": 9,
+            "fair": 96.3,
+            "explains": 78.7,
+            "hard": 75.8,
+            "homework": 9.1,
+            "attendance": 1.2,
+            "comments_count": 2
+          },
+          "hardest_teacher": {
+            "name": "Juan Pablo Nieto Gonzalez",
+            "slug": "25812-juan-pablo-nieto-gonzalez",
+            "url": "https://haztuhorario.com/profesores/25812-juan-pablo-nieto-gonzalez",
+            "score": 80.3,
+            "reviews": 9,
+            "fair": 96.3,
+            "explains": 78.7,
+            "hard": 75.8,
+            "homework": 9.1,
+            "attendance": 1.2,
+            "comments_count": 2
+          },
+          "has_unassigned": false
+        }
+      ]
+    },
+    {
+      "semester": 9,
+      "title": "Semestre 9",
+      "subjects_count": 4,
+      "subjects": [
+        {
+          "name": "Coordinación de Protecciones Eléctricas",
+          "teacher_count": 1,
+          "teachers": [
+            {
+              "name": "Daniel Ruiz Calderon",
+              "slug": "26748-daniel-ruiz-calderon",
+              "url": "https://haztuhorario.com/profesores/26748-daniel-ruiz-calderon",
+              "score": 96.9,
+              "reviews": 9,
+              "fair": 88.4,
+              "explains": 93.4,
+              "hard": 20.0,
+              "homework": 32.9,
+              "attendance": 64.2,
+              "comments_count": 6
+            }
+          ],
+          "best_teacher": {
+            "name": "Daniel Ruiz Calderon",
+            "slug": "26748-daniel-ruiz-calderon",
+            "url": "https://haztuhorario.com/profesores/26748-daniel-ruiz-calderon",
+            "score": 96.9,
+            "reviews": 9,
+            "fair": 88.4,
+            "explains": 93.4,
+            "hard": 20.0,
+            "homework": 32.9,
+            "attendance": 64.2,
+            "comments_count": 6
+          },
+          "hardest_teacher": {
+            "name": "Daniel Ruiz Calderon",
+            "slug": "26748-daniel-ruiz-calderon",
+            "url": "https://haztuhorario.com/profesores/26748-daniel-ruiz-calderon",
+            "score": 96.9,
+            "reviews": 9,
+            "fair": 88.4,
+            "explains": 93.4,
+            "hard": 20.0,
+            "homework": 32.9,
+            "attendance": 64.2,
+            "comments_count": 6
+          },
+          "has_unassigned": false
+        },
+        {
+          "name": "COSTOS Y PRESUPUESTOS DE PROYECTOS ELÉCTRICOS",
+          "teacher_count": 1,
+          "teachers": [
+            {
+              "name": "Horacio Tolentino Quilantan",
+              "slug": "32579-horacio-tolentino-quilantan",
+              "url": "https://haztuhorario.com/profesores/32579-horacio-tolentino-quilantan",
+              "score": 43.3,
+              "reviews": 16,
+              "fair": 39.0,
+              "explains": 42.3,
+              "hard": 7.0,
+              "homework": 2.3,
+              "attendance": 60.9,
+              "comments_count": 7
+            }
+          ],
+          "best_teacher": {
+            "name": "Horacio Tolentino Quilantan",
+            "slug": "32579-horacio-tolentino-quilantan",
+            "url": "https://haztuhorario.com/profesores/32579-horacio-tolentino-quilantan",
+            "score": 43.3,
+            "reviews": 16,
+            "fair": 39.0,
+            "explains": 42.3,
+            "hard": 7.0,
+            "homework": 2.3,
+            "attendance": 60.9,
+            "comments_count": 7
+          },
+          "hardest_teacher": {
+            "name": "Horacio Tolentino Quilantan",
+            "slug": "32579-horacio-tolentino-quilantan",
+            "url": "https://haztuhorario.com/profesores/32579-horacio-tolentino-quilantan",
+            "score": 43.3,
+            "reviews": 16,
+            "fair": 39.0,
+            "explains": 42.3,
+            "hard": 7.0,
+            "homework": 2.3,
+            "attendance": 60.9,
+            "comments_count": 7
+          },
+          "has_unassigned": false
+        },
+        {
+          "name": "Curso Avanzado de PLC",
+          "teacher_count": 1,
+          "teachers": [
+            {
+              "name": "Hernandez Gonzalez Gerardo",
+              "slug": "891475-hernandez-gonzalez-gerardo",
+              "url": "https://haztuhorario.com/profesores/891475-hernandez-gonzalez-gerardo",
+              "score": 100.0,
+              "reviews": 2,
+              "fair": 100.0,
+              "explains": 99.0,
+              "hard": 0.0,
+              "homework": 19.0,
+              "attendance": 90.5,
+              "comments_count": 1
+            }
+          ],
+          "best_teacher": {
+            "name": "Hernandez Gonzalez Gerardo",
+            "slug": "891475-hernandez-gonzalez-gerardo",
+            "url": "https://haztuhorario.com/profesores/891475-hernandez-gonzalez-gerardo",
+            "score": 100.0,
+            "reviews": 2,
+            "fair": 100.0,
+            "explains": 99.0,
+            "hard": 0.0,
+            "homework": 19.0,
+            "attendance": 90.5,
+            "comments_count": 1
+          },
+          "hardest_teacher": {
+            "name": "Hernandez Gonzalez Gerardo",
+            "slug": "891475-hernandez-gonzalez-gerardo",
+            "url": "https://haztuhorario.com/profesores/891475-hernandez-gonzalez-gerardo",
+            "score": 100.0,
+            "reviews": 2,
+            "fair": 100.0,
+            "explains": 99.0,
+            "hard": 0.0,
+            "homework": 19.0,
+            "attendance": 90.5,
+            "comments_count": 1
+          },
+          "has_unassigned": false
+        },
+        {
+          "name": "DETECCIÓN Y DIAGNÓSTICO INTELIGENTE DE FALLAS",
+          "teacher_count": 1,
+          "teachers": [
+            {
+              "name": "Cavazos Hernandez Enrique Alejandro",
+              "slug": "891490-cavazos-hernandez-enrique-alejandro",
+              "url": "https://haztuhorario.com/profesores/891490-cavazos-hernandez-enrique-alejandro",
+              "score": 58.5,
+              "reviews": 6,
+              "fair": 58.8,
+              "explains": 58.5,
+              "hard": 60.7,
+              "homework": 49.8,
+              "attendance": 99.8,
+              "comments_count": 5
+            }
+          ],
+          "best_teacher": {
+            "name": "Cavazos Hernandez Enrique Alejandro",
+            "slug": "891490-cavazos-hernandez-enrique-alejandro",
+            "url": "https://haztuhorario.com/profesores/891490-cavazos-hernandez-enrique-alejandro",
+            "score": 58.5,
+            "reviews": 6,
+            "fair": 58.8,
+            "explains": 58.5,
+            "hard": 60.7,
+            "homework": 49.8,
+            "attendance": 99.8,
+            "comments_count": 5
+          },
+          "hardest_teacher": {
+            "name": "Cavazos Hernandez Enrique Alejandro",
+            "slug": "891490-cavazos-hernandez-enrique-alejandro",
+            "url": "https://haztuhorario.com/profesores/891490-cavazos-hernandez-enrique-alejandro",
+            "score": 58.5,
+            "reviews": 6,
+            "fair": 58.8,
+            "explains": 58.5,
+            "hard": 60.7,
+            "homework": 49.8,
+            "attendance": 99.8,
+            "comments_count": 5
+          },
+          "has_unassigned": false
+        }
+      ]
+    }
+  ]
+}
