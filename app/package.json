@@ -9,7 +9,7 @@
     "build": "tsc -b && vite build",
     "preview": "vite preview",
     "predeploy": "vite build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist --repo https://github.com/rodrigo47363/horariostec.git"
   },
   "dependencies": {
     "@tanstack/query-sync-storage-persister": "^5.101.4",
