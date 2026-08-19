@@ -41,19 +41,30 @@ def main() -> int:
     destination = output_path(args.filename)
     client = HazTuHorarioClient(args.base_url)
     careers = args.career or client.careers()
-    names: dict[str, str] = {}
+    teacher_entries: dict[str, tuple[str, str]] = {}
+
     for career in careers:
-        career_teachers = client.teachers(career)
-        if not career_teachers:
+        try:
+            entries = client.teacher_entries(career)
+        except (ParseError, RequestException) as error:
+            print(f"Skipping career without a published teacher page: {career} ({error})")
+            continue
+
+        if not entries:
             print(f"Skipping career without a published teacher page: {career}")
-        for name in career_teachers:
-            names[comparison_key(name)] = name
+            continue
+
+        for name, path in entries:
+            key = comparison_key(name)
+            if key not in teacher_entries:
+                teacher_entries[key] = (name, path)
 
     teachers = []
-    for index, name in enumerate(sorted(names.values(), key=comparison_key), start=1):
-        print(f"[{index}/{len(names)}] {name}")
+    sorted_items = sorted(teacher_entries.values(), key=lambda item: comparison_key(item[0]))
+    for index, (name, path) in enumerate(sorted_items, start=1):
+        print(f"[{index}/{len(sorted_items)}] {name}")
         try:
-            teachers.append(client.teacher(name))
+            teachers.append(client.teacher(path))
         except (ParseError, RequestException) as error:
             print(f"Skipping unavailable teacher profile: {name} ({error})")
 

@@ -369,31 +369,157 @@ function CareerCard({ career }: { career: Career }) {
     </Link>
   );
 }
+function searchKey(value: string) {
+  return value
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLocaleLowerCase("es-MX")
+    .trim();
+}
+
 function Teachers() {
-  const { data, isPending, error } = useQuery({
+  const [viewMode, setViewMode] = useState<"careers" | "all">("careers");
+  const [search, setSearch] = useState("");
+  const [sortBy, setSortBy] = useState<"rating" | "reviews" | "name">("rating");
+
+  const careersQuery = useQuery({
     queryKey: ["careers"],
     queryFn: api.careers,
   });
-  const careers = data?.careers ?? [];
+
+  const teachersQuery = useQuery({
+    queryKey: ["teachers", "all"],
+    queryFn: () => api.teachers({}),
+  });
+
+  const careers = careersQuery.data?.careers ?? [];
+  const allTeachers = teachersQuery.data?.teachers ?? [];
+  const isPending = careersQuery.isPending || (viewMode === "all" && teachersQuery.isPending);
+  const error = careersQuery.error ?? teachersQuery.error;
+
+  const filteredTeachers = useMemo(() => {
+    const term = searchKey(search);
+    let list = allTeachers;
+    if (term) {
+      list = list.filter(
+        (t) =>
+          searchKey(t.display_name).includes(term) ||
+          (t.subjects ?? []).some((s) => searchKey(s.name).includes(term)),
+      );
+    }
+    return [...list].sort((a, b) => {
+      if (sortBy === "rating") {
+        const rA = a.absolute_global_rating ?? -1;
+        const rB = b.absolute_global_rating ?? -1;
+        if (rB !== rA) return rB - rA;
+        return (b.legacy_review_count ?? 0) - (a.legacy_review_count ?? 0);
+      }
+      if (sortBy === "reviews") {
+        const revA = (a.legacy_review_count ?? 0) + (a.evaluation_count ?? 0);
+        const revB = (b.legacy_review_count ?? 0) + (b.evaluation_count ?? 0);
+        if (revB !== revA) return revB - revA;
+        return (b.absolute_global_rating ?? 0) - (a.absolute_global_rating ?? 0);
+      }
+      return a.display_name.localeCompare(b.display_name);
+    });
+  }, [allTeachers, search, sortBy]);
+
+  // If user types search while in careers view, switch or filter seamlessly
+  const isSearching = search.trim().length > 0;
+  const activeView = isSearching ? "all" : viewMode;
+
   return (
     <div className="container page">
       <div className="page-heading">
         <div>
-          <div className="eyebrow">DIRECTORIO</div>
+          <div className="eyebrow">DIRECTORIO ACADÉMICO</div>
           <h1>Docentes</h1>
-          <p>Elige una carrera para explorar sus materias y docentes.</p>
+          <p>
+            Explora las materias y calificaciones de los {allTeachers.length || 559} docentes del Instituto Tecnológico de Saltillo.
+          </p>
         </div>
         <span className="heading-rule" />
       </div>
+
+      <div className="directory-filters" style={{ marginBottom: "24px" }}>
+        <label className="search-box" style={{ flex: "1 1 320px" }}>
+          <Search size={19} strokeWidth={1.8} aria-hidden="true" />
+          <input
+            value={search}
+            onChange={(event) => setSearch(event.target.value)}
+            placeholder="Buscar docente o materia en toda la universidad..."
+            aria-label="Buscar docente o materia"
+          />
+        </label>
+
+        {!isSearching && (
+          <div className="directory-view-toggle" role="tablist" aria-label="Modo de vista">
+            <button
+              type="button"
+              className={`toggle-tab-btn ${activeView === "careers" ? "active" : ""}`}
+              onClick={() => setViewMode("careers")}
+            >
+              Por Carreras ({careers.length})
+            </button>
+            <button
+              type="button"
+              className={`toggle-tab-btn ${activeView === "all" ? "active" : ""}`}
+              onClick={() => setViewMode("all")}
+            >
+              Todos los Docentes ({allTeachers.length || 559})
+            </button>
+          </div>
+        )}
+
+        {activeView === "all" && (
+          <div className="directory-sort-select">
+            <label htmlFor="sort-teachers-select" style={{ fontSize: "12px", fontWeight: 600, color: "var(--muted)" }}>
+              Ordenar:
+            </label>
+            <select
+              id="sort-teachers-select"
+              value={sortBy}
+              onChange={(e) => setSortBy(e.target.value as "rating" | "reviews" | "name")}
+              className="styled-select"
+            >
+              <option value="rating">Mayor Calificación</option>
+              <option value="reviews">Más Reseñas</option>
+              <option value="name">Alfabético (A-Z)</option>
+            </select>
+          </div>
+        )}
+      </div>
+
       {error ? (
         <ErrorMessage message={error.message} />
-      ) : isPending || !careers.length ? (
+      ) : isPending ? (
         <Loading />
-      ) : (
+      ) : activeView === "careers" ? (
         <div className="career-grid">
           {careers.map((career) => (
             <CareerCard key={career.slug} career={career} />
           ))}
+        </div>
+      ) : (
+        <div>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "16px", color: "var(--muted)", fontSize: "13px" }}>
+            <span>
+              Mostrando <strong>{filteredTeachers.length}</strong> de <strong>{allTeachers.length}</strong> docentes
+              {search && <span> para "{search}"</span>}
+            </span>
+          </div>
+
+          {!filteredTeachers.length ? (
+            <div className="empty-panel">
+              No se encontraron docentes con el término "{search}".
+            </div>
+          ) : (
+            <div className="career-grid" style={{ gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))" }}>
+              {filteredTeachers.map((teacher) => (
+                <TeacherCard key={teacher.id} teacher={teacher} />
+              ))}
+            </div>
+          )}
         </div>
       )}
     </div>
@@ -582,13 +708,6 @@ function semesterMatches(selection: SemesterSelection, semester: number) {
     selection === "all" ||
     (Array.isArray(selection) && selection.includes(semester))
   );
-}
-function searchKey(value: string) {
-  return value
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .toLocaleLowerCase("es-MX")
-    .trim();
 }
 function SemesterPicker({
   value,

@@ -2341,3 +2341,65 @@ textarea { min-height: 135px; resize: vertical; }
   background: rgba(255, 255, 255, 0.06);
 }
 
+.directory-view-toggle {
+  display: inline-flex;
+  background: var(--surface-secondary, rgba(0, 0, 0, 0.04));
+  border: 1px solid var(--border-color, rgba(0, 0, 0, 0.08));
+  border-radius: 12px;
+  padding: 4px;
+  gap: 4px;
+}
+[data-theme="dark"] .directory-view-toggle {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.toggle-tab-btn {
+  border: none;
+  background: transparent;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted, #64748b);
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+.toggle-tab-btn:hover {
+  color: var(--text-main, #0f172a);
+}
+.toggle-tab-btn.active {
+  background: var(--surface, #ffffff);
+  color: var(--wine, #800020);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+[data-theme="dark"] .toggle-tab-btn.active {
+  background: var(--surface, #1e293b);
+  color: #fca5a5;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+.directory-sort-select {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.styled-select {
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--border-color, rgba(0, 0, 0, 0.1));
+  background: var(--surface, #ffffff);
+  color: var(--text-main, #0f172a);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.18s ease;
+}
+[data-theme="dark"] .styled-select {
+  background: var(--surface, #1e293b);
+  border-color: rgba(255, 255, 255, 0.12);
+  color: #f1f5f9;
+}
+

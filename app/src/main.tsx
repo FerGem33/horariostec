@@ -10,10 +10,9 @@ import { createSyncStoragePersister } from "@tanstack/query-sync-storage-persist
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      staleTime: 1000 * 60 * 60 * 12, // 12 horas: mantiene los datos frescos sin peticiones repetidas a Cloudflare
-      gcTime: 1000 * 60 * 60 * 24 * 7, // 7 días en almacenamiento
-      refetchOnWindowFocus: false, // Evita re-consultar al cambiar entre pestañas del navegador
-      refetchOnReconnect: false,
+      staleTime: import.meta.env.DEV ? 0 : 1000 * 60 * 5, // 5 min en prod, 0 en dev para cambios inmediatos
+      gcTime: 1000 * 60 * 60 * 24,
+      refetchOnWindowFocus: true,
       retry: 2,
     },
   },
@@ -21,7 +20,7 @@ const queryClient = new QueryClient({
 
 const persister = createSyncStoragePersister({
   storage: window.localStorage,
-  key: "HORARIOSTEC_TANSTACK_QUERY_CACHE",
+  key: "HORARIOSTEC_TANSTACK_QUERY_CACHE_V2",
 });
 
 createRoot(document.getElementById("root")!).render(
